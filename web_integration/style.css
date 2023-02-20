@@ -1,18 +1,161 @@
+/* Reset */
+
 * {
-    box-sizing: border-box;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+}
+
+/* Colors to be used throughout the different website elements */
+
+:root {
+    --bg-color: #1A373B;
+    --text-color: #C8DD36;
+    --bg-main: #0B3B3B;
+    --bg-images: #55A494;
+    --bg-buttons: #F3B210;
+    --blue-outlines: #00313A;
+    --orange-buttons: #F27E08;
+    --blue-text: #0D2935;
 }
 
 body {
-    background-color: #00313A;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--bg-color);
+    margin: 1rem;
+}
+
+.container {
+    color: var(--text-color);
+    border: 10px var(--bg-buttons) solid;
+    border-radius: 30px;
+}
+
+.smallContainer {
+    border: 10px var(--blue-outlines) solid;
+    border-radius: 30px;
 }
 
 main {
-    background-color: #0B3B3B ;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 80px;
+    background-color: var(--bg-main);
+    border: 10px var(--bg-color) solid;
+    border-radius: 5px;
 }
+
+header{
+    text-align: center;
+    margin: -40px
+}
+
+h1 {
+    font-weight: bolder;
+    font-size: 3rem;
+    padding: 1rem;
+    font-family: 'Mentimun';
+}
+ 
 
 img {
-    width: 15%;
+    width: 150px;
 }
 
+
+p {
+    margin: 1rem;
+}
+
+.game-modes {
+    display: flex;
+    justify-content: space-around;
+}
+
+#random-game, #theme-game {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#random-game img, #theme-game img {
+    background-color: var(--bg-images);
+    border: 10px var(--blue-outlines) solid;
+    border-radius: 30px;
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 200px;
+}
+
+#random-game button, #theme-game button {
+    width: 200px;
+    padding: 0.1rem 0;
+    background-color: var(--orange-buttons);
+    color: var(--blue-text);
+    font-weight: bolder;
+    border: 10px var(--blue-outlines)solid;
+    border-radius: 15px;
+    font-family: 'Mentimun';
+    font-size: 125%;
+}
+
+
+a {
+    text-decoration: none;
+    color: var(--text-color)
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+aside div {
+    display: flex;
+    margin: 30px;
+}
+
+span {
+    background-color: var(--orange-buttons);
+    border-radius: 2px;;
+}
+
+aside a {
+    margin-top: 17px;
+}
+
+.homeButton {
+    width: 180px;
+    margin-left: 10px;
+    
+}
+
+aside button {
+    display: block;
+    width: 150px;
+    padding: 0.1rem;
+    background-color: var(--bg-buttons);
+    color: var(--blue-text);
+    font-weight: bolder;
+    border: 4px var(--orange-buttons)solid;
+    border-radius: 7px;
+    margin: 1rem;
+    margin-left: 30px;
+    font-family: 'Mentimun';
+    font-size: 125%;
+
+}
+
+aside a.contact{
+    display: block;
+    width: 50%;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+footer div p {
+   text-align: center;
+}
