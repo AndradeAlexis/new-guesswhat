@@ -25,18 +25,10 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
     margin: 1rem;
-<<<<<<< HEAD
     max-width: 1500px;
-    width: fit-content;
-    margin-left: 150px;
-    margin-right: 150px;
-=======
-    max-width: 100%;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-
->>>>>>> 00a4856c9ed11eaa38e485c73df22ef1cac88227
 }
 
 .container {
@@ -232,27 +224,34 @@ footer {
 
 .subscriptionForm {
     width: 100%;
-    text-align: center;
     padding: 1rem;
-    display: block 
-    
+    display: flex;
+}
+
+.columnSubscriptionForm {
+    flex: 50%;
 }
 
 .subscriptionForm label {
     font-weight: bold;
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    padding: 5% 20px;
+
 }
 
 .subscriptionForm input {
-    border: var(--orange-buttons);
+    border: 4px solid var(--bg-buttons);
     border-radius: 10px;
-    width: 50%;
     padding: 12px 20px;
     margin-top: 5%;
+    display: flex;
+    flex-direction: column;
 }
 
 
-.subscriptionForm button {
+#subscriptionFormButton {
     width: 250px;
     padding: 1rem;
     background-color: var(--orange-buttons);
@@ -275,27 +274,34 @@ footer {
 
 .loginForm {
     width: 100%;
-    text-align: center;
     padding: 1rem;
-    display: block 
-    
+    display: flex;
+}
+
+.columnLoginForm {
+    flex: 50%;
 }
 
 .loginForm label {
     font-weight: bold;
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    padding: 5% 20px;
+
 }
 
 .loginForm input {
-    border: var(--orange-buttons);
+    border: 4px solid var(--bg-buttons);
     border-radius: 10px;
-    width: 50%;
     padding: 12px 20px;
     margin-top: 5%;
+    display: flex;
+    flex-direction: column;
 }
 
 
-.loginForm button {
+#loginFormButton {
     width: 250px;
     padding: 1rem;
     background-color: var(--orange-buttons);
@@ -317,29 +323,39 @@ footer {
 }
 
 .addRiddleForm {
-
     width: 100%;
-    text-align: center;
     padding: 1rem;
-    display: block 
-    
+    display: flex;
+}
+
+.columnAddRiddleForm {
+    flex: 50%;
 }
 
 .addRiddleForm label {
     font-weight: bold;
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    padding: 2% 20%;
+
 }
 
 .addRiddleForm input {
-    border: var(--orange-buttons);
+    border: 4px solid var(--bg-buttons);
     border-radius: 10px;
-    width: 50%;
-    padding: 12px 20px;
+    padding: 2%;
+    width: 130%;
     margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    z-index: 1;
+    
 }
 
 
-.addRiddleForm button {
+#addRiddleFormButton {
     width: 250px;
     padding: 1rem;
     background-color: var(--orange-buttons);
@@ -352,4 +368,49 @@ footer {
     margin-top: 40px;
     height: 50%;
 
+}
+
+.dropdownMain {
+    display: inline-block;
+    background-color: var(--orange-buttons);
+    color: var(--blue-text);
+    border: 4px var(--blue-outlines)solid;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2%;
+    width: 130%;
+    margin-top: 5%;
+}
+
+.dropdownBtn {
+    background-color: var(--orange-buttons);
+    border: none;
+    
+    
+    
+}
+
+
+
+.dropdownThemes {
+    background-color: var(--bg-images);
+    color: var(--bg-buttons);
+    border: 2px solid var(--blue-outlines);
+    border-radius: 4px;
+    display: none;
+    width: 18%;
+    z-index: 2;
+    position: absolute;
+    right: 46.7%;
+}
+
+.dropdownThemes p {
+    color: var(--bg-buttons);
+    background-color: var(--bg-images);
+    text-decoration: none;
+    display: block;
+}
+
+.dropdownMain:hover .dropdownThemes {
+    display: block;
 }

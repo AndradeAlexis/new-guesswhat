@@ -24,29 +24,27 @@
             <a href="#"><img src="./images/Logo.png" class="main-logo"></a>
         </header>
         <main>
-            <section>
+            <section class="leftBlock">
                 <div class="guessWhatText">
                     <h1>Guess What ?</h1>
                     <!--On garde la div ?-->
                 </div>
 
                 <h2 id="subscriptionFormTitle">Formulaire d'inscription</h2>
-                <form class="subscriptionForm">
-                    <div>
+                <form>
+                    <div class="subscriptionForm">
+                    <div class="columnSubscriptionForm">
                         <label for="name">Nom d'utilisateur</label>
-                        <input type="text" id="name" name="user_name" placeholder="Username">
-                    </div>
-
-                    <div>
                         <label for="mail">Adresse email</label>
-                        <input type="email" id="mail" name="user_mail" placeholder="Email">
-                    </div>
-
-                    <div>
                         <label for="password">Mot de passe</label>
+                    </div>
+                    <div class="columnSubscriptionForm">
+                        <input type="email" id="mail" name="user_mail" placeholder="Email">
+                        <input type="text" id="name" name="user_name" placeholder="Username">
                         <input type="password" id="password" name="user_password" placeholder="Mot de passe">
                     </div>
-                    <button>Valider</button>
+                </div>
+                    <button id="subscriptionFormButton">Valider</button>
                 </form>
             </section>
 
