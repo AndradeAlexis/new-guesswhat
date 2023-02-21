@@ -25,6 +25,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
     margin: 1rem;
+    max-width: 100%;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 .container {
@@ -63,14 +68,18 @@ header img {
     text-align: justify;
 }
 
+.leftBlock {
+    text-align: center;
+}
+
 h1 {
     font-weight: bolder;
     font-size: 5rem;
     font-family: 'Mentimun';
     margin-bottom: 30px;
     display: flex;
-    text-align : center;
-    margin-left: 80px;
+    justify-content: center;
+    
 }
  
 
@@ -184,3 +193,132 @@ footer {
     margin-left: 90px;
 }
 
+/* SUBSCRIPTION */
+
+#subscriptionFormTitle {
+    text-align: center;
+}
+
+.subscriptionForm {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    display: block 
+    
+}
+
+.subscriptionForm label {
+    font-weight: bold;
+    padding: 2rem;
+}
+
+.subscriptionForm input {
+    border: var(--orange-buttons);
+    border-radius: 10px;
+    width: 50%;
+    padding: 12px 20px;
+    margin-top: 5%;
+}
+
+
+.subscriptionForm button {
+    width: 250px;
+    padding: 1rem;
+    background-color: var(--orange-buttons);
+    color: var(--blue-text);
+    font-weight: bolder;
+    border: 10px var(--blue-outlines)solid;
+    border-radius: 15px;
+    font-family: 'Mentimun';
+    font-size: 125%;
+    margin-top: 40px;
+    height: 50%px;
+
+}
+
+/* LOGIN */
+
+#loginFormTitle {
+    text-align: center;
+}
+
+.loginForm {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    display: block 
+    
+}
+
+.loginForm label {
+    font-weight: bold;
+    padding: 2rem;
+}
+
+.loginForm input {
+    border: var(--orange-buttons);
+    border-radius: 10px;
+    width: 50%;
+    padding: 12px 20px;
+    margin-top: 5%;
+}
+
+
+.loginForm button {
+    width: 250px;
+    padding: 1rem;
+    background-color: var(--orange-buttons);
+    color: var(--blue-text);
+    font-weight: bolder;
+    border: 10px var(--blue-outlines)solid;
+    border-radius: 15px;
+    font-family: 'Mentimun';
+    font-size: 125%;
+    margin-top: 40px;
+    height: 50%px;
+
+}
+
+/* ADD RIDDLE */
+
+#addRiddleFormTitle {
+    text-align: center;
+}
+
+.addRiddleForm {
+
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    display: block 
+    
+}
+
+.addRiddleForm label {
+    font-weight: bold;
+    padding: 2rem;
+}
+
+.addRiddleForm input {
+    border: var(--orange-buttons);
+    border-radius: 10px;
+    width: 50%;
+    padding: 12px 20px;
+    margin-top: 5%;
+}
+
+
+.addRiddleForm button {
+    width: 250px;
+    padding: 1rem;
+    background-color: var(--orange-buttons);
+    color: var(--blue-text);
+    font-weight: bolder;
+    border: 10px var(--blue-outlines)solid;
+    border-radius: 15px;
+    font-family: 'Mentimun';
+    font-size: 125%;
+    margin-top: 40px;
+    height: 50%px;
+
+}
