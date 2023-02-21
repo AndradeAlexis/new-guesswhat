@@ -24,47 +24,51 @@
             <a href="#"><img src="./images/Logo.png" class="main-logo"></a>
         </header>
         <main>
-            <section>
+            <section class="leftBlock">
                 <div class="guessWhatText">
                     <h1>Guess What ?</h1>
                     <!--On garde la div ?-->
                 </div>
 
                 <h2 id="addRiddleFormTitle">Ajouter une devinette</h2>
-                <form class="addRiddleForm">
-                    <div>
-                        <label for="theme">Choisissez le thème</label>
-                        <input type="text" id="theme_choice" name="theme_name" placeholder="Thème">
+                <form>
+                    <div class="addRiddleForm">
+                        <div class="columnAddRiddleForm">
+                            <label for="riddle">Choisissez le thème</label>
+                            <label for="riddle">Ecrivez votre énigme</label>
+                            <label for="answer">Ecrivez votre réponse</label>
+                            <label for="clue">Donnez des indices</label>
+                            <label for="clue"></label>
+                            <label for="clue"></label>
+                        </div>
+                        <div class="columnAddRiddleForm">
+                            <div class="dropdownMain">
+                                <button class="dropdownBtn">Thème</button>
+                                <div class="dropdownThemes">
+                                    <p>Cinéma</p>
+                                    <p>Animaux</p>
+                                    <p>Musique</p>
+                                </div>
+                            </div>
+                            
+                            <input type="text" id="riddle" name="riddle_name" placeholder="Énigme">
+                            <input type="text" id="answer" name="answer_name" placeholder="Réponse">
+                            <input type="text" id="clue_1" name="clue_name" placeholder="Indice 1">
+                            <input type="text" id="clue_2" name="clue_name" placeholder="Indice 2">
+                            <input type="text" id="clue_3" name="clue_name" placeholder="Indice 3">
+                            <input type="text" id="clue_4" name="clue_name" placeholder="Indice 4">
+                            <input type="text" id="clue_5" name="clue_name" placeholder="Indice 5">
+                            <input type="text" id="clue_6" name="clue_name" placeholder="Indice 6">
+                        </div>
                     </div>
-                    <div>
-                        <label for="riddle">Ecrivez votre énigme</label>
-                        <input type="text" id="riddle" name="riddle_name" placeholder="Énigme">
-                    </div>
-                    <div>
-                        <label for="answer">Ecrivez votre réponse</label>
-                        <input type="text" id="answer" name="answer_name" placeholder="Réponse">
-                    </div>
-                    <div>
-                        <label for="clue">Donnez trois indices</label>
-                        <input type="text" id="clue_1" name="clue_name" placeholder="Indice A">
-                    </div>
-                    <div>
-                        <label for="clue"></label>
-                        <!--pas sur de pouvoir mettre le même for="clue" et name="clue_name" pour les 3-->
-                        <input type="text" id="clue_2" name="clue_name" placeholder="Indice B">
-                    </div>
-                    <div>
-                        <label for="clue"></label>
-                        <input type="text" id="clue_3" name="clue_name" placeholder="Indice C">
-                    </div>
-                    <button id="addRiddleButton">Valider</button>
+                    <button id="addRiddleFormButton">Valider</button>
                 </form>
             </section>
 
             <aside>
                 <div>
                     <p>Username</p>
-                    <a href="#"> <span>Déconnecter</span></a>
+                    <a href="#"> <span id="statusUser">Déconnecter</span></a>
                 </div>
                 <a href=""><img class="homeButton" src="./images/Bouton Retour Accueil.png"
                         alt="button go back to the home page"></a>
