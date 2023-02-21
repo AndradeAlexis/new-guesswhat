@@ -25,7 +25,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
     margin: 1rem;
-    max-width: 1500px;
+    max-width: 1800px;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
@@ -78,7 +78,6 @@ h1 {
     font-size: 5rem;
     font-family: 'Mentimun';
     margin-bottom: 1.9rem;
-    display: flex;
     text-align : center;
 }
  
@@ -126,6 +125,7 @@ p {
     font-family: 'Mentimun';
     font-size: 125%;
 }
+
 /*Contact page*/
 .logoTitle {
     text-align: center;
@@ -414,3 +414,70 @@ footer {
 .dropdownMain:hover .dropdownThemes {
     display: block;
 }
+/* DEFINED THEME GAME PAGE*/
+
+.defined-theme-game {
+    display: grid;
+    grid-template-columns: 50% 20% 25%;
+}
+
+section#defined-theme {
+    border: 0.7rem var(--orange-buttons)solid;
+    border-radius: 0.9rem;
+    text-align: center;
+}
+
+
+div.hints {
+    text-align: center;
+    border: 0.7rem var(--blue-outlines)solid;
+    border-radius: 0.9rem;
+    margin: 1.5rem auto;
+    width: 50%;
+}
+div.gamer-response {
+    width: 50%;
+    display: flex;
+    margin: 1rem auto;
+    justify-content: center; 
+}
+
+textarea {
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.response-buttons button {
+    display: block;
+    margin: 0 0 2rem 0.8rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--orange-buttons);
+    border: 0.7rem var(--blue-outlines)solid;
+    color: var(--blue-text);
+    font-weight: bolder;
+    border-radius: 0.9rem;
+    font-family: 'Mentimun';
+    font-size: 125%;
+   
+}
+
+div.score {
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+
+}
+
+nav div img {
+    width: 80%;
+    border-bottom:var(--bg-color) solid 5px;
+    
+}
+
