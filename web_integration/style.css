@@ -25,12 +25,19 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
     margin: 1rem;
+<<<<<<< HEAD
 
     max-width: 1500px;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
 
+=======
+    max-width: 1800px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+>>>>>>> d58c31d1af1aa45dd32d04296c00a3b36567f5b5
 }
 
 .container {
@@ -80,7 +87,6 @@ h1 {
     font-size: 5rem;
     font-family: 'Mentimun';
     margin-bottom: 1.9rem;
-    display: flex;
     text-align : center;
 }
  
@@ -128,6 +134,7 @@ p {
     font-family: 'Mentimun';
     font-size: 125%;
 }
+
 /*Contact page*/
 .logoTitle {
     text-align: center;
@@ -264,27 +271,34 @@ footer {
 
 .subscriptionForm {
     width: 100%;
-    text-align: center;
     padding: 1rem;
-    display: block 
-    
+    display: flex;
+}
+
+.columnSubscriptionForm {
+    flex: 50%;
 }
 
 .subscriptionForm label {
     font-weight: bold;
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    padding: 5% 20px;
+
 }
 
 .subscriptionForm input {
-    border: var(--orange-buttons);
+    border: 4px solid var(--bg-buttons);
     border-radius: 10px;
-    width: 50%;
     padding: 12px 20px;
     margin-top: 5%;
+    display: flex;
+    flex-direction: column;
 }
 
 
-.subscriptionForm button {
+#subscriptionFormButton {
     width: 250px;
     padding: 1rem;
     background-color: var(--orange-buttons);
@@ -307,27 +321,34 @@ footer {
 
 .loginForm {
     width: 100%;
-    text-align: center;
     padding: 1rem;
-    display: block 
-    
+    display: flex;
+}
+
+.columnLoginForm {
+    flex: 50%;
 }
 
 .loginForm label {
     font-weight: bold;
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    padding: 5% 20px;
+
 }
 
 .loginForm input {
-    border: var(--orange-buttons);
+    border: 4px solid var(--bg-buttons);
     border-radius: 10px;
-    width: 50%;
     padding: 12px 20px;
     margin-top: 5%;
+    display: flex;
+    flex-direction: column;
 }
 
 
-.loginForm button {
+#loginFormButton {
     width: 250px;
     padding: 1rem;
     background-color: var(--orange-buttons);
@@ -349,29 +370,39 @@ footer {
 }
 
 .addRiddleForm {
-
     width: 100%;
-    text-align: center;
     padding: 1rem;
-    display: block 
-    
+    display: flex;
+}
+
+.columnAddRiddleForm {
+    flex: 50%;
 }
 
 .addRiddleForm label {
     font-weight: bold;
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    padding: 2% 20%;
+
 }
 
 .addRiddleForm input {
-    border: var(--orange-buttons);
+    border: 4px solid var(--bg-buttons);
     border-radius: 10px;
-    width: 50%;
-    padding: 12px 20px;
+    padding: 2%;
+    width: 130%;
     margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    z-index: 1;
+    
 }
 
 
-.addRiddleForm button {
+#addRiddleFormButton {
     width: 250px;
     padding: 1rem;
     background-color: var(--orange-buttons);
@@ -385,3 +416,115 @@ footer {
     height: 50%;
 
 }
+
+.dropdownMain {
+    display: inline-block;
+    background-color: var(--orange-buttons);
+    color: var(--blue-text);
+    border: 4px var(--blue-outlines)solid;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 2%;
+    width: 130%;
+    margin-top: 5%;
+}
+
+.dropdownBtn {
+    background-color: var(--orange-buttons);
+    border: none;
+    
+    
+    
+}
+
+
+
+.dropdownThemes {
+    background-color: var(--bg-images);
+    color: var(--bg-buttons);
+    border: 2px solid var(--blue-outlines);
+    border-radius: 4px;
+    display: none;
+    width: 18%;
+    z-index: 2;
+    position: absolute;
+    right: 46.7%;
+}
+
+.dropdownThemes p {
+    color: var(--bg-buttons);
+    background-color: var(--bg-images);
+    text-decoration: none;
+    display: block;
+}
+
+.dropdownMain:hover .dropdownThemes {
+    display: block;
+}
+/* DEFINED THEME GAME PAGE*/
+
+.defined-theme-game {
+    display: grid;
+    grid-template-columns: 50% 20% 25%;
+}
+
+section#defined-theme {
+    border: 0.7rem var(--orange-buttons)solid;
+    border-radius: 0.9rem;
+    text-align: center;
+}
+
+
+div.hints {
+    text-align: center;
+    border: 0.7rem var(--blue-outlines)solid;
+    border-radius: 0.9rem;
+    margin: 1.5rem auto;
+    width: 50%;
+}
+div.gamer-response {
+    width: 50%;
+    display: flex;
+    margin: 1rem auto;
+    justify-content: center; 
+}
+
+textarea {
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.response-buttons button {
+    display: block;
+    margin: 0 0 2rem 0.8rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--orange-buttons);
+    border: 0.7rem var(--blue-outlines)solid;
+    color: var(--blue-text);
+    font-weight: bolder;
+    border-radius: 0.9rem;
+    font-family: 'Mentimun';
+    font-size: 125%;
+   
+}
+
+div.score {
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+
+}
+
+nav div img {
+    width: 80%;
+    border-bottom:var(--bg-color) solid 5px;
+    
+}
+

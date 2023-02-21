@@ -23,54 +23,54 @@
         <header>
             <a href="#"><img src="./images/Logo.png" class="main-logo"></a>
         </header>
-        <main>
-            <section>
-                <div class="guessWhatText">
+        <main class="defined-theme-game">
+            <section id="defined-theme">
+                <div>
                     <h1>Guess What ?</h1>
-                    <!--On garde la div ?-->
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, corporis ipsam! Quos debitis deserunt fugit eaque hic, tempore cupiditate. Facilis, dolorum dolores nemo, officia, sint amet eveniet deleniti iste velit error eius.</p>
+                    <p>
+                        <!-- Congratulations message or losing message appearing here -->
+                    </p>
                 </div>
-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi deserunt sed aliquam assumenda rem at
-                    iure, necessitatibus ducimus accusantium enim, consectetur omnis quia veniam illo, eaque vel eos
-                    corrupti quos?</p>
-
-                <h2>Bravo</h2>
-                <!--A cacher en css ?-->
-                <h2>Réessayer</h2>
-
-                <!--Comment afficher les indices ? HTML ou JS ? -->
-                <!--Pas sur mais la réponse est bien reçu en formulaire ? -->
-                <form>
+                <div class="hints">
+                    <p>Index A</p>
+                    <p>Index B</p>
+                    <p>Index C</p>
+                    <p>Index D</p>
+                    <p>Index E</p>
+                    <p>Index F</p>
+                </div>
+                <div class="gamer-response">
                     <div>
-                        <label for="answer">Votre réponse</label>
-
-                        <input type="text" id="answer" name="answer_user" required minlength="4" maxlength="99"
-                            size="100">
+                        <textarea name="response" id="response" cols="28" rows="12" placeholder="Réponse"></textarea>
                     </div>
-                    <button>Demander un indice</button>
-                    <button>Valider</button>
-                </form>
-                <!--Comment afficher le score ? -->
+                    <div class="response-buttons">
+                        <button>Demandez un indice</button>
+                        <button>Valider</button>
+                    </div>
+                </div>
+                <div class="score">
+                    <p>Score:</p>
+                    <p>952</p>
+                </div>
+                
             </section>
-
             <aside>
                 <div>
                     <p>Username</p>
                     <a href="#"> <span id="statusUser">Déconnecter</span></a>
                 </div>
-                <a href=""><img class="homeButton" src="./images/Bouton Retour Accueil.png"
-                        alt="button go back to the home page"></a>
-                <button>Inscription</button>
-                <button>Connexion</button>
-                <button>Scores</button>
-                <a class="contact" href="#">Contact</a>
-                <a class="contact" href="#">À propos</a>
+                    <a href=""><img class="homeButton" src="./images/Bouton Retour Accueil.png" alt="button go back to the home page"></a>
+                    <button>Inscription</button>
+                    <button>Connexion</button>
+                    <button>Scores</button>
+                    <a class="contact" href="#">Contact</a>
+                    <a class="contact" href="#">À propos</a>
             </aside>
             <footer>
                 <div>
                     <p>V.0.1</p>
-                </div>
-
+                </div>    
             </footer>
         </main>
     </div>

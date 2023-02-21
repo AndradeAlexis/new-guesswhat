@@ -24,24 +24,26 @@
             <a href="#"><img src="./images/Logo.png" class="main-logo"></a>
         </header>
         <main>
-            <section>
+            <section class="leftBlock">
                 <div class="guessWhatText">
                     <h1>Guess What ?</h1>
                     <!--On garde la div ?-->
                 </div>
 
                 <h2 id="loginFormTitle">Formulaire de connexion</h2>
-                <form class="loginForm">
-                    <div>
-                        <label for="mail">Adresse email</label>
-                        <input type="email" id="mail" name="user_mail" placeholder="Email">
-                    </div>
+                <form>
+                    <div class="loginForm">
+                        <div class="columnLoginForm">
+                            <label for="mail">Adresse email</label>
+                            <label for="password">Mot de passe</label>
+                        </div>
 
-                    <div>
-                        <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="user_password" placeholder="Mot de passe">
+                        <div class="columnLoginForm">
+                            <input type="email" id="mail" name="user_mail" placeholder="Email">
+                            <input type="password" id="password" name="user_password" placeholder="Mot de passe">
+                        </div>
                     </div>
-                    <button id="loginButton">Connexion</button>
+                    <button id="loginFormButton">Connexion</button>
                 </form>
             </section>
 
