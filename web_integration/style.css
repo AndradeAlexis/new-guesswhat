@@ -25,12 +25,18 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
     margin: 1rem;
+    max-width: 1500px;
+    width: fit-content;
+    margin-left: 150px;
+    margin-right: 150px;
+    
 }
 
 .container {
     color: var(--text-color);
     border: 10px var(--bg-buttons) solid;
-    border-radius: 30px;
+    border-radius: 0.9rem;
+   
 }
 
 /*  */
@@ -38,12 +44,11 @@ body {
 main {
     display: grid;
     grid-template-columns: 50% auto;
-    /* gap: 30px; */
     background-color: var(--bg-main);
-    border: 10px var(--bg-color) solid;
-    border-radius: 5px;
-    border: 10px var(--blue-outlines) solid;
-    border-radius: 30px;
+    border: 0.7rem var(--bg-color) solid;
+    border-radius: 0.4rem;
+    border: 0.7rem var(--blue-outlines) solid;
+    border-radius: 1.9rem;
 }
 
 header{
@@ -53,13 +58,13 @@ header{
 }
 
 header img {
-    width: 130px;
-    margin-top: 35px;
+    max-width: 130px;
+    margin-top: 2.3rem;
 }
 
 .guessWhatText {
-    width: 90%;
-    margin: 20px 100px 50px 100px;
+    max-width: 90%;
+    margin: 20px 90px 50px 90px;
     text-align: justify;
 }
 
@@ -67,15 +72,14 @@ h1 {
     font-weight: bolder;
     font-size: 5rem;
     font-family: 'Mentimun';
-    margin-bottom: 30px;
+    margin-bottom: 1.9rem;
     display: flex;
     text-align : center;
-    margin-left: 80px;
 }
  
 
 img {
-    width: 150px;
+    max-width: 150px;
 }
 
 
@@ -90,30 +94,30 @@ p {
 }
 
 #random-game, #theme-game {
-    width: 200px;
+    max-width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 100px; 
+    margin: 100px 70px 100px 70px; 
 }
 
 #random-game img, #theme-game img {
     background-color: var(--bg-images);
-    border: 10px var(--blue-outlines) solid;
-    border-radius: 30px;
+    border: 0.7rem var(--blue-outlines) solid;
+    border-radius: 1.9rem;
     text-align: center;
     margin-bottom: 1rem;
-    width: 300px;
+    max-width: 300px;
 }
 
 #random-game button, #theme-game button {
-    width: 300px;
+    max-width: 300px;
     padding: 0.1rem 0;
     background-color: var(--orange-buttons);
     color: var(--blue-text);
     font-weight: bolder;
-    border: 10px var(--blue-outlines)solid;
-    border-radius: 15px;
+    border: 0.7rem var(--blue-outlines)solid;
+    border-radius: 0.9rem;
     font-family: 'Mentimun';
     font-size: 125%;
 }
@@ -130,7 +134,7 @@ aside {
 
 aside div {
     display: flex;
-    margin: 30px;
+    margin: 1.9rem;
 }
 
 span {
@@ -141,12 +145,12 @@ span {
 aside a {
     text-decoration: none;
     color: var(--text-color);
-    margin-top: 17px;
+    margin-top: 1.1rem;
 }
 
 /* Styling the homepage button */
 .homeButton {
-    width: 300px;
+    max-width: 300px;
     
     
 }
@@ -155,14 +159,14 @@ aside a {
 
 aside button {
     display: block;
-    width: 250px;
+    max-width: 250px;
     padding: 1rem;
     background-color: var(--bg-buttons);
     color: var(--blue-text);
     font-weight: bolder;
-    border: 10px var(--orange-buttons)solid;
-    border-radius: 15px;
-    margin: 2rem 35px;
+    border: 0.7rem var(--orange-buttons)solid;
+    border-radius: 0.9rem;
+    margin: 2rem;
     font-family: 'Mentimun';
     font-size: 150%;
 
@@ -170,7 +174,7 @@ aside button {
 
 aside a.contact{
     display: block;
-    width: 50%;
+    max-width: 50%;
     text-align: center;
     margin-top: 1rem;
     font-size: large;
@@ -181,6 +185,6 @@ aside a.contact{
 footer {
     position: relative;
     text-align: center;
-    margin-left: 90px;
+    /* margin-left: 90px; */
 }
 
