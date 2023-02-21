@@ -39,7 +39,9 @@ body {
    
 }
 
-/*  */
+/* HOMEPAGE */
+
+/* Styling the header, and the content for the two different game modes */
 
 main {
     display: grid;
@@ -188,3 +190,15 @@ footer {
     /* margin-left: 90px; */
 }
 
+/* RIDDLE GAME WITH A DEFINED THEME */
+
+div.hints {
+    max-width: 200px;
+    border: 0.7rem var(--bg-buttons) solid;
+    border-radius: 0.9rem;
+    margin: 2rem auto;
+}
+
+div.gamer-response {
+    display: flex;
+}
