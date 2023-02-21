@@ -25,6 +25,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
     margin: 1rem;
+    max-width: 1500px;
+    width: fit-content;
+    margin-left: 150px;
+    margin-right: 150px;
+
 }
 
 .container {
@@ -116,6 +121,29 @@ p {
     border-radius: 15px;
     font-family: 'Mentimun';
     font-size: 125%;
+}
+/*Contact page*/
+.logoTitle {
+    text-align: center;
+    border:1px black solid;
+}
+
+.logoImages {
+text-align: center;
+border:1px black solid;
+
+}
+
+/*About page*/
+
+.aboutTitle {
+    text-align: center;
+    border:1px black solid;
+    }
+
+.aboutText {
+text-align: center;
+border:1px black solid;
 }
 
 /* Styling the aside section containing the buttons for the homepage, log in, etc. */
