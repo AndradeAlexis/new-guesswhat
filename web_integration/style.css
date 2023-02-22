@@ -25,19 +25,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
     margin: 1rem;
-<<<<<<< HEAD
-
-    max-width: 1500px;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-
-=======
     max-width: 1800px;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
->>>>>>> d58c31d1af1aa45dd32d04296c00a3b36567f5b5
+    
 }
 
 .container {
@@ -268,6 +260,7 @@ footer {
     text-align: center;
 }
 
+
 .subscriptionForm {
     width: 100%;
     padding: 1rem;
@@ -391,7 +384,7 @@ footer {
     border: 4px solid var(--bg-buttons);
     border-radius: 10px;
     padding: 2%;
-    width: 130%;
+    width: 100%;
     margin-top: 5%;
     display: flex;
     flex-direction: column;
@@ -424,7 +417,7 @@ footer {
     cursor: pointer;
     border-radius: 10px;
     padding: 2%;
-    width: 130%;
+    width: 100%;
     margin-top: 5%;
 }
 
@@ -444,10 +437,8 @@ footer {
     border: 2px solid var(--blue-outlines);
     border-radius: 4px;
     display: none;
-    width: 18%;
     z-index: 2;
-    position: absolute;
-    right: 46.7%;
+    right: 52%;
 }
 
 .dropdownThemes p {
@@ -460,6 +451,9 @@ footer {
 .dropdownMain:hover .dropdownThemes {
     display: block;
 }
+
+
+
 /* DEFINED THEME GAME PAGE*/
 
 .defined-theme-game {
@@ -468,7 +462,9 @@ footer {
 }
 
 section#defined-theme {
-    border: 0.7rem var(--orange-buttons)solid;
+    border: 0.7rem var(--blue-outlines)solid;
+    margin-top: -0.7rem;
+    margin-left: -0.7rem;
     border-radius: 0.9rem;
     text-align: center;
     padding: 1rem;
@@ -480,7 +476,7 @@ div.hints {
     border: 0.7rem var(--blue-outlines)solid;
     border-radius: 0.9rem;
     margin: 1.5rem auto;
-    width: 50%;
+    width: 60%;
 }
 div.gamer-response {
     width: 50%;
@@ -517,15 +513,36 @@ div.score {
 nav {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content:flex-start;
     align-items: flex-start;
 
 }
 
 nav div img {
-    width: 80%;
-    border-bottom:var(--bg-color) solid 5px;
-    margin-left: 1rem;
+    width: 100%;
+    background-color: var(--bg-images);
+    border: var(--blue-outlines) solid 5px;
+    border-radius: 10px;
+    margin-left: -5px;
+    margin-top: -5px;
+}
+
+nav div img:hover {
+    background-color: var(--bg-buttons);
+}
+
+.clueDark {
+    background-color: #0d4240;
+    border: 2px solid #0d4240;
+    padding: 1rem;
+    margin: 0px;
+}
+
+.clueLight {
+    background-color: #0f4d4a;
+    border: 2px solid #0f4d4a;
+    padding: 1rem;
+    margin: 0px;
 }
 
 /* RANDOM THEME GAME PAGE */
