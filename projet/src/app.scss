@@ -1,0 +1,623 @@
+/* Reset */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Colors to be used throughout the different website elements */
+
+:root {
+  --bg-color: #1A373B;
+  --text-color: #C8DD36;
+  --bg-main: #0B3B3B;
+  --bg-images: #125E5C;
+  --bg-buttons: #F3B210;
+  --blue-outlines: #00313A;
+  --orange-buttons: #F27E08;
+  --blue-text: #0D2935;
+}
+
+/* Styling the body and the container wrapping all the elements */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-color);
+  margin: 1rem;
+  max-width: 1800px;
+ /* width: fit-content; */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  color: var(--text-color);
+  border: 10px var(--bg-buttons) solid;
+  border-radius: 0.9rem;  
+}
+
+/* HOMEPAGE */
+
+/* Styling the header, and the content for the two different game modes */
+
+main {
+  display: grid;
+  grid-template-columns: 50% auto;
+  background-color: var(--bg-main);
+  border: 0.7rem var(--bg-color) solid;
+  border-radius: 0.4rem;
+  border: 0.7rem var(--blue-outlines) solid;
+  border-radius: 1.9rem;
+}
+
+header{
+  text-align: center;
+  margin: -40px;
+  height: 200px;
+}
+
+header img {
+  max-width: 130px;
+  margin-top: 2.3rem;
+}
+
+.guessWhatText {
+  max-width: 90%;
+  margin: 20px 90px 50px 90px;
+  text-align: justify;
+}
+
+.leftBlock {
+  text-align: center;
+}
+
+h1 {
+  font-weight: bolder;
+  font-size: 5rem;
+  font-family: 'Mentimun';
+  margin-bottom: 1.9rem;
+  text-align : center;
+}
+
+img {
+  max-width: 150px;
+}
+
+p {
+  margin: 1rem;
+}
+
+.game-modes {
+  margin: -110px 0;
+  display: flex;
+  justify-content: center;
+}
+
+#random-game, #theme-game {
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 100px 70px 100px 70px; 
+}
+
+#random-game img, #theme-game img {
+  background-color: var(--bg-images);
+  border: 0.7rem var(--blue-outlines) solid;
+  border-radius: 1.9rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  max-width: 300px;
+}
+
+#random-game button, #theme-game button {
+  max-width: 300px;
+  padding: 0.1rem 0;
+  background-color: var(--orange-buttons);
+  color: var(--blue-text);
+  font-weight: bolder;
+  border: 0.7rem var(--blue-outlines)solid;
+  border-radius: 0.9rem;
+  font-family: 'Mentimun';
+  font-size: 125%;
+}
+
+/*Contact page*/
+.logoTitle {
+  text-align: center;
+  padding: 30px 30px ;
+  margin-left: 100px;
+  border-radius: 0.9rem;
+  font-weight: bold;
+  font-size:larger;
+}
+
+.logos {
+  
+  border:5px var(--bg-buttons) solid;
+  padding: 30px 30px;
+  margin-left: 100px;
+ border-radius: 0.9rem;
+ 
+}
+
+.logoImages {
+  width : 10%;
+  height : 10%;
+  margin-left: 50px;
+  
+}
+
+
+/*About page*/
+
+.aboutTitle {
+  text-align: center;
+  padding: 50px 50px;
+  margin-left: 100px;
+  border-radius: 0.9rem;
+  font-weight: bold;
+  font-size:larger;
+  }
+
+.aboutText {
+text-align: center;
+border:5px var(--bg-buttons) solid;
+padding: 50px 50px;
+margin-left: 100px;
+border-radius: 0.9rem;
+
+}
+
+/*404 page*/
+.text404 {
+
+text-align: center;
+border:5px var(--bg-buttons) solid;
+padding: 50px 50px;
+margin-left: 35px;
+border-radius: 0.9rem;
+}
+
+.image404 {
+  width : 300px;
+  height : 300px;
+  
+}
+
+/* Styling the aside section containing the buttons for the homepage, log in, etc. */
+
+
+aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+aside div {
+  display: flex;
+  margin: 1.9rem;
+}
+
+#statusUser {
+  background-color: var(--orange-buttons);
+  border-radius: 2px;;
+}
+
+aside a {
+  text-decoration: none;
+  color: var(--text-color);
+  margin-top: 1.1rem;
+}
+
+/* Styling the homepage button */
+.homeButton {
+  max-width: 300px;
+  
+  
+}
+
+/* Styling the remaining navigation buttons */
+
+aside button {
+  display: block;
+  max-width: 250px;
+  padding: 1rem;
+  background-color: var(--bg-buttons);
+  color: var(--blue-text);
+  font-weight: bolder;
+  border: 0.7rem var(--orange-buttons)solid;
+  border-radius: 0.9rem;
+  margin: 2rem;
+  font-family: 'Mentimun';
+  font-size: 150%;
+
+}
+
+aside a.contact{
+  display: block;
+  max-width: 50%;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: large;
+}
+
+/* Styling the footer */
+
+footer {
+  position: relative;
+  text-align: center;
+  /* margin-left: 90px; */
+}
+
+/* SUBSCRIPTION */
+
+#subscriptionFormTitle {
+  text-align: center;
+}
+
+
+.subscriptionForm {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+}
+
+.columnSubscriptionForm {
+  flex: 50%;
+}
+
+.subscriptionForm label {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  padding: 5% 20px;
+
+}
+
+.subscriptionForm input {
+  border: 4px solid var(--bg-buttons);
+  border-radius: 10px;
+  padding: 12px 20px;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#subscriptionFormButton {
+  width: 250px;
+  padding: 1rem;
+  background-color: var(--orange-buttons);
+  color: var(--blue-text);
+  font-weight: bolder;
+  border: 10px var(--blue-outlines)solid;
+  border-radius: 15px;
+  font-family: 'Mentimun';
+  font-size: 125%;
+  margin-top: 40px;
+  height: 50%;
+
+}
+
+/* LOGIN */
+
+#loginFormTitle {
+  text-align: center;
+}
+
+.loginForm {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+}
+
+.columnLoginForm {
+  flex: 50%;
+}
+
+.loginForm label {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  padding: 5% 20px;
+
+}
+
+.loginForm input {
+  border: 4px solid var(--bg-buttons);
+  border-radius: 10px;
+  padding: 12px 20px;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#loginFormButton {
+  width: 250px;
+  padding: 1rem;
+  background-color: var(--orange-buttons);
+  color: var(--blue-text);
+  font-weight: bolder;
+  border: 10px var(--blue-outlines)solid;
+  border-radius: 15px;
+  font-family: 'Mentimun';
+  font-size: 125%;
+  margin-top: 40px;
+  height: 50%;
+
+}
+
+/* ADD RIDDLE */
+
+#addRiddleFormTitle {
+  text-align: center;
+}
+
+.addRiddleForm {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+}
+
+.columnAddRiddleForm {
+  flex: 50%;
+}
+
+.addRiddleForm label {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  padding: 2% 20%;
+
+}
+
+.addRiddleForm input {
+  border: 4px solid var(--bg-buttons);
+  border-radius: 10px;
+  padding: 2%;
+  width: 100%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: 1;
+  
+}
+
+
+#addRiddleFormButton {
+  width: 250px;
+  padding: 1rem;
+  background-color: var(--orange-buttons);
+  color: var(--blue-text);
+  font-weight: bolder;
+  border: 10px var(--blue-outlines)solid;
+  border-radius: 15px;
+  font-family: 'Mentimun';
+  font-size: 125%;
+  margin-top: 40px;
+  height: 50%;
+
+}
+
+.dropdownMain {
+  display: inline-block;
+  background-color: var(--orange-buttons);
+  color: var(--blue-text);
+  border: 4px var(--blue-outlines)solid;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 2%;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.dropdownBtn {
+  background-color: var(--orange-buttons);
+  border: none;  
+}
+
+.dropdownThemes {
+  background-color: var(--bg-images);
+  color: var(--bg-buttons);
+  border: 2px solid var(--blue-outlines);
+  border-radius: 4px;
+  display: none;
+  z-index: 2;
+  right: 52%;
+}
+
+.dropdownThemes p {
+  color: var(--bg-buttons);
+  background-color: var(--bg-images);
+  text-decoration: none;
+  display: block;
+}
+
+.dropdownMain:hover .dropdownThemes {
+  display: block;
+}
+
+
+
+/* DEFINED THEME GAME PAGE*/
+
+.defined-theme-game {
+  display: grid;
+  grid-template-columns: 55% auto auto;
+}
+
+section#defined-theme {
+  border: 0.7rem var(--blue-outlines)solid;
+  margin-top: -0.7rem;
+  margin-left: -0.7rem;
+  border-radius: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+
+div.hints {
+  text-align: center;
+  border: 0.7rem var(--blue-outlines)solid;
+  border-radius: 0.9rem;
+  margin: 1.5rem auto;
+  width: 60%;
+}
+div.gamer-response {
+  width: 50%;
+  display: flex;
+  margin: 1rem auto;
+  justify-content: center; 
+}
+
+textarea {
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.response-buttons button {
+  display: block;
+  margin: 0 0 2rem 0.8rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--orange-buttons);
+  border: 0.7rem var(--blue-outlines)solid;
+  color: var(--blue-text);
+  font-weight: bolder;
+  border-radius: 0.9rem;
+  font-family: 'Mentimun';
+  font-size: 125%;   
+}
+
+div.score {
+  display: flex;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: flex-start;
+
+}
+
+nav div img {
+  width: 100%;
+  background-color: var(--bg-images);
+  border: var(--blue-outlines) solid 5px;
+  border-radius: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+}
+
+nav div img:hover {
+  background-color: var(--bg-buttons);
+}
+
+.clueDark {
+  background-color: #0d4240;
+  border: 2px solid #0d4240;
+  padding: 1rem;
+  margin: 0px;
+}
+
+.clueLight {
+  background-color: #0f4d4a;
+  border: 2px solid #0f4d4a;
+  padding: 1rem;
+  margin: 0px;
+}
+
+/* RANDOM THEME GAME PAGE */
+
+.random-theme-game {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
+section#random-theme {
+  border: 0.7rem var(--orange-buttons)solid;
+  border-radius: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* SCORE PAGE */
+
+div.score-table {
+  margin-left: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.score-table h2 {
+  text-align: center;
+  margin-bottom: 1rem; 
+}
+
+table {
+  margin: 1rem;
+  width: 100%;
+  border: 2px var(--text-color) solid;
+}
+
+td {
+  padding: 1rem;
+}
+
+@media (min-width: 300px) and (max-width: 899px) {
+  body {
+      display: flex; 
+  }
+
+  main {
+      display: grid;
+      grid-template-columns: 100%;
+  }
+
+
+  aside div {
+      margin-bottom: -50px;
+  }
+
+ aside a img {
+  display: none;
+ }
+
+ aside button {
+  margin-bottom: -0.5rem;
+ }
+
+ img {
+  width: 100%;
+ }
+
+ button {
+  width: 100%;
+ }
+
+ .guessWhatText {
+  width: 60%;
+  margin: 0 auto;
+ }
+
+ .game-modes {
+  margin: -100px auto;
+  width: 50%;
+}
+ 
+}
+
+
+
