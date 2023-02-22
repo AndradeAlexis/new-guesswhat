@@ -1,19 +1,10 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 208b3836a80355b8978149a710baa5cc0c93640d
     "workbench.colorCustomizations": {
         "activityBar.background": "#2E2F07",
         "titleBar.activeBackground": "#40420A",
         "titleBar.activeForeground": "#FBFBE7"
-    }
-<<<<<<< HEAD
-=======
-=======
-=======
->>>>>>> d58c31d1af1aa45dd32d04296c00a3b36567f5b5
+    },
+    
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -23,9 +14,4 @@
         "**/Thumbs.db": true
     },
     "hide-files.files": []
-<<<<<<< HEAD
->>>>>>> f2183c622a7556538504394fbcc9bcd80d570077
->>>>>>> 208b3836a80355b8978149a710baa5cc0c93640d
-=======
->>>>>>> d58c31d1af1aa45dd32d04296c00a3b36567f5b5
 }
