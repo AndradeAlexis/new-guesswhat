@@ -25,25 +25,16 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
     margin: 1rem;
-<<<<<<< HEAD
-
-    max-width: 1500px;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-
-=======
     max-width: 1800px;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
->>>>>>> d58c31d1af1aa45dd32d04296c00a3b36567f5b5
 }
 
 .container {
     color: var(--text-color);
     border: 10px var(--bg-buttons) solid;
-    border-radius: 0.9rem;
+    border-radius: 0.9rem;  
 }
 
 /* HOMEPAGE */
@@ -89,11 +80,9 @@ h1 {
     text-align : center;
 }
  
-
 img {
     max-width: 150px;
 }
-
 
 p {
     margin: 1rem;
@@ -430,13 +419,8 @@ footer {
 
 .dropdownBtn {
     background-color: var(--orange-buttons);
-    border: none;
-    
-    
-    
+    border: none;  
 }
-
-
 
 .dropdownThemes {
     background-color: var(--bg-images);
@@ -505,8 +489,7 @@ textarea {
     font-weight: bolder;
     border-radius: 0.9rem;
     font-family: 'Mentimun';
-    font-size: 125%;
-   
+    font-size: 125%;   
 }
 
 div.score {
@@ -554,8 +537,7 @@ div.score-table {
 
 .score-table h2 {
     text-align: center;
-    margin-bottom: 1rem;
-    
+    margin-bottom: 1rem; 
 }
 
 table {
@@ -567,4 +549,49 @@ table {
 td {
     padding: 1rem;
 }
+
+@media (min-width: 300px) and (max-width: 899px) {
+    body {
+        display: flex; 
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+
+    aside div {
+        margin-bottom: -50px;
+    }
+
+   aside a img {
+    display: none;
+   }
+
+   aside button {
+    margin-bottom: -0.5rem;
+   }
+
+   img {
+    width: 100%;
+   }
+
+   button {
+    width: 100%;
+   }
+
+   .guessWhatText {
+    width: 60%;
+    margin: 0 auto;
+   }
+
+   .game-modes {
+    margin: -100px auto;
+    width: 50%;
+}
+   
+}
+
+
 
