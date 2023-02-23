@@ -261,6 +261,14 @@ aside div {
         font-size: medium;
     }
 
+/*  Media queries version tablette  */
+@media (min-width: 426px) and (max-width: 768px) {
+
+.homeButton {
+  width: 300px;
+}
+}
+
 /*  media queries of desktop  */
 @media (min-width: 769px) {
 
@@ -284,14 +292,13 @@ margin-top: 1.1rem;
 
 /* Styling the homepage button */
 .homeButton {
-max-width: 300px;
+max-width: 30%;
 }
 
 /* Styling the remaining navigation buttons */
 
 aside button {
-max-width: 250px;
-
+max-width: 300px;
 }
 
 aside a.contact{
