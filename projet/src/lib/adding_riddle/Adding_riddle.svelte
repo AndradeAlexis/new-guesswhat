@@ -3,8 +3,6 @@
     import Footer from "../homepage/Footer.svelte";
 </script>
 
-
-
 <body>
   <div class="container">
     <Header />
@@ -135,9 +133,8 @@
   font-weight: bold;
   display: flex;
   flex-direction: column;
-  margin: 4%;
+  margin: 5%;
   padding: 5%;
-
 }
 
 .addRiddleForm input {
@@ -145,7 +142,7 @@
   border-radius: 10px;
   padding: 2%;
   width: 100%;
-  margin-top: 6%;
+  margin-top: 8%;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -267,13 +264,25 @@ aside div {
 .homeButton {
   width: 300px;
 }
+
+h2 {
+  margin-bottom: 1rem;
 }
 
-/*  media queries of desktop  */
+  input,  .dropdownMain {
+    margin-bottom: 12px;
+    margin-left: -50px;
+    width: 100%; 
+  }
+}
+
+/*  Media queries for desktop version */
 @media (min-width: 769px) {
 
-  input,  .dropdownMain {
-    margin-left: -150px;
+input,  .dropdownMain {
+    margin-bottom: 11px;
+    margin-left: -60px;
+    width: 100%;
   }
 
 aside div {
@@ -292,7 +301,7 @@ margin-top: 1.1rem;
 
 /* Styling the homepage button */
 .homeButton {
-max-width: 30%;
+max-width: 45%;
 }
 
 /* Styling the remaining navigation buttons */

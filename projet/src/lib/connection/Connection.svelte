@@ -197,7 +197,7 @@ input {
 }
 
 .homeButton {
-max-width: 40%;
+max-width: 45%;
 }
 
 #statusUser {
