@@ -14,3 +14,12 @@
 </main>
 </div>
 </body>
+
+<style>
+    @font-face {
+        font-family: "Mentimun";
+        src: 
+        local('Mentimun'),
+        url("../../src/assets/Mentimun.ttf")
+      }
+</style>
