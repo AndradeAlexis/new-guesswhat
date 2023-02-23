@@ -29,20 +29,17 @@
         <div id="random-game">
             <img
                 src="../../src/assets/Mascotte.png"
-                alt="logo for riddle game with a random theme"
-            />
+                alt="logo for riddle game with a random theme"/>
             <button>Devinettes <br /> au hasard</button>
         </div>
         <div id="theme-game">
             <img
                 src="../../src/assets/Mascotte Thèmes.png"
-                alt="logo for riddle game with a defined theme"
-            />
+                alt="logo for riddle game with a defined theme"/>
             <button>Devinettes <br /> par theme</button>
         </div>
     </div>
 </section>
-
 <aside>
     <div>
         <p>Username</p>
@@ -62,8 +59,11 @@
 </aside>
 
 <style>
+    /* Styling the game modes section */
 
-/* Styling the game modes section */
+    .leftBlock {
+  text-align: center;
+}
 
     .game-modes {
         margin: -30px 0;
@@ -156,4 +156,84 @@
         margin-top: 0.5rem;
         font-size: medium;
     }
+ /*  Media queries version tablette  */
+    @media (min-width: 426px) and (max-width: 768px) {
+
+        .game-modes {
+            margin: -30px 0;
+        }
+
+        #random-game,
+        #theme-game {
+            margin: 50px 25px 50px 25px;
+        }
+
+        #random-game img,
+        #theme-game img {
+            max-width: 500px;
+        }
+
+        #random-game button,
+        #theme-game button {
+            max-width: 300px;
+            padding: 0.1rem 0;
+            font-size: 125%;
+        }
+    }
+  /*  media queries of desktop  */
+  @media (min-width: 769px) {
+
+        .game-modes {
+    margin: -110px 0;
+}
+
+#random-game, #theme-game {
+    margin: 100px 70px 100px 70px; 
+}
+
+#random-game img, #theme-game img {
+    max-width: 180px;
+}
+
+#random-game button, #theme-game button {
+    max-width: 300px;
+    padding: 0.1rem 0;
+    font-size: 125%;
+}
+
+aside div {
+    margin: 1.9rem;
+}
+
+#statusUser {
+    background-color: var(--orange-buttons);
+    border-radius: 2px;;
+    margin-left: none;
+}
+
+aside a {
+    margin-top: 1.1rem;
+}
+
+/* Styling the homepage button */
+.homeButton {
+    max-width: 300px;
+    
+    
+}
+
+/* Styling the remaining navigation buttons */
+
+aside button {
+    max-width: 250px;
+
+}
+
+aside a.contact{
+    margin-top: 1rem;
+    font-size: large;
+}
+
+}
+
 </style>
