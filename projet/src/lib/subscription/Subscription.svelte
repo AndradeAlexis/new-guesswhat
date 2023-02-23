@@ -93,7 +93,6 @@
   flex-direction: column;
   margin: 4%;
   padding: 5%;
-
 }
 
 .subscriptionForm input {

@@ -3,8 +3,10 @@
     import Footer from "../homepage/Footer.svelte";
 </script>
 
-<Header />
-
+<body>
+    <div class="container">
+    <Header />
+<main>
 <section class="leftBlock">
     <div class="guessWhatText">
         <h1>Guess What ?</h1>
@@ -55,9 +57,10 @@
     <a class="contact" href="#">Contact</a>
     <a class="contact" href="#">À propos</a>
 </aside>
-
 <Footer />
-
+</main>
+</div>
+</body>
 
 <style>
 
@@ -81,23 +84,23 @@
   font-weight: bold;
   display: flex;
   flex-direction: column;
-  margin-top: 5%;
-  padding: 5% 20px;
+  margin: 4%;
+  padding: 5%;
 
 }
 
 .loginForm input {
   border: 4px solid var(--bg-buttons);
   border-radius: 10px;
-  padding: 12px 20px;
-  margin-top: 5%;
+  padding: 2%;
+  margin: 4% 0 6% 6%;
   display: flex;
   flex-direction: column;
 }
 
 
 #loginFormButton {
-  width: 250px;
+  width: 200px;
   padding: 1rem;
   background-color: var(--orange-buttons);
   color: var(--blue-text);
@@ -106,8 +109,115 @@
   border-radius: 15px;
   font-family: 'Mentimun';
   font-size: 125%;
-  margin-top: 40px;
+  margin: 30px auto 0 auto;
   height: 50%;
+  display: block;
+}
+
+aside {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+aside div {
+        display: flex;
+        margin: 1rem;
+    }
+
+  #statusUser {
+        background-color: var(--orange-buttons);
+        border-radius: 2px;
+        margin-left: 1rem;
+    }
+
+  aside a {
+        text-decoration: none;
+        color: var(--text-color);
+    }
+
+    .homeButton {
+        display:block;
+        max-width: 80%;
+        margin: 0.5rem auto;
+    }
+
+  aside button {
+        display: block;
+        max-width: 100%;
+        padding: 1rem;
+        background-color: var(--bg-buttons);
+        color: var(--blue-text);
+        font-weight: bolder;
+        border: 0.7rem var(--orange-buttons) solid;
+        border-radius: 0.9rem;
+        margin: 0.5rem;
+        font-family: "Mentimun";
+        font-size: 150%;
+    }
+
+    aside a.contact {
+        display: block;
+        max-width: 50%;
+        text-align: center;
+        margin-top: 0.5rem;
+        font-size: medium;
+    }
+
+    /*  Media queries version tablette  */
+@media (min-width: 426px) and (max-width: 768px) {
+
+.homeButton {
+  width: 300px;
+}
+
+input {
+    margin-left: -150px;
+}
+
+#loginFormButton {
+    margin-top: -10px;
+}
+}
+
+/*  media queries of desktop  */
+
+@media (min-width: 769px) {
+
+.columnLoginForm label{
+    margin-top: 1.4rem;
+    margin-left: 50px;
+}
+
+.columnLoginForm input{
+    margin-left: -100px;
+    margin-top: 1.7rem;
+    width: 110%;
+}
+
+.homeButton {
+max-width: 40%;
+}
+
+#statusUser {
+background-color: var(--orange-buttons);
+border-radius: 2px;
+margin-left: none;
+}
+
+aside a {
+margin-top: 1.1rem;
+}
+
+aside button {
+max-width: 300px;
+}
+
+aside a.contact{
+margin-top: 1rem;
+font-size: large;
+}
 
 }
 
