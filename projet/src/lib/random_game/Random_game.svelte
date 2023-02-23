@@ -68,3 +68,19 @@
 </main>
 
 <Footer />
+
+<style>
+    /* RANDOM THEME GAME PAGE */
+
+.random-theme-game {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
+section#random-theme {
+  border: 0.7rem var(--orange-buttons)solid;
+  border-radius: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+}
+</style>

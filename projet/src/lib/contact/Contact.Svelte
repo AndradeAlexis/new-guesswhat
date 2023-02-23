@@ -29,3 +29,31 @@ import Footer from "../homepage/Footer.svelte";
             </section>
 
 <Footer />
+
+<style>
+    /*Contact page*/
+.logoTitle {
+  text-align: center;
+  padding: 30px 30px ;
+  margin-left: 100px;
+  border-radius: 0.9rem;
+  font-weight: bold;
+  font-size:larger;
+}
+
+.logos {
+  
+  border:5px var(--bg-buttons) solid;
+  padding: 30px 30px;
+  margin-left: 100px;
+ border-radius: 0.9rem;
+ 
+}
+
+.logoImages {
+  width : 10%;
+  height : 10%;
+  margin-left: 50px;
+  
+}
+</style>

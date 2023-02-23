@@ -9,5 +9,11 @@
 </footer>
 
 <style>
-    
+    /* Styling the footer */
+
+footer {
+  position: relative;
+  text-align: center;
+  /* margin-left: 90px; */
+}
 </style>

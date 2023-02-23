@@ -65,3 +65,95 @@
 </aside>
 </main>
 <Footer />
+
+<style>
+    /* DEFINED THEME GAME PAGE*/
+
+.defined-theme-game {
+  display: grid;
+  grid-template-columns: 55% auto auto;
+}
+
+section#defined-theme {
+  border: 0.7rem var(--blue-outlines)solid;
+  margin-top: -0.7rem;
+  margin-left: -0.7rem;
+  border-radius: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+
+div.hints {
+  text-align: center;
+  border: 0.7rem var(--blue-outlines)solid;
+  border-radius: 0.9rem;
+  margin: 1.5rem auto;
+  width: 60%;
+}
+div.gamer-response {
+  width: 50%;
+  display: flex;
+  margin: 1rem auto;
+  justify-content: center; 
+}
+
+textarea {
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.response-buttons button {
+  display: block;
+  margin: 0 0 2rem 0.8rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--orange-buttons);
+  border: 0.7rem var(--blue-outlines)solid;
+  color: var(--blue-text);
+  font-weight: bolder;
+  border-radius: 0.9rem;
+  font-family: 'Mentimun';
+  font-size: 125%;   
+}
+
+div.score {
+  display: flex;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: flex-start;
+
+}
+
+nav div img {
+  width: 100%;
+  background-color: var(--bg-images);
+  border: var(--blue-outlines) solid 5px;
+  border-radius: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+}
+
+nav div img:hover {
+  background-color: var(--bg-buttons);
+}
+
+.clueDark {
+  background-color: #0d4240;
+  border: 2px solid #0d4240;
+  padding: 1rem;
+  margin: 0px;
+}
+
+.clueLight {
+  background-color: #0f4d4a;
+  border: 2px solid #0f4d4a;
+  padding: 1rem;
+  margin: 0px;
+}
+</style>

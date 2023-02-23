@@ -2,7 +2,7 @@
 
 </script>
 
-<main>
+
 <section class="leftBlock">
                 <div class="guessWhatText">
                     <h1>Guess What ?</h1>
@@ -33,7 +33,7 @@
                 <a class="contact" href="#">Contact</a>
                 <a class="contact" href="#">À propos</a>
         </aside>
-</main>
+
 
 <style>
     
