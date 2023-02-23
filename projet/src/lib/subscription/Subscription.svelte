@@ -172,7 +172,7 @@ aside div {
         font-size: medium;
     }
 
-/*  Media queries version tablette  */
+/*  Media queries version tablet  */
 @media (min-width: 426px) and (max-width: 768px) {
 
 .homeButton {
@@ -180,7 +180,9 @@ aside div {
 }
 
 input {
-    margin-left: -150px;
+    margin-bottom: 12px;
+    margin-left: -90px;
+    width: 100%; 
 }
 
 #subscriptionFormButton {
@@ -188,11 +190,19 @@ input {
 }
 }
 
-/*  media queries of desktop  */
+/*  Media queries desktop version */
 
 @media (min-width: 769px) {
+
+.columnSubscriptionForm {
+    margin-left: 1rem;
+}
+
+
 input {
-  margin-left: -150px;
+    margin-bottom: 11px;
+    margin-left: -100px;
+    width: 100%;
 }
 
 .homeButton {
