@@ -67,3 +67,31 @@
 
 
 <Footer />
+
+<style>
+/* SCORE PAGE */
+
+div.score-table {
+  margin-left: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.score-table h2 {
+  text-align: center;
+  margin-bottom: 1rem; 
+}
+
+table {
+  margin: 1rem;
+  width: 100%;
+  border: 2px var(--text-color) solid;
+}
+
+td {
+  padding: 1rem;
+}
+
+  </style>

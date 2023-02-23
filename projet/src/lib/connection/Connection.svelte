@@ -57,3 +57,58 @@
 </aside>
 
 <Footer />
+
+
+<style>
+
+/* LOGIN */
+
+#loginFormTitle {
+  text-align: center;
+}
+
+.loginForm {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+}
+
+.columnLoginForm {
+  flex: 50%;
+}
+
+.loginForm label {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  padding: 5% 20px;
+
+}
+
+.loginForm input {
+  border: 4px solid var(--bg-buttons);
+  border-radius: 10px;
+  padding: 12px 20px;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#loginFormButton {
+  width: 250px;
+  padding: 1rem;
+  background-color: var(--orange-buttons);
+  color: var(--blue-text);
+  font-weight: bolder;
+  border: 10px var(--blue-outlines)solid;
+  border-radius: 15px;
+  font-family: 'Mentimun';
+  font-size: 125%;
+  margin-top: 40px;
+  height: 50%;
+
+}
+
+</style>

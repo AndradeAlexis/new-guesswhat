@@ -5,8 +5,21 @@
     import Footer from "./Footer.svelte";
 </script>
 
+<body>
+<div class="container">
+    <Header/>
 <main>
-     <Header/>
      <Main/>
      <Footer/>
 </main>
+</div>
+</body>
+
+<style>
+    @font-face {
+        font-family: "Mentimun";
+        src: 
+        local('Mentimun'),
+        url("../../src/assets/Mentimun.ttf")
+      }
+</style>

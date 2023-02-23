@@ -105,3 +105,97 @@
 </aside>
 
 <Footer />
+
+<style>
+    /* ADD RIDDLE */
+
+#addRiddleFormTitle {
+  text-align: center;
+}
+
+.addRiddleForm {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+}
+
+.columnAddRiddleForm {
+  flex: 50%;
+}
+
+.addRiddleForm label {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  padding: 2% 20%;
+
+}
+
+.addRiddleForm input {
+  border: 4px solid var(--bg-buttons);
+  border-radius: 10px;
+  padding: 2%;
+  width: 100%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: 1;
+  
+}
+
+
+#addRiddleFormButton {
+  width: 250px;
+  padding: 1rem;
+  background-color: var(--orange-buttons);
+  color: var(--blue-text);
+  font-weight: bolder;
+  border: 10px var(--blue-outlines)solid;
+  border-radius: 15px;
+  font-family: 'Mentimun';
+  font-size: 125%;
+  margin-top: 40px;
+  height: 50%;
+
+}
+
+.dropdownMain {
+  display: inline-block;
+  background-color: var(--orange-buttons);
+  color: var(--blue-text);
+  border: 4px var(--blue-outlines)solid;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 2%;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.dropdownBtn {
+  background-color: var(--orange-buttons);
+  border: none;  
+}
+
+.dropdownThemes {
+  background-color: var(--bg-images);
+  color: var(--bg-buttons);
+  border: 2px solid var(--blue-outlines);
+  border-radius: 4px;
+  display: none;
+  z-index: 2;
+  right: 52%;
+}
+
+.dropdownThemes p {
+  color: var(--bg-buttons);
+  background-color: var(--bg-images);
+  text-decoration: none;
+  display: block;
+}
+
+.dropdownMain:hover .dropdownThemes {
+  display: block;
+}
+</style>

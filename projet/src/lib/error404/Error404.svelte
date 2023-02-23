@@ -36,3 +36,21 @@
 </aside>
 
 <Footer/>
+
+<style>
+/*404 page*/
+.text404 {
+
+text-align: center;
+border:5px var(--bg-buttons) solid;
+padding: 50px 50px;
+margin-left: 35px;
+border-radius: 0.9rem;
+}
+
+.image404 {
+  width : 300px;
+  height : 300px;
+  
+}
+</style>

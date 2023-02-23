@@ -32,9 +32,9 @@ body {
 }
 
 .container {
-    color: var(--text-color);
-    border: 10px var(--bg-buttons) solid;
-    border-radius: 0.9rem;  
+color: var(--text-color);
+  border: 10px var(--bg-buttons) solid;
+  border-radius: 0.9rem;  
 }
 
 /* HOMEPAGE */
