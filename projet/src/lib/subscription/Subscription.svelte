@@ -126,31 +126,31 @@ aside {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
+}
 
 aside div {
         display: flex;
         margin: 1rem;
-    }
+}
 
-  #statusUser {
+#statusUser {
         background-color: var(--orange-buttons);
         border-radius: 2px;
         margin-left: 1rem;
-    }
+}
 
-  aside a {
+aside a {
         text-decoration: none;
         color: var(--text-color);
-    }
+}
 
-    .homeButton {
+.homeButton {
         display:block;
         max-width: 80%;
         margin: 0.5rem auto;
     }
 
-  aside button {
+aside button {
         display: block;
         max-width: 100%;
         padding: 1rem;
@@ -162,15 +162,15 @@ aside div {
         margin: 0.5rem;
         font-family: "Mentimun";
         font-size: 150%;
-    }
+}
 
-    aside a.contact {
+aside a.contact {
         display: block;
         max-width: 50%;
         text-align: center;
         margin-top: 0.5rem;
         font-size: medium;
-    }
+}
 
 /*  Media queries version tablet  */
 @media (min-width: 426px) and (max-width: 768px) {
