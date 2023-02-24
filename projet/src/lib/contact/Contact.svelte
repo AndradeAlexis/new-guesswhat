@@ -79,9 +79,9 @@
             alt="button go back to the home page"
           /></a
         >
-        <button><a href="/subscription" use:link>Inscription</a></button>
-        <button><a href="/connection" use:link>Connexion</a></button>
-        <button><a href="/scores" use:link>Scores</a></button>
+        <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+        <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+        <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
       </aside>
@@ -119,6 +119,10 @@
   aside a {
     text-decoration: none;
     color: var(--text-color);
+  }
+
+  .aside-buttons {
+    color: var(--blue-text);
   }
 
   /* Styling the homepage button */

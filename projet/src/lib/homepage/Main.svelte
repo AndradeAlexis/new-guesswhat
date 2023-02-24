@@ -31,13 +31,13 @@
             <img
                 src="../../src/assets/Mascotte.png"
                 alt="logo for riddle game with a random theme"/>
-            <button><a href="/random_theme_riddle" use:link>Devinettes <br /> au hasard</a></button>
+            <button><a href="/random_theme_riddle" use:link>Devinettes <br/> au hasard</a></button>
         </div>
         <div id="theme-game">
             <img
                 src="../../src/assets/Mascotte Thèmes.png"
                 alt="logo for riddle game with a defined theme"/>
-            <button><a href="/defined_theme_riddle" use:link>Devinettes <br /> par theme</a></button>
+            <button><a href="/defined_theme_riddle" use:link>Devinettes <br/> par theme</a></button>
         </div>
     </div>
 </section>
@@ -52,9 +52,9 @@
             src=".../../src/assets/Bouton Retour Accueil.png"
             alt="button go back to the home page"
         /></a>
-    <button><a href="/subscription" use:link>Inscription</a></button>
-    <button><a href="/connection" use:link>Connexion</a></button>
-    <button><a href="/scores" use:link>Scores</a></button>
+    <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+    <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+    <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
     <a class="contact" href="/contact" use:link>Contact</a>
     <a class="contact" href="/about_us" use:link>À propos</a>
 </aside>
@@ -122,6 +122,10 @@
         background-color: var(--orange-buttons);
         border-radius: 2px;
         margin-left: 1rem;
+    }
+
+    .aside-buttons {
+    color: var(--blue-text);
     }
 
     aside a {

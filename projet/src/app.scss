@@ -30,7 +30,6 @@ body {
   color: var(--text-color);
   border: 10px var(--bg-buttons) solid;
   border-radius: 0.9rem;  
-  
   }
 
   main {
@@ -44,7 +43,6 @@ body {
   }
 
 .guessWhatText {
-    // max-width: 90%;
     margin: 20px;
     margin-bottom: 5px;
     text-align: justify;
@@ -59,11 +57,16 @@ h1 {
   text-align : center;
 }
 
-
-
 label {
   font-size: small;
-  // margin: 0.4rem 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--blue-text);
 }
 
 /*  media queries of tablette  */
@@ -114,12 +117,7 @@ h1 {
 p {
     margin: 1rem;
 }
-
-
-
-
-
- }
+}
 
 
 
