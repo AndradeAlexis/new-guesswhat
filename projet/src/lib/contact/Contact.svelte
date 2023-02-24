@@ -1,62 +1,103 @@
 <script>
-import Header from "../homepage/Header.svelte";
-import Footer from "../homepage/Footer.svelte";
+  import Header from "../homepage/Header.svelte";
+  import Footer from "../homepage/Footer.svelte";
 </script>
 
 <body>
   <div class="container">
-<Header />
-<main>
-<section>
-  <div class="guessWhatText">
-    <h1>Guess What ?</h1>
-    <!--On garde la div ?-->
-  </div>
-<div class="logoTitle">
-                    <h2>Reste en contact</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio sint ullam quasi saepe suscipit
-                        tempora alias, totam qui! Nihil dolore, aspernatur labore numquam consequuntur dolorum voluptas
-                        non consequatur quisquam suscipit.</p>
-                </div >
+    <Header />
+    <main>
+      <section>
+        <div class="guessWhatText">
+          <h1>Guess What ?</h1>
+          <!--On garde la div ?-->
+        </div>
+        <div class="logoTitle">
+          <h2>Reste en contact</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio sint
+            ullam quasi saepe suscipit tempora alias, totam qui! Nihil dolore,
+            aspernatur labore numquam consequuntur dolorum voluptas non
+            consequatur quisquam suscipit.
+          </p>
+
+          <div class="logo-container">
+            
+          <div class="logoImages">
+            <img
+              class="logoImagesPhone"
+              src="../../src/assets/phone-call.png"
+              alt="phone logo"
+            />
+            <img
+              class="logoImagesMail"
+              src="../../src/assets/at-symbol.png"
+              alt="mail logo"
+            />
+            <img
+              class="logoImagesTwitter"
+              src="../../src/assets/twitter.png"
+              alt="twitter logo"
+            />
+          </div>
+
+          <div class="logoText">
+            <p>06060606</p>
+            <p>test@test.com</p>
+            <p>@test.test.com</p>
+          </div>
+        </div>
+          <!--- </div >
                  <div class="logos">
-                    <span>
-                    <img class="logoImages" src="../../src/assets/phone-call.png"
+                    <span class="logoPhone" >
+                    <img class="logoImagesPhone" src="../../src/assets/phone-call.png"
                     alt="phone logo" > 
                     <p>06060606</p>
                 </span>
-                <span >
-                    <img class="logoImages" src="../../src/assets/at-symbol.png"
+                <span class="logoMail" >
+                    <img class="logoImagesMail" src="../../src/assets/at-symbol.png"
                     alt="mail logo"  >
                     <p>test@test.com</p>
                 </span>
-                <span >
-                    <img class="logoImages" src="../../src/twitter.png"
+                <span class="logoTwitter">
+                    <img class="logoImagesTwitter" src="../../src/assets/twitter.png"
                     alt="twitter logo" >
                     <p>@test.test.com</p>
-                </span>
-            </div>
-            </section>
-            <aside>
-              <div>
-                  <p>Username</p>
-                  <a href="#"> <span id="statusUser">Déconnecter</span></a>
-              </div>
-              <a href=""><img class="homeButton" src="../../src/assets/Bouton Retour Accueil.png"
-                      alt="button go back to the home page"></a>
-              <button>Inscription</button>
-              <button>Connexion</button>
-              <button>Scores</button>
-              <a class="contact" href="#">Contact</a>
-              <a class="contact" href="#">À propos</a>
-          </aside>
-          </main>
-<Footer />
-</div>
+                </span>  -->
+        </div>
+      </section>
+      <aside>
+        <div>
+          <p>Username</p>
+          <a href="#"> <span id="statusUser">Déconnecter</span></a>
+        </div>
+        <a href=""
+          ><img
+            class="homeButton"
+            src="../../src/assets/Bouton Retour Accueil.png"
+            alt="button go back to the home page"
+          /></a
+        >
+        <button>Inscription</button>
+        <button>Connexion</button>
+        <button>Scores</button>
+        <a class="contact" href="#">Contact</a>
+        <a class="contact" href="#">À propos</a>
+      </aside>
+    </main>
+    <Footer />
+  </div>
 </body>
 
 <style>
-/* Styling the aside section containing the buttons for the homepage, log in, etc. */
-aside {
+  /* Styling the aside section containing the buttons for the homepage, log in, etc. */
+
+  .logoImages img {
+    
+    width: 10vw;
+    height: 10vh;
+  }
+  aside {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,33 +151,61 @@ aside {
     font-size: medium;
   }
 
-    /*Contact page*/
-.logoTitle {
-  text-align: center;
-  padding: 30px 30px ;
-  border-radius: 0.9rem;
-  font-weight: bold;
-  font-size:larger;
-}
+  /*Contact page*/
+  .logoTitle {
+    text-align: center;
+    padding: 30px 30px;
+    border-radius: 0.9rem;
+    font-weight: bold;
+    font-size: larger;
+  }
 
-.logos {
+  .logoImages {
+   /* max-width: 1%; */
+    
   
-  border:5px var(--bg-buttons) solid;
-  padding: 30px 30px;
-  margin-left: 100px;
- border-radius: 0.9rem;
- 
-}
+  }
 
-.logoImages {
-  width : 10%;
-  height : 10%;
-  margin-left: 50px;
-}
- h2 {
-  padding-bottom: 60px;
- }
+  .logo-container {
+    display: flex;
+  }
 
+  
 
+  h2 {
+    padding-bottom: 60px;
+  }
 
+  /*  Media queries version tablette  */
+  @media (min-width: 426px) and (max-width: 768px) {
+  }
+
+  /*  Media queries for desktop version */
+  @media (min-width: 769px) {
+    aside div {
+      margin: 1.9rem;
+    }
+
+    aside a {
+      margin-top: 1.1rem;
+    }
+
+    /* Styling the homepage button */
+    .homeButton {
+      max-width: 250px;
+    }
+
+    /* Styling the remaining navigation buttons */
+
+    aside button {
+      max-width: 250px;
+      margin: 2rem;
+    }
+
+    aside a.contact {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: large;
+    }
+  }
 </style>
