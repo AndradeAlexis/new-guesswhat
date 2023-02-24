@@ -10,7 +10,7 @@ import Connection from "./lib/connection/Connection.svelte";
 import Subscription from "./lib/subscription/Subscription.svelte";
 import Defined_theme_riddle from "./lib/defined_theme_riddle/Defined_theme_riddle.svelte";
 import Scores from "./lib/scores/Scores.svelte";
-import Random_theme_riddle from "./lib/random_game/Random_theme_riddle.svelte";
+import Random_game from "./lib/random_game/Random_game.svelte";
 import Contact from "./lib/contact/Contact.svelte";
 
   const routes = {
@@ -21,7 +21,7 @@ import Contact from "./lib/contact/Contact.svelte";
     '/subscription': Subscription,
     '/defined_theme_riddle': Defined_theme_riddle,
     '/scores': Scores,
-    '/random_theme_riddle': Random_theme_riddle,
+    '/random_theme_riddle': Random_game,
     '/contact': Contact,
 
     //If no matching route found, then we redirect to Error page
