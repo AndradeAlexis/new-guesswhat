@@ -40,9 +40,10 @@
                     name="user_password"
                     placeholder="Mot de passe"
                 />
+                <button id="subscriptionFormButton">Valider</button>
             </div>
         </div>
-        <button id="subscriptionFormButton">Valider</button>
+        <!-- <button id="subscriptionFormButton">Valider</button> -->
     </form>
 </section>
 
@@ -107,7 +108,7 @@
 
 
 #subscriptionFormButton {
-  width: 200px;
+  width: 100%;
   padding: 1rem;
   background-color: var(--orange-buttons);
   color: var(--blue-text);
@@ -117,7 +118,6 @@
   font-family: 'Mentimun';
   font-size: 125%;
   margin: 30px auto 0 auto;
-  height: 50%;
   display: block;
 }
 
@@ -181,12 +181,12 @@ aside div {
 
 input {
     margin-bottom: 12px;
-    margin-left: -90px;
+    margin-left: -50px;
     width: 100%; 
 }
 
 #subscriptionFormButton {
-    margin-top: -10px;
+    margin-left: -50px;
 }
 }
 
@@ -194,6 +194,15 @@ input {
 
 @media (min-width: 769px) {
 
+    main {
+  grid-template-columns: 55% auto;
+} 
+
+.subscriptionForm {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
 
 .columnSubscriptionForm {
     margin-left: 1rem;
@@ -202,8 +211,12 @@ input {
 
 input {
     margin-bottom: 11px;
-    margin-left: -100px;
+    margin-left: -30px;
     width: 100%;
+}
+
+#subscriptionFormButton {
+    margin-left: -2.5rem;
 }
 
 .homeButton {

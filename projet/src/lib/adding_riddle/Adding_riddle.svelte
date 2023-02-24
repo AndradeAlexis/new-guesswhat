@@ -183,7 +183,7 @@ button.dropdownBtn {
   background-color: var(--orange-buttons);
   border: none;  
   font-family: 'Mentimun';
-  text-align: center;
+  display: block;
 }
 
 .dropdownThemes {
@@ -213,29 +213,29 @@ aside {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
+}
 
 aside div {
         display: flex;
         margin: 1rem;
-    }
+}
 
 #statusUser {
         background-color: var(--orange-buttons);
         border-radius: 2px;
         margin-left: 1rem;
-    }
+}
 
 aside a {
         text-decoration: none;
         color: var(--text-color);
-    }
+}
 
 .homeButton {
         display:block;
         max-width: 80%;
         margin: 0.5rem auto;
-    }
+}
 
 aside button {
         display: block;
@@ -249,7 +249,7 @@ aside button {
         margin: 0.5rem;
         font-family: "Mentimun";
         font-size: 150%;
-    }
+}
 
 aside a.contact {
         display: block;
@@ -257,7 +257,7 @@ aside a.contact {
         text-align: center;
         margin-top: 0.5rem;
         font-size: medium;
-    }
+}
 
 /*  Media queries version tablette  */
 @media (min-width: 426px) and (max-width: 768px) {
@@ -278,10 +278,7 @@ input, .dropdownMain {
 
 #addRiddleFormButton {
   margin-left: -50px;
- 
 }
-
-
 }
 
 /*  Media queries for desktop version */
@@ -305,7 +302,6 @@ input,  .dropdownMain {
 
 #addRiddleFormButton {
  margin-left: -2.5rem;
-  
 }
 
 aside div {
