@@ -119,7 +119,9 @@
 
     #statusUser {
         background-color: var(--orange-buttons);
-        border-radius: 2px;
+        color: var(--blue-text);
+        border-radius: 20px;
+        padding: 5px;
         margin-left: 1rem;
     }
 
@@ -206,10 +208,12 @@ aside div {
 }
 
 #statusUser {
-    background-color: var(--orange-buttons);
-    border-radius: 2px;;
-    margin-left: none;
-}
+        background-color: var(--orange-buttons);
+        color: var(--blue-text);
+        border-radius: 20px;
+        padding: 5px;
+        margin-left: none;
+    }
 
 aside a {
     margin-top: 1.1rem;

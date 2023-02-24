@@ -86,10 +86,12 @@
   }
 
   #statusUser {
-    background-color: var(--orange-buttons);
-    border-radius: 2px;
-    margin-left: 1rem;
-  }
+        background-color: var(--orange-buttons);
+        color: var(--blue-text);
+        border-radius: 20px;
+        padding: 5px;
+        margin-left: 1rem;
+    }
 
   aside a {
     text-decoration: none;
@@ -148,6 +150,14 @@
 
     aside a {
       margin-top: 1.1rem;
+    }
+
+    #statusUser {
+        background-color: var(--orange-buttons);
+        color: var(--blue-text);
+        border-radius: 20px;
+        padding: 5px;
+        margin-left: none;
     }
 
     /* Styling the homepage button */

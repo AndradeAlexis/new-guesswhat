@@ -10,7 +10,6 @@
       <section>
         <div class="guessWhatText">
           <h1>Guess What ?</h1>
-          <!--On garde la div ?-->
         </div>
         <div class="logoTitle">
           <h2>Reste en contact</h2>
@@ -22,48 +21,30 @@
           </p>
 
           <div class="logo-container">
-            
-          <div class="logoImages">
-            <img
-              class="logoImagesPhone"
-              src="../../src/assets/phone-call.png"
-              alt="phone logo"
-            />
-            <img
-              class="logoImagesMail"
-              src="../../src/assets/at-symbol.png"
-              alt="mail logo"
-            />
-            <img
-              class="logoImagesTwitter"
-              src="../../src/assets/twitter.png"
-              alt="twitter logo"
-            />
-          </div>
+            <div class="logoImages">
+              <img
+                class="logoImagesPhone"
+                src="../../src/assets/phone-call.png"
+                alt="phone logo"
+              />
+              <img
+                class="logoImagesMail"
+                src="../../src/assets/at-symbol.png"
+                alt="mail logo"
+              />
+              <img
+                class="logoImagesTwitter"
+                src="../../src/assets/twitter.png"
+                alt="twitter logo"
+              />
+            </div>
 
-          <div class="logoText">
-            <p>06060606</p>
-            <p>test@test.com</p>
-            <p>@test.test.com</p>
+            <div class="logoText">
+              <p>0612345678</p>
+              <p>guesswhat@fake.com</p>
+              <p>@GuessWhatGame</p>
+            </div>
           </div>
-        </div>
-          <!--- </div >
-                 <div class="logos">
-                    <span class="logoPhone" >
-                    <img class="logoImagesPhone" src="../../src/assets/phone-call.png"
-                    alt="phone logo" > 
-                    <p>06060606</p>
-                </span>
-                <span class="logoMail" >
-                    <img class="logoImagesMail" src="../../src/assets/at-symbol.png"
-                    alt="mail logo"  >
-                    <p>test@test.com</p>
-                </span>
-                <span class="logoTwitter">
-                    <img class="logoImagesTwitter" src="../../src/assets/twitter.png"
-                    alt="twitter logo" >
-                    <p>@test.test.com</p>
-                </span>  -->
         </div>
       </section>
       <aside>
@@ -84,19 +65,65 @@
         <a class="contact" href="#">Contact</a>
         <a class="contact" href="#">À propos</a>
       </aside>
+      <Footer />
     </main>
-    <Footer />
   </div>
 </body>
 
 <style>
   /* Styling the aside section containing the buttons for the homepage, log in, etc. */
 
-  .logoImages img {
-    
-    width: 10vw;
-    height: 10vh;
+  /*Contact page*/
+
+  h2 {
+    padding-bottom: 30px;
   }
+
+  .logoTitle {
+    text-align: center;
+    padding: 30px 30px;
+    border-radius: 0.9rem;
+    font-weight: bold;
+    font-size: larger;
+  }
+
+  .logoTitle p {
+    font-size: small;
+    margin-bottom: 30px;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logoImages {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logoImages img {
+    height: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .logoText {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logoText p {
+    height: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-top: 5px;
+    font-size: medium;
+    text-align: start;
+  }
+
   aside {
     display: flex;
     flex-direction: column;
@@ -110,10 +137,12 @@
   }
 
   #statusUser {
-    background-color: var(--orange-buttons);
-    border-radius: 2px;
-    margin-left: 1rem;
-  }
+        background-color: var(--orange-buttons);
+        color: var(--blue-text);
+        border-radius: 20px;
+        padding: 5px;
+        margin-left: 1rem;
+    }
 
   aside a {
     text-decoration: none;
@@ -151,37 +180,39 @@
     font-size: medium;
   }
 
-  /*Contact page*/
-  .logoTitle {
-    text-align: center;
-    padding: 30px 30px;
-    border-radius: 0.9rem;
-    font-weight: bold;
-    font-size: larger;
-  }
-
-  .logoImages {
-   /* max-width: 1%; */
-    
-  
-  }
-
-  .logo-container {
-    display: flex;
-  }
-
-  
-
-  h2 {
-    padding-bottom: 60px;
-  }
-
   /*  Media queries version tablette  */
   @media (min-width: 426px) and (max-width: 768px) {
+    .homeButton {
+      max-width: 300px;
+    }
   }
+  
 
   /*  Media queries for desktop version */
   @media (min-width: 769px) {
+
+ /*Contact page*/
+
+  .logoTitle p {
+    font-size: medium;
+  }
+
+  .logoImages img {
+    height: 60px;
+  }
+
+  .logoText {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logoText p {
+    height: 60px;
+    padding-top: 20px;
+    font-size: large;
+
+  }
+
     aside div {
       margin: 1.9rem;
     }
@@ -190,10 +221,18 @@
       margin-top: 1.1rem;
     }
 
+    #statusUser {
+        background-color: var(--orange-buttons);
+        color: var(--blue-text);
+        border-radius: 20px;
+        padding: 5px;
+        margin-left: none;
+    }
+
     /* Styling the homepage button */
     .homeButton {
-      max-width: 250px;
-    }
+max-width: 45%;
+}
 
     /* Styling the remaining navigation buttons */
 
