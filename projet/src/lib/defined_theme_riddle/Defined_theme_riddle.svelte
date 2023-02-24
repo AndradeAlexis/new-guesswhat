@@ -40,15 +40,15 @@
     
 </section>
 <nav>
-    <div>
+    
         <a href="#"><img src=".../../src/assets/Mascotte Thème Animaux.png" alt="Mascot for animal riddle theme"></a>
-    </div>
-    <div>
+    
+    
         <a href="#"><img src=".../../src/assets//Mascotte Thème Cinéma.png" alt="Mascot for cinema riddle theme"></a>
-    </div>
-    <div>
+    
+    
         <a href="#"><img src=".../../src/assets//Mascotte Thème Musique.png" alt="Mascot for music riddle theme"></a>
-    </div>
+    
 </nav>
 <aside>
     <div>
@@ -126,12 +126,12 @@ div.score {
 
 nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
 
 }
 
-nav div img {
+nav img {
   width: 100%;
   background-color: var(--bg-images);
   border: var(--blue-outlines) solid 5px;
@@ -139,7 +139,7 @@ nav div img {
   margin-top: -0.7rem;
 }
 
-nav div img:hover {
+nav img:hover {
   background-color: var(--bg-buttons);
 }
 
@@ -232,9 +232,21 @@ div.gamer-response {
   font-size: 100%;   
 }
 
+nav {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
 
-nav div img {
+nav a {
+  text-align: center;
+}
+
+
+
+nav img {
   margin-top: -0.3rem;
+  width: 70%;
   
 }
 
@@ -315,10 +327,11 @@ nav {
 
 }
 
-nav div img {
+nav img {
     margin-left: 0.35rem;
     margin-top: -5px;
-    width: 150%;
+    width: 85%;
+    min-width: 100px;
 }
 
 
@@ -361,6 +374,7 @@ aside a {
 /* Styling the homepage button */
 .homeButton {
     max-width: 60%;
+    min-width: 200px;
     display: block;
     
     
