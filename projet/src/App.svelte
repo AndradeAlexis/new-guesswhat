@@ -1,6 +1,6 @@
 <script>
 //Importing router from svelte
-import Router from "svelte-spa-router"
+import Router from "svelte-spa-router";
 //Importing components
 import Home from "./lib/homepage/Home.svelte";
 import Error404 from "./lib/error404/Error404.svelte";
@@ -15,13 +15,13 @@ import Contact from "./lib/contact/Contact.svelte";
 
   const routes = {
     '/': Home,
-    '/formulaire_devinette': Adding_riddle,
+    '/add_a_riddle': Adding_riddle,
     '/about_us': About_us,
     '/connection': Connection, 
     '/subscription': Subscription,
     '/defined_theme_riddle': Defined_theme_riddle,
     '/scores': Scores,
-    '/random_game': Random_game,
+    '/random_theme_riddle': Random_game,
     '/contact': Contact,
 
     //If no matching route found, then we redirect to Error page

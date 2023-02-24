@@ -1,4 +1,5 @@
 <script>
+    import {link} from 'svelte-spa-router';
 </script>
 
 <section class="leftBlock">
@@ -30,32 +31,32 @@
             <img
                 src="../../src/assets/Mascotte.png"
                 alt="logo for riddle game with a random theme"/>
-            <button>Devinettes <br /> au hasard</button>
+            <button><a href="/random_theme_riddle" use:link>Devinettes <br/> au hasard</a></button>
         </div>
         <div id="theme-game">
             <img
                 src="../../src/assets/Mascotte Thèmes.png"
                 alt="logo for riddle game with a defined theme"/>
-            <button>Devinettes <br /> par theme</button>
+            <button><a href="/defined_theme_riddle" use:link>Devinettes <br/> par theme</a></button>
         </div>
     </div>
 </section>
 <aside>
     <div>
         <p>Username</p>
-        <a href="#"> <span id="statusUser">Déconnecter</span></a>
+        <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
     </div>
-    <a href=""
+    <a href="/" use:link
         ><img
             class="homeButton"
             src=".../../src/assets/Bouton Retour Accueil.png"
             alt="button go back to the home page"
         /></a>
-    <button>Inscription</button>
-    <button>Connexion</button>
-    <button>Scores</button>
-    <a class="contact" href="#">Contact</a>
-    <a class="contact" href="#">À propos</a>
+    <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+    <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+    <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
+    <a class="contact" href="/contact" use:link>Contact</a>
+    <a class="contact" href="/about_us" use:link>À propos</a>
 </aside>
 
 <style>
@@ -123,6 +124,10 @@
         border-radius: 20px;
         padding: 5px;
         margin-left: 1rem;
+    }
+
+    .aside-buttons {
+    color: var(--blue-text);
     }
 
     aside a {
