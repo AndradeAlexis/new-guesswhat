@@ -7,7 +7,7 @@
   <div class="container">
     <Header />
     <main>
-      <section>
+      <section class="leftBlock">
         <div class="guessWhatText">
           <h1>Guess What ?</h1>
           <!--On garde la div ?-->
@@ -50,14 +50,29 @@
         <a class="contact" href="#">Contact</a>
         <a class="contact" href="#">À propos</a>
       </aside>
+      <Footer />
     </main>
-    <Footer />
   </div>
 </body>
 
 <style>
 
-    /* Styling the aside section containing the buttons for the homepage, log in, etc. */
+  /*About_us page*/
+.aboutTitle {
+  text-align: center;
+  font-size: large;
+  margin-bottom: 50px;
+}
+
+.aboutText {
+  text-align: center;
+}
+
+.aboutText h3 {
+  margin-top: 50px;
+}
+
+/* Styling the aside section containing the buttons for the homepage, log in, etc. */
   aside {
     display: flex;
     flex-direction: column;
@@ -79,7 +94,6 @@
   aside a {
     text-decoration: none;
     color: var(--text-color);
-    
   }
 
   /* Styling the homepage button */
@@ -113,59 +127,47 @@
     font-size: medium;
   }
 
-  .aboutTitle {
-    text-align: center;
-    padding-bottom: 50px;
-    font-weight: bold;
-    font-size: larger;
-   
-  }
-
-  .aboutText
-   {
-    text-align: center;
-    padding-bottom: 20px;
-  }
-h3 {
-    padding: 10px ;
-}
-  /*  Media queries version tablette  */
+  /*  Media queries tablet version  */
   @media (min-width: 426px) and (max-width: 768px) {
+
+
+
     .homeButton {
       max-width: 300px;
     }
-
   }
 
-  /*  media queries of desktop  */
+  /*  media queries desktop version  */
   @media (min-width: 769px) {
-  }
 
-  aside div {
-    margin: 1.9rem;
-  }
 
-  aside a {
-    margin-top: 1.1rem;
-  }
 
-  /* Styling the homepage button */
-  .homeButton {
-    max-width: 250px;
-  }
+    aside div {
+      margin: 1.9rem;
+    }
 
-  /* Styling the remaining navigation buttons */
+    aside a {
+      margin-top: 1.1rem;
+    }
 
-  aside button {
-    max-width: 250px;
-    margin: 2rem;
-    font-size: 150%;
-  }
+    /* Styling the homepage button */
+    .homeButton {
+max-width: 45%;
+}
 
-  aside a.contact {
-    max-width: 50%;
-    text-align: center;
-    margin-top: 1rem;
-    font-size: large;
+    /* Styling the remaining navigation buttons */
+
+    aside button {
+      max-width: 250px;
+      margin: 2rem;
+      font-size: 150%;
+    }
+
+    aside a.contact {
+      max-width: 50%;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: large;
+    }
   }
 </style>

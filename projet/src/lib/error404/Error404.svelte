@@ -37,30 +37,31 @@
         <a class="contact" href="#">Contact</a>
         <a class="contact" href="#">À propos</a>
       </aside>
+      <Footer />
     </main>
-    <Footer />
   </div>
 </body>
 
 <style>
+
   /*404 page*/
+
   .text404 {
     text-align: center;
-    
-    padding: 50px 50px;
+    padding: 10% 10%;
     margin-left: auto;
-    
+    font-size: xx-small;
+  }
+
+  .text404 h2 {
+    margin-bottom: 50px;
   }
 
   .image404 {
-    width: 300px;
-    
+    width: 200px;
   }
 
-  @font-face {
-    font-family: "Mentimun";
-    src: local("Mentimun"), url("../../src/assets/Mentimun.ttf");
-  }
+
 /* Styling the aside section containing the buttons for the homepage, log in, etc. */
   aside {
     display: flex;
@@ -118,23 +119,37 @@
 
   /*  Media queries tablet version  */
   @media (min-width: 426px) and (max-width: 768px) {
+
+    .text404 {
+    font-size: medium;
+  }
+
+  .image404 {
+    width: 350px;
+  }
+
     .homeButton {
-      max-width: 400px;
+      max-width: 300px;
     }
   }
 
   /*  media queries desktop version  */
   @media (min-width: 769px) {
-    .text404 {
-      text-align: center;
-      padding: 50px 50px;
-      margin-left: 35px;
-    }
 
-    .image404 {
-     width: 900px;
-     height: 500px;
-    }
+    .text404 {
+    text-align: center;
+    padding: 10% 10%;
+    margin-left: auto;
+    font-size: medium;
+  }
+
+  .text404 h2 {
+    margin-bottom: 50px;
+  }
+
+  .image404 {
+    width: 500px;
+  }
 
     aside div {
       margin: 1.9rem;
@@ -146,8 +161,8 @@
 
     /* Styling the homepage button */
     .homeButton {
-      max-width: 250px;
-    }
+max-width: 45%;
+}
 
     /* Styling the remaining navigation buttons */
 
