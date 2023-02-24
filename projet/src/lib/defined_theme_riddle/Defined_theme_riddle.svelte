@@ -77,7 +77,7 @@ section#defined-theme {
   margin-top: -0.7rem;
   margin-left: -0.7rem;
   margin-right: -0.7rem;
-  padding-bottom: 00.7rem;
+  padding-bottom: 0.7rem;
   border-radius: 0.9rem;
   text-align: center;
 }
@@ -245,9 +245,7 @@ nav div img {
 }
 
 .clueLight {
-  background-color: #0f4d4a;
-  border: 2px solid #0f4d4a;
-  padding: 0.5rem;
+  padding: 1rem;
   margin: 0px;
   font-size: medium;
 }
