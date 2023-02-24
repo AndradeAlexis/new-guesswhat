@@ -32,6 +32,7 @@
                             <p>Musique</p>
                         </div>
                     </div>
+                    <div>
                     <input
                         type="text"
                         id="riddle"
@@ -80,9 +81,11 @@
                         name="clue_name"
                         placeholder="Indice 6"
                     />
+                    <button id="addRiddleFormButton">Valider</button>
                 </div>
+                
             </div>
-            <button id="addRiddleFormButton">Valider</button>
+            <!-- <button id="addRiddleFormButton">Valider</button> -->
         </form>
     </section>
     
@@ -151,7 +154,7 @@
 }
 
 #addRiddleFormButton {
-  width: 200px;
+  width: 100%;
   padding: 1rem;
   background-color: var(--orange-buttons);
   color: var(--blue-text);
@@ -161,9 +164,7 @@
   font-family: 'Mentimun';
   font-size: 125%;
   display: block;
-  margin: 30px auto 0 auto;
-  height: 50%;
-  
+  margin: 30px auto 0 auto; 
 }
 
 .dropdownMain {
@@ -219,24 +220,24 @@ aside div {
         margin: 1rem;
     }
 
-  #statusUser {
+#statusUser {
         background-color: var(--orange-buttons);
         border-radius: 2px;
         margin-left: 1rem;
     }
 
-  aside a {
+aside a {
         text-decoration: none;
         color: var(--text-color);
     }
 
-    .homeButton {
+.homeButton {
         display:block;
         max-width: 80%;
         margin: 0.5rem auto;
     }
 
-  aside button {
+aside button {
         display: block;
         max-width: 100%;
         padding: 1rem;
@@ -250,7 +251,7 @@ aside div {
         font-size: 150%;
     }
 
-    aside a.contact {
+aside a.contact {
         display: block;
         max-width: 50%;
         text-align: center;
@@ -269,11 +270,18 @@ h2 {
   margin-bottom: 1rem;
 }
 
-  input,  .dropdownMain {
+input, .dropdownMain {
     margin-bottom: 12px;
     margin-left: -50px;
     width: 100%; 
-  }
+}
+
+#addRiddleFormButton {
+  margin-left: -50px;
+ 
+}
+
+
 }
 
 /*  Media queries for desktop version */
@@ -281,16 +289,24 @@ h2 {
 
   main {
   grid-template-columns: 55% auto;
-
 } 
-   
 
+.addRiddleForm {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
 
 input,  .dropdownMain {
     margin-bottom: 11px;
-    margin-left: -60px;
+    margin-left: -30px;
     width: 100%;
-  }
+}
+
+#addRiddleFormButton {
+ margin-left: -2.5rem;
+  
+}
 
 aside div {
 margin: 1.9rem;
