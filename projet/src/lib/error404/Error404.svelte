@@ -61,7 +61,7 @@
     font-family: "Mentimun";
     src: local("Mentimun"), url("../../src/assets/Mentimun.ttf");
   }
-
+/* Styling the aside section containing the buttons for the homepage, log in, etc. */
   aside {
     display: flex;
     flex-direction: column;
@@ -119,7 +119,7 @@
   /*  Media queries tablet version  */
   @media (min-width: 426px) and (max-width: 768px) {
     .homeButton {
-      max-width: 300px;
+      max-width: 400px;
     }
   }
 
@@ -132,7 +132,8 @@
     }
 
     .image404 {
-      width: 300px;
+     width: 900px;
+     height: 500px;
     }
 
     aside div {

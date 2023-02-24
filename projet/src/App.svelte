@@ -11,7 +11,7 @@ import Subscription from "./lib/subscription/Subscription.svelte";
 import Defined_theme_riddle from "./lib/defined_theme_riddle/Defined_theme_riddle.svelte";
 import Scores from "./lib/scores/Scores.svelte";
 import Random_game from "./lib/random_game/Random_game.svelte";
-  
+import Contact from "./lib/contact/Contact.svelte";
 
   const routes = {
     '/': Home,
@@ -22,6 +22,7 @@ import Random_game from "./lib/random_game/Random_game.svelte";
     '/defined_theme_riddle': Defined_theme_riddle,
     '/scores': Scores,
     '/random_game': Random_game,
+    '/contact': Contact,
 
     //If no matching route found, then we redirect to Error page
     '*': Error404

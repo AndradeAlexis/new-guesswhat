@@ -40,7 +40,7 @@
         <a href=""
           ><img
             class="homeButton"
-            src=".../../src/assets/Bouton Retour Accueil.png"
+            src="../../src/assets/Bouton Retour Accueil.png"
             alt="button go back to the home page"
           /></a
         >
@@ -56,6 +56,8 @@
 </body>
 
 <style>
+
+    /* Styling the aside section containing the buttons for the homepage, log in, etc. */
   aside {
     display: flex;
     flex-direction: column;
@@ -77,6 +79,7 @@
   aside a {
     text-decoration: none;
     color: var(--text-color);
+    
   }
 
   /* Styling the homepage button */
@@ -112,30 +115,26 @@
 
   .aboutTitle {
     text-align: center;
-    padding: 50px 50px;
-    
-    border-radius: 0.9rem;
+    padding-bottom: 50px;
     font-weight: bold;
     font-size: larger;
-    margin-bottom: 10px;
+   
   }
 
   .aboutText
    {
     text-align: center;
+    padding-bottom: 20px;
   }
-
+h3 {
+    padding: 10px ;
+}
   /*  Media queries version tablette  */
   @media (min-width: 426px) and (max-width: 768px) {
     .homeButton {
       max-width: 300px;
     }
 
-    .aboutText {
-      text-align: center;
-      
-      
-    }
   }
 
   /*  media queries of desktop  */
