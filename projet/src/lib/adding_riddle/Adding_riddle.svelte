@@ -279,6 +279,13 @@ h2 {
 /*  Media queries for desktop version */
 @media (min-width: 769px) {
 
+  main {
+  grid-template-columns: 55% auto;
+
+} 
+   
+
+
 input,  .dropdownMain {
     margin-bottom: 11px;
     margin-left: -60px;
@@ -287,6 +294,7 @@ input,  .dropdownMain {
 
 aside div {
 margin: 1.9rem;
+margin-top: -15rem;
 }
 
 #statusUser {

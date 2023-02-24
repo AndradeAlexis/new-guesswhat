@@ -194,6 +194,7 @@ input {
 
 @media (min-width: 769px) {
 
+
 .columnSubscriptionForm {
     margin-left: 1rem;
 }
@@ -229,7 +230,5 @@ font-size: large;
 }
 
 }
-
- 
 
   </style>
