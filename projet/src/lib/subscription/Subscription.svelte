@@ -194,7 +194,7 @@ input {
 
 @media (min-width: 769px) {
 
-    main {
+main {
   grid-template-columns: 55% auto;
 } 
 
