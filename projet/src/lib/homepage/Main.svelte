@@ -218,9 +218,7 @@ aside a {
 /* Styling the homepage button */
 .homeButton {
     max-width: 300px;
-    display: block;
-    
-    
+       
 }
 
 /* Styling the remaining navigation buttons */
