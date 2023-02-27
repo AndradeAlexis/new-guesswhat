@@ -2,6 +2,17 @@
     import {link} from 'svelte-spa-router';
     import Header from "../homepage/Header.svelte";
     import Footer from "../homepage/Footer.svelte";
+
+    let id = [Math.floor(Math.random() * 17)];
+    console.log(id);
+
+
+    const get_riddles = async () => {
+        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=name,id&filter[id]=" + id);
+        const json = await response.json();
+        return json.data;
+        }
+
 </script>
 
 <body>
@@ -11,8 +22,14 @@
   <section id="random-theme">
       <div class="guessWhatText">
           <h1>Guess What ?</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, corporis ipsam! Quos debitis deserunt fugit eaque hic, tempore cupiditate. Facilis, dolorum dolores nemo, officia, sint amet eveniet deleniti iste velit error eius.</p>
-          <p>
+          {#await get_riddles()}
+          <p>Waiting for riddles to display</p>
+          {:then Riddle}
+          {#each Riddle as riddle}
+          <p>{riddle.name}</p>
+          {/each}
+          {/await}
+            <p>
               <!-- Congratulations message or losing message appearing here -->
           </p>
       </div>

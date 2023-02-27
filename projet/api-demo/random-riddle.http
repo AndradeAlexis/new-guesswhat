@@ -1,0 +1,6 @@
+GET https://rq0q3cq4.directus.app/items/Riddle?fields=name,id&filter[id]=1  HTTP/1.1
+
+
+
+
+# GET https://rq0q3cq4.directus.app/items/Riddle?fields=[name][id] HTTP/1.1
