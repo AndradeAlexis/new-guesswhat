@@ -21,15 +21,15 @@
 
     //Async function to fetch indexes related to a riddle.
 
-    const get_indexes = async () => {
+    const get_hints = async () => {
         const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Clue/?fields=name,id&filter[riddle_id]=" + clue_id);
         const json = await response.json();
         return json.data;
         }
 
-  function handleClick() {
-    
-  }
+   function handleClick() {
+    alert("You have clicked on the button");
+       }
 
 </script>
 
@@ -52,13 +52,12 @@
           </p>
       </div>
       <div class="hints">
-        {#await get_indexes()}
-          <p>Waiting for indexes to display</p>
+        {#await get_hints()}
+          <p>Waiting for hints to display</p>
         {:then Clue}
-        {#each Clue as clue, i}
-          <p class="clueLight">{i+1 + ")"} {clue.name}</p>
-          <!-- <p class="clueDark"> {clue.id}</p>
+        {#each Clue as clue}
           <p class="clueLight">{clue.name}</p>
+          <!-- <p class="clueLight">{clue.name}</p>
           <p class="clueDark">{clue.name}</p>
           <p class="clueLight">{clue.name}</p>
           <p class="clueDark">{clue.name}</p> -->
