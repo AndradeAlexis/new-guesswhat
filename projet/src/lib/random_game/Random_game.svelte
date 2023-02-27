@@ -7,12 +7,14 @@
 
     let id = [Math.floor(Math.random() * 17)];
 
+    //Creating a variable that allows us to match the id of a riddle with the corresponding clue id.
+
     let clue_id = id;
 
     //Async function allowing us to fetch randomly the name of a riddle.
 
     const get_riddles = async () => {
-        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=name,id&filter[id]=" + 1);
+        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=name,id&filter[id]=" + id);
         const json = await response.json();
         return json.data;
         }
@@ -20,10 +22,14 @@
     //Async function to fetch indexes related to a riddle.
 
     const get_indexes = async () => {
-        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Clue/?fields=name,id&filter[riddle_id]=" + 1);
+        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Clue/?fields=name,id&filter[riddle_id]=" + clue_id);
         const json = await response.json();
         return json.data;
         }
+
+  function handleClick() {
+    
+  }
 
 </script>
 
@@ -49,9 +55,9 @@
         {#await get_indexes()}
           <p>Waiting for indexes to display</p>
         {:then Clue}
-        {#each Clue as clue}
-          <p class="clueLight">{clue.name}</p>
-          <!-- <p class="clueDark">{clue.name}</p>
+        {#each Clue as clue, i}
+          <p class="clueLight">{i+1 + ")"} {clue.name}</p>
+          <!-- <p class="clueDark"> {clue.id}</p>
           <p class="clueLight">{clue.name}</p>
           <p class="clueDark">{clue.name}</p>
           <p class="clueLight">{clue.name}</p>
@@ -64,7 +70,7 @@
               <textarea name="response" id="response" placeholder="Réponses"></textarea>
           </div>
           <div class="response-buttons">
-              <button>Demandez un indice</button>
+              <button on:click={handleClick}>Demandez un indice</button>
               <button>Valider</button>
           </div>
       </div>
