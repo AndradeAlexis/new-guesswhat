@@ -3,12 +3,24 @@
     import Header from "../homepage/Header.svelte";
     import Footer from "../homepage/Footer.svelte";
 
-    let id = [Math.floor(Math.random() * 17)];
-    console.log(id);
+    //Creating a variable allowing us to get a random number from 1 to 17.
 
+    let id = [Math.floor(Math.random() * 17)];
+
+    let clue_id = id;
+
+    //Async function allowing us to fetch randomly the name of a riddle.
 
     const get_riddles = async () => {
-        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=name,id&filter[id]=" + id);
+        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=name,id&filter[id]=" + 1);
+        const json = await response.json();
+        return json.data;
+        }
+
+    //Async function to fetch indexes related to a riddle.
+
+    const get_indexes = async () => {
+        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Clue/?fields=name,id&filter[riddle_id]=" + 1);
         const json = await response.json();
         return json.data;
         }
@@ -34,12 +46,18 @@
           </p>
       </div>
       <div class="hints">
-          <p class="clueLight">Indice 1</p>
-          <p class="clueDark">Indice 2</p>
-          <p class="clueLight">Indice 3</p>
-          <p class="clueDark">Indice 4</p>
-          <p class="clueLight">Indice 5</p>
-          <p class="clueDark">Indice 6</p>
+        {#await get_indexes()}
+          <p>Waiting for indexes to display</p>
+        {:then Clue}
+        {#each Clue as clue}
+          <p class="clueLight">{clue.name}</p>
+          <!-- <p class="clueDark">{clue.name}</p>
+          <p class="clueLight">{clue.name}</p>
+          <p class="clueDark">{clue.name}</p>
+          <p class="clueLight">{clue.name}</p>
+          <p class="clueDark">{clue.name}</p> -->
+      {/each}
+      {/await}
       </div>
       <div class="gamer-response">
           <div>
