@@ -26,6 +26,10 @@
 
     let riddleResponseId = 0;
 
+    //Declaring a variable for message of victory/defeat
+
+    let divMessage ;
+
     //Async function allowing us to fetch randomly the name of a riddle.
 
     const get_riddles = async () => {
@@ -71,20 +75,31 @@
         }
        }
 
-       //Creating a function to empty the text area after userResponse submission
-       function handleClick() {
-        console.log(response)
-        
-       }
+      //  //Creating a function to empty the text area after userResponse submission
+      //  function handleClick() {
+      //   console.log(response)
+      //  }
 
        //Creating a function to handle the submission button
        const handleSubmitForm = async (event) => {
         event.preventDefault();
+        const message = document.createElement('img')
         if (response === riddleResponse[riddleResponseId].answer) {
-          console.log("You win");
+          message.src = '../../src/assets/victory.png';
+          message.style.width = "30%";
+          message.style.margin = "auto auto";
+          
+        divMessage.appendChild(message);
         } else {
-          console.log("Try again");
+          message.src = '../../src/assets/game-over.png';
+          message.style.width = "30%";
+          message.style.margin = "auto auto";
+          
+          // message.textContent = "You lose";
+          divMessage.appendChild(message);
         }
+
+        event.target.reset();
       }
     
 </script>
@@ -103,32 +118,27 @@
           <p>{riddle.name}</p>
           {/each}
           {/await}
-            <p>
+            <div class="message" bind:this={divMessage}>
               <!-- Congratulations message or losing message appearing here -->
-          </p>
+            </div>
       </div>
       <div class="hints" bind:this={divHints}>
         {#await get_hints()}
           <p>Waiting for hints to display</p>
         {/await}
       </div>
+      <div class="hints-button">
+      <button on:click={displayHint}>Demandez un indice</button>
+    </div>
       <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm}>
         <div class="gamer-response">
            
-           <!-- <div>
-  {#if response.value === riddleResponse} 
-  <p>Bonne réponse</p>
-  <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
-  {:else}
-  <p>Essaye encore</p>
-  {/if}
-</div> -->
             <div>
                 <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
             </div>
             <div class="response-buttons">
-                <button on:click={displayHint}>Demandez un indice</button>
-                <button on:click={handleClick}>Valider</button>
+                
+                <button >Valider</button>
             </div>
         </div>
     </form>
@@ -158,6 +168,16 @@
   <style>
       
   /* DEFINED THEME GAME PAGE*/
+
+  .guessWhatText p {
+    text-align: center;
+  }
+
+  .message {
+    display: flex;
+    flex-direction: column;
+  }
+
   
   section#random-theme {
     border: 0.7rem var(--blue-outlines)solid;
@@ -191,9 +211,24 @@
     height: 75px;
   }
   
+  .hints-button button {
+    
+    margin-bottom: 5px;
+    width: 250px;
+    padding: 1rem;
+    background-color: #0f4d4a;
+    border: 0.7rem var(--blue-outlines)solid;
+    color: var(--text-color);
+    font-weight: bolder;
+    border-radius: 0.9rem;
+    font-family: 'Mentimun';
+    font-size: 50%;   
+    text-align: center;
+  }
   
   .response-buttons button {
     display: block;
+    margin-top: 20px;
     margin-bottom: 5px;
     width: 100%;
     padding: 1rem;
@@ -294,8 +329,13 @@
     width: 50%;
   }
   
-  .response-buttons button {
+  .hints-button button {
     font-size: 100%;   
+    color: var(--text-color);
+  }
+
+  .response-buttons button {
+    font-size: 200%;   
   }
   
   .clueDark {
@@ -323,10 +363,11 @@
   
   
   
-         /*  media queries of desktop  */
+  /*  media queries of desktop  */
     @media (min-width: 769px) {
   
   /* RANDOM THEME GAME PAGE*/
+
   
 h1 {
     font-size: 3rem;
@@ -364,8 +405,14 @@ textarea {
     height: 150px;
 }
 
-.response-buttons button {
+.hints-button button {
     margin: 0 0 2rem 0.8rem;
+    color: var(--text-color);
+    font-size: 100%;   
+}
+
+.response-buttons button {
+  margin: 2rem 0 2rem 0.8rem;
     color: var(--blue-text);
     font-size: 125%;   
 }
