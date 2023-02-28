@@ -18,12 +18,14 @@
 
     let divHints ;
 
-    //Creating a variable for the user's iponse
+    //Creating a variable for the user's response
     let response;
 
     //Creating an array to recuperate from the data base the correct answers to a riddle 
     let riddleResponse = [];
-    
+
+    let riddleResponseId = 0;
+
     //Async function allowing us to fetch randomly the name of a riddle.
 
     const get_riddles = async () => {
@@ -51,8 +53,6 @@
 
     get_riddleAnswer();
 
-    
-
     //Creating a function to handle the display of hints (one hint at a time)
 
        function displayHint() {
@@ -71,9 +71,7 @@
         }
        }
 
-
-
-       //Creating a function to empty the text area after response submission
+       //Creating a function to empty the text area after userResponse submission
        function handleClick() {
         console.log(response)
         
@@ -82,9 +80,13 @@
        //Creating a function to handle the submission button
        const handleSubmitForm = async (event) => {
         event.preventDefault();
-    }
-       
-
+        if (response === riddleResponse[riddleResponseId].answer) {
+          console.log("You win");
+        } else {
+          console.log("Try again");
+        }
+      }
+    
 </script>
 
 <body>
@@ -111,16 +113,24 @@
         {/await}
       </div>
       <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm}>
-      <div class="gamer-response">
-      
-          <div>
-              <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
-          </div>
-          <div class="response-buttons">
-              <button on:click={displayHint}>Demandez un indice</button>
-              <button on:click={handleClick}>Valider</button>
-          </div>
-      </div>
+        <div class="gamer-response">
+           
+           <!-- <div>
+  {#if response.value === riddleResponse} 
+  <p>Bonne réponse</p>
+  <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
+  {:else}
+  <p>Essaye encore</p>
+  {/if}
+</div> -->
+            <div>
+                <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
+            </div>
+            <div class="response-buttons">
+                <button on:click={displayHint}>Demandez un indice</button>
+                <button on:click={handleClick}>Valider</button>
+            </div>
+        </div>
     </form>
       <div class="score">
           <p>Score:</p>
