@@ -10,7 +10,21 @@
     //Creating a variable that allows us to match the id of a riddle with the corresponding clue id.
 
     let clue_id = id;
+    
+    //Creating an array to recuperate the hints for the riddles
 
+    let hints = [];
+    // Creating a variable to pass to the hints array.
+
+    let hintId = 0;
+
+    // Declaring a variable to recover the div element containing the hints
+
+    let divHints ;
+
+    //Creating a variable for the user's iponse
+    let response;
+    
     //Async function allowing us to fetch randomly the name of a riddle.
 
     const get_riddles = async () => {
@@ -24,11 +38,28 @@
     const get_hints = async () => {
         const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Clue/?fields=name,id&filter[riddle_id]=" + clue_id);
         const json = await response.json();
-        return json.data;
+        hints = json.data;
         }
 
-   function handleClick() {
-    alert("You have clicked on the button");
+    //Creating a function to handle the display of hints (one hint at a time)
+
+       function displayHint() {
+        const child = document.createElement('p');
+        child.classList.add("clueLight");
+
+        // Changing the background color of the div where hints are displayed
+        hintId%2 ? child.style.backgroundColor =  "#0f4d4a" : child.style.backgroundColor =  "#0d4240";
+        child.textContent = hints[hintId].name;
+        divHints.appendChild(child);
+        
+        // hintId is incremented by 1
+        hintId ++;
+       }
+
+    //Creating a function to handle the response button
+
+       function handleClick() {
+      alert("You have clicked on the button");
        }
 
 </script>
@@ -51,33 +82,24 @@
               <!-- Congratulations message or losing message appearing here -->
           </p>
       </div>
-      <div class="hints">
+      <div class="hints" bind:this={divHints}>
         {#await get_hints()}
           <p>Waiting for hints to display</p>
-        {:then Clue}
-        {#each Clue as clue}
-          <p class="clueLight">{clue.name}</p>
-          <!-- <p class="clueLight">{clue.name}</p>
-          <p class="clueDark">{clue.name}</p>
-          <p class="clueLight">{clue.name}</p>
-          <p class="clueDark">{clue.name}</p> -->
-      {/each}
-      {/await}
+        {/await}
       </div>
       <div class="gamer-response">
           <div>
-              <textarea name="response" id="response" placeholder="Réponses"></textarea>
+              <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
           </div>
           <div class="response-buttons">
-              <button on:click={handleClick}>Demandez un indice</button>
-              <button>Valider</button>
+              <button on:click={displayHint}>Demandez un indice</button>
+              <button on:click={handleClick}>Valider</button>
           </div>
       </div>
       <div class="score">
           <p>Score:</p>
           <p>952</p>
       </div>
-      
   </section>
  
   <aside>
@@ -98,9 +120,8 @@
   </body>
   
   <style>
-      /* DEFINED THEME GAME PAGE*/
-  
-  
+      
+  /* DEFINED THEME GAME PAGE*/
   
   section#random-theme {
     border: 0.7rem var(--blue-outlines)solid;
@@ -112,7 +133,6 @@
     text-align: center;
   }
   
-  
   div.hints {
     text-align: center;
     border: 0.7rem var(--blue-outlines)solid;
@@ -120,6 +140,7 @@
     margin: 1.5rem auto;
     width: 250px;
   }
+
   div.gamer-response {
     width: 250px;
     display: block;
@@ -153,16 +174,7 @@
     display: flex;
     justify-content: center;
   }
-  
-  
-  .clueDark {
-    background-color: #0d4240;
-    border: 2px solid #0d4240;
-    padding: 0.5rem;
-    margin: 0px;
-    font-size: x-small;
-  }
-  
+ 
   .clueLight {
     background-color: #0f4d4a;
     border: 2px solid #0f4d4a;
@@ -249,8 +261,6 @@
   .response-buttons button {
     font-size: 100%;   
   }
-  
-
   
   .clueDark {
     padding: 1rem;
