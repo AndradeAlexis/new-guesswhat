@@ -6,10 +6,6 @@
     //Creating a variable allowing us to get a random number from 1 to 17.
 
     let id = [Math.floor(Math.random() * 17)];
-
-    //Creating a variable that allows us to match the id of a riddle with the corresponding clue id.
-
-    let clue_id = id;
     
     //Creating an array to recuperate the hints for the riddles
 
@@ -24,6 +20,9 @@
 
     //Creating a variable for the user's iponse
     let response;
+
+    //Creating an array to recuperate from the data base the correct answers to a riddle 
+    let riddleResponse = [];
     
     //Async function allowing us to fetch randomly the name of a riddle.
 
@@ -36,10 +35,23 @@
     //Async function to fetch indexes related to a riddle.
 
     const get_hints = async () => {
-        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Clue/?fields=name,id&filter[riddle_id]=" + clue_id);
+        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Clue/?fields=name,id&filter[riddle_id]=" + id);
         const json = await response.json();
         hints = json.data;
         }
+
+    //Async function to fetch the response related to a riddle.
+
+    const get_riddleAnswer = async () => {
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=answer,id&filter[id]=" + id);
+        const json = await response.json();
+        riddleResponse = json.data;
+        console.log (riddleResponse);
+    }
+
+    get_riddleAnswer();
+
+    
 
     //Creating a function to handle the display of hints (one hint at a time)
 
@@ -54,13 +66,24 @@
         
         // hintId is incremented by 1
         hintId ++;
+        if( hintId >= hints.length) {
+          alert("Attention, ceci est ton dernier indice!");
+        }
        }
 
-    //Creating a function to handle the response button
 
+
+       //Creating a function to empty the text area after response submission
        function handleClick() {
-      alert("You have clicked on the button");
+        console.log(response)
+        
        }
+
+       //Creating a function to handle the submission button
+       const handleSubmitForm = async (event) => {
+        event.preventDefault();
+    }
+       
 
 </script>
 
@@ -87,7 +110,9 @@
           <p>Waiting for hints to display</p>
         {/await}
       </div>
+      <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm}>
       <div class="gamer-response">
+      
           <div>
               <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
           </div>
@@ -96,6 +121,7 @@
               <button on:click={handleClick}>Valider</button>
           </div>
       </div>
+    </form>
       <div class="score">
           <p>Score:</p>
           <p>952</p>
