@@ -2,6 +2,106 @@
     import {link} from 'svelte-spa-router';
     import Header from "../homepage/Header.svelte";
     import Footer from "../homepage/Footer.svelte";
+
+    //Creating a variable allowing us to get a random number from 1 to 17.
+
+    let id = [Math.floor(Math.random() * 17)];
+    
+    //Creating an array to recuperate the hints for the riddles
+
+    let hints = [];
+    // Creating a variable to pass to the hints array.
+
+    let hintId = 0;
+
+    // Declaring a variable to recover the div element containing the hints
+
+    let divHints ;
+
+    //Creating a variable for the user's response
+    let response;
+
+    //Creating an array to recuperate from the data base the correct answers to a riddle 
+    let riddleResponse = [];
+
+    let riddleResponseId = 0;
+
+    //Declaring a variable for message of victory/defeat
+
+    let divMessage ;
+
+    //Async function allowing us to fetch randomly the name of a riddle.
+
+    const get_riddles = async () => {
+        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=name,id&filter[id]=" + id);
+        const json = await response.json();
+        return json.data;
+        }
+
+    //Async function to fetch indexes related to a riddle.
+
+    const get_hints = async () => {
+        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Clue/?fields=name,id&filter[riddle_id]=" + id);
+        const json = await response.json();
+        hints = json.data;
+        }
+
+    //Async function to fetch the response related to a riddle.
+
+    const get_riddleAnswer = async () => {
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=answer,id&filter[id]=" + id);
+        const json = await response.json();
+        riddleResponse = json.data;
+        console.log (riddleResponse);
+    }
+
+    get_riddleAnswer();
+
+    //Creating a function to handle the display of hints (one hint at a time)
+
+       function displayHint() {
+        const child = document.createElement('p');
+        child.classList.add("clueLight");
+
+        // Changing the background color of the div where hints are displayed
+        hintId%2 ? child.style.backgroundColor =  "#0f4d4a" : child.style.backgroundColor =  "#0d4240";
+        child.textContent = hints[hintId].name;
+        divHints.appendChild(child);
+        
+        // hintId is incremented by 1
+        hintId ++;
+        if( hintId >= hints.length) {
+          alert("Attention, ceci est ton dernier indice!");
+        }
+       }
+
+      //  //Creating a function to empty the text area after userResponse submission
+      //  function handleClick() {
+      //   console.log(response)
+      //  }
+
+       //Creating a function to handle the submission button
+       const handleSubmitForm = async (event) => {
+        event.preventDefault();
+        const message = document.createElement('img')
+        if (response === riddleResponse[riddleResponseId].answer) {
+          message.src = '../../src/assets/victory.png';
+          message.style.width = "30%";
+          message.style.margin = "auto auto";
+          
+        divMessage.appendChild(message);
+        } else {
+          message.src = '../../src/assets/game-over.png';
+          message.style.width = "30%";
+          message.style.margin = "auto auto";
+          
+          // message.textContent = "You lose";
+          divMessage.appendChild(message);
+        }
+
+        event.target.reset();
+      }
+    
 </script>
 
 <body>
@@ -11,33 +111,41 @@
   <section id="random-theme">
       <div class="guessWhatText">
           <h1>Guess What ?</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, corporis ipsam! Quos debitis deserunt fugit eaque hic, tempore cupiditate. Facilis, dolorum dolores nemo, officia, sint amet eveniet deleniti iste velit error eius.</p>
-          <p>
+          {#await get_riddles()}
+          <p>Waiting for riddles to display</p>
+          {:then Riddle}
+          {#each Riddle as riddle}
+          <p>{riddle.name}</p>
+          {/each}
+          {/await}
+            <div class="message" bind:this={divMessage}>
               <!-- Congratulations message or losing message appearing here -->
-          </p>
+            </div>
       </div>
-      <div class="hints">
-          <p class="clueLight">Indice 1</p>
-          <p class="clueDark">Indice 2</p>
-          <p class="clueLight">Indice 3</p>
-          <p class="clueDark">Indice 4</p>
-          <p class="clueLight">Indice 5</p>
-          <p class="clueDark">Indice 6</p>
+      <div class="hints" bind:this={divHints}>
+        {#await get_hints()}
+          <p>Waiting for hints to display</p>
+        {/await}
       </div>
-      <div class="gamer-response">
-          <div>
-              <textarea name="response" id="response" placeholder="Réponses"></textarea>
-          </div>
-          <div class="response-buttons">
-              <button>Demandez un indice</button>
-              <button>Valider</button>
-          </div>
-      </div>
+      <div class="hints-button">
+      <button on:click={displayHint}>Demandez un indice</button>
+    </div>
+      <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm}>
+        <div class="gamer-response">
+           
+            <div>
+                <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
+            </div>
+            <div class="response-buttons">
+                
+                <button >Valider</button>
+            </div>
+        </div>
+    </form>
       <div class="score">
           <p>Score:</p>
           <p>952</p>
       </div>
-      
   </section>
  
   <aside>
@@ -58,9 +166,18 @@
   </body>
   
   <style>
-      /* DEFINED THEME GAME PAGE*/
-  
-  
+      
+  /* DEFINED THEME GAME PAGE*/
+
+  .guessWhatText p {
+    text-align: center;
+  }
+
+  .message {
+    display: flex;
+    flex-direction: column;
+  }
+
   
   section#random-theme {
     border: 0.7rem var(--blue-outlines)solid;
@@ -72,7 +189,6 @@
     text-align: center;
   }
   
-  
   div.hints {
     text-align: center;
     border: 0.7rem var(--blue-outlines)solid;
@@ -80,6 +196,7 @@
     margin: 1.5rem auto;
     width: 250px;
   }
+
   div.gamer-response {
     width: 250px;
     display: block;
@@ -94,9 +211,24 @@
     height: 75px;
   }
   
+  .hints-button button {
+    
+    margin-bottom: 5px;
+    width: 250px;
+    padding: 1rem;
+    background-color: #0f4d4a;
+    border: 0.7rem var(--blue-outlines)solid;
+    color: var(--text-color);
+    font-weight: bolder;
+    border-radius: 0.9rem;
+    font-family: 'Mentimun';
+    font-size: 50%;   
+    text-align: center;
+  }
   
   .response-buttons button {
     display: block;
+    margin-top: 20px;
     margin-bottom: 5px;
     width: 100%;
     padding: 1rem;
@@ -113,16 +245,7 @@
     display: flex;
     justify-content: center;
   }
-  
-  
-  .clueDark {
-    background-color: #0d4240;
-    border: 2px solid #0d4240;
-    padding: 0.5rem;
-    margin: 0px;
-    font-size: x-small;
-  }
-  
+ 
   .clueLight {
     background-color: #0f4d4a;
     border: 2px solid #0f4d4a;
@@ -206,11 +329,14 @@
     width: 50%;
   }
   
-  .response-buttons button {
+  .hints-button button {
     font-size: 100%;   
+    color: var(--text-color);
   }
-  
 
+  .response-buttons button {
+    font-size: 200%;   
+  }
   
   .clueDark {
     padding: 1rem;
@@ -237,10 +363,11 @@
   
   
   
-         /*  media queries of desktop  */
+  /*  media queries of desktop  */
     @media (min-width: 769px) {
   
   /* RANDOM THEME GAME PAGE*/
+
   
 h1 {
     font-size: 3rem;
@@ -278,8 +405,14 @@ textarea {
     height: 150px;
 }
 
-.response-buttons button {
+.hints-button button {
     margin: 0 0 2rem 0.8rem;
+    color: var(--text-color);
+    font-size: 100%;   
+}
+
+.response-buttons button {
+  margin: 2rem 0 2rem 0.8rem;
     color: var(--blue-text);
     font-size: 125%;   
 }
