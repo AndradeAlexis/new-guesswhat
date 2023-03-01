@@ -25,12 +25,16 @@
         <p class="clueLight">Indice 5</p>
         <p class="clueDark">Indice 6</p>
     </div>
+    <div class="hints-button">
+    <button>Demandez un indice</button>
+  </div>
+  <form action="#" method="post" id="responseForm">
     <div class="gamer-response">
         <div>
             <textarea name="response" id="response" placeholder="Réponses"></textarea>
         </div>
         <div class="response-buttons">
-            <button>Demandez un indice</button>
+            
             <button>Valider</button>
         </div>
     </div>
@@ -66,6 +70,9 @@
 <style>
     /* DEFINED THEME GAME PAGE*/
 
+    body {
+width: 98vw;
+}
 
 
 section#defined-theme {
@@ -98,11 +105,27 @@ textarea {
   padding: 1rem;
   width: 100%;
   height: 75px;
+  resize: none;
 }
 
+.hints-button button {
+  
+  margin-bottom: 5px;
+  width: 250px;
+  padding: 1rem;
+  background-color: #0f4d4a;
+  border: 0.7rem var(--blue-outlines)solid;
+  color: var(--text-color);
+  font-weight: bolder;
+  border-radius: 0.9rem;
+  font-family: 'Mentimun';
+  font-size: 50%;   
+  text-align: center;
+}
 
 .response-buttons button {
   display: block;
+  margin-top: 20px;
   margin-bottom: 5px;
   width: 100%;
   padding: 1rem;
@@ -133,6 +156,7 @@ nav img {
   border: var(--blue-outlines) solid 5px;
   border-radius: 10px;
   margin-top: -0.7rem;
+  min-width: 20px;
 }
 
 nav img:hover {
@@ -230,8 +254,13 @@ div.gamer-response {
   width: 50%;
 }
 
-.response-buttons button {
+.hints-button button {
   font-size: 100%;   
+  color: var(--text-color);
+}
+
+.response-buttons button {
+  font-size: 200%;   
 }
 
 nav {
@@ -248,7 +277,8 @@ nav a {
 
 nav img {
   margin-top: -0.3rem;
-  width: 70%;
+  width: 50%;
+  min-width: 50px;
   
 }
 
@@ -309,16 +339,23 @@ div.gamer-response {
 }
 
 textarea {
-    border-radius: 0.5rem;
-    padding: 1rem;
-    width: 200px;
-    height: 150px;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 200px;
+  height: 150px;
+  resize: none;
+}
+
+.hints-button button {
+  margin: 0 0 2rem 0.8rem;
+  color: var(--text-color);
+  font-size: 100%;   
 }
 
 .response-buttons button {
-    margin: 0 0 2rem 0.8rem;
-    color: var(--blue-text);
-    font-size: 125%;   
+margin: 2rem 0 2rem 0.8rem;
+  color: var(--blue-text);
+  font-size: 125%;   
 }
 
 
@@ -332,7 +369,7 @@ nav {
 nav img {
     margin-left: 0.35rem;
     margin-top: -5px;
-    width: 85%;
+    width: 30%;
     min-width: 100px;
 }
 

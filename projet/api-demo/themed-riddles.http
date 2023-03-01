@@ -1,0 +1,4 @@
+GET https://rq0q3cq4.directus.app/items/Riddle?fields=name,theme_id&filter[theme_id]=1 HTTP/1.1
+
+
+

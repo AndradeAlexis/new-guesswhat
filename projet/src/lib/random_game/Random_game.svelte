@@ -16,7 +16,7 @@
 
   // Declaring a variable to recover the div element containing the hints
 
-  let divHints ;
+  let divHints;
 
   //Creating a variable for the user's response
   let response;
@@ -28,7 +28,11 @@
 
   //Declaring a variable for message of victory/defeat
 
-  let divMessage ;
+  let divMessage;
+
+  //Declaring a variable for score calculation
+
+  // let divScore;
 
   //Async function allowing us to fetch randomly the name of a riddle.
 
@@ -49,7 +53,7 @@
   //Async function to fetch the response related to a riddle.
 
   const get_riddleAnswer = async () => {
-    const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=answer,id&filter[id]=" + id);
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=answer,id&filter[id]=" + id);
       const json = await response.json();
       riddleResponse = json.data;
       console.log (riddleResponse);
@@ -77,32 +81,54 @@
       }
      }
 
-    //  //Creating a function to empty the text area after userResponse submission
-    //  function handleClick() {
-    //   console.log(response)
-    //  }
-
      //Creating a function to handle the submission button
      const handleSubmitForm = async (event) => {
       event.preventDefault();
+      if (divMessage.hasChildNodes()) {
+        divMessage.removeChild(divMessage.children[0]);
+      }
       const message = document.createElement('img')
       if (response === riddleResponse[riddleResponseId].answer) {
         message.src = '../../src/assets/victory.png';
         message.style.width = "30%";
         message.style.margin = "auto auto";
-        
-      divMessage.appendChild(message);
+        divMessage.appendChild(message);
+       
       } else {
         message.src = '../../src/assets/game-over.png';
         message.style.width = "30%";
         message.style.margin = "auto auto";
-        
-        // message.textContent = "You lose";
-        divMessage.appendChild(message);
+        divMessage.appendChild(message); 
       }
 
       event.target.reset();
     }
+    
+    //Creating function to calculate the score 
+      let result = 1000;
+      let score = 1000;
+      let numberAttempt = 0;
+      let clueReveal = 0;
+       
+      
+      const incrementTries = () => {
+        numberAttempt += 1;
+    }
+
+    const incrementHints = () => {
+      clueReveal += 1;
+    }
+    
+    const get_scores = () => {
+           result = (score) - ((numberAttempt * 5) + (clueReveal * 10));
+            //Condition so that score does not fall below 0
+            if (result < 0) result = 0;
+            //Correcting score when user gives the correct answer from the beginning.
+            if(response === riddleResponse[riddleResponseId].answer) {
+              result += 5;
+            }
+    }
+  
   
 </script>
 
@@ -130,24 +156,24 @@
       {/await}
     </div>
     <div class="hints-button">
-    <button on:click={displayHint}>Demandez un indice</button>
+    <button on:click={displayHint} on:click={incrementHints} on:click={get_scores}>Demandez un indice</button>
   </div>
-    <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm}>
+    <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm} on:submit={get_scores}>
       <div class="gamer-response">
          
           <div>
               <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
           </div>
           <div class="response-buttons">
-              
-              <button >Valider</button>
+              <button on:click={incrementTries}>Valider</button>
           </div>
       </div>
   </form>
-    <div class="score">
-        <p>Score:</p>
-        <p>952</p>
+  <div class="score">     
+    <div>
+      Score : {result}
     </div>
+</div>
 </section>
 
 <aside>
