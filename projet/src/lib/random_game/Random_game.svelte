@@ -84,25 +84,28 @@
      //Creating a function to handle the submission button
      const handleSubmitForm = async (event) => {
       event.preventDefault();
+      if (divMessage.hasChildNodes()) {
+        divMessage.removeChild(divMessage.children[0]);
+      }
       const message = document.createElement('img')
       if (response === riddleResponse[riddleResponseId].answer) {
         message.src = '../../src/assets/victory.png';
         message.style.width = "30%";
         message.style.margin = "auto auto";
-        
-      divMessage.appendChild(message);
+        divMessage.appendChild(message);
+       
       } else {
         message.src = '../../src/assets/game-over.png';
         message.style.width = "30%";
         message.style.margin = "auto auto";
-        divMessage.appendChild(message);
+        divMessage.appendChild(message); 
       }
 
       event.target.reset();
     }
     
     //Creating function to calculate the score 
-      let result = 0;
+      let result = 1000;
       let score = 1000;
       let numberAttempt = 0;
       let clueReveal = 0;
@@ -118,6 +121,8 @@
     
     const get_scores = () => {
            result = (score) - ((numberAttempt * 5) + (clueReveal * 10));
+            //Condition so that score does not fall below 0
+            if (result < 0) result = 0;
       }
      
   
