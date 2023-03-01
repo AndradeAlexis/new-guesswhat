@@ -16,7 +16,7 @@
 
   // Declaring a variable to recover the div element containing the hints
 
-  let divHints ;
+  let divHints;
 
   //Creating a variable for the user's response
   let response;
@@ -123,9 +123,11 @@
            result = (score) - ((numberAttempt * 5) + (clueReveal * 10));
             //Condition so that score does not fall below 0
             if (result < 0) result = 0;
-      }
-     
-  
+            //Correcting score when user gives the correct answer from the beginning.
+            if(response === riddleResponse[riddleResponseId].answer) {
+              result += 5;
+            }
+    }
 </script>
 
 <body>
@@ -154,14 +156,14 @@
     <div class="hints-button">
     <button on:click={displayHint} on:click={incrementHints} on:click={get_scores}>Demandez un indice</button>
   </div>
-    <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm}>
+    <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm} on:submit={get_scores}>
       <div class="gamer-response">
          
           <div>
               <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
           </div>
           <div class="response-buttons">
-              <button on:click={incrementTries} on:click={get_scores}>Valider</button>
+              <button on:click={incrementTries}>Valider</button>
           </div>
       </div>
   </form>
