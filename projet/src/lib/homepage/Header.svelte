@@ -9,12 +9,11 @@
 <style>
   header {
     text-align: center;
-    margin: -40px;
     height: 200px;
   }
 
   header img {
-    max-width: 130px;
-    margin-top: 2.3rem;
+    max-width: 200px;
+    
   }
 </style>
