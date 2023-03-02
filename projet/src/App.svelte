@@ -29,6 +29,6 @@ import Contact from "./lib/contact/Contact.svelte";
   }
 </script>
 
-<main>
+<body>
   <Router {routes} />
-</main>
+</body>

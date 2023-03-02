@@ -136,6 +136,7 @@
   <div class="container">
 <Header />
 <main  class="random-theme-game">
+  <div class="background-game">
 <section id="random-theme">
     <div class="guessWhatText">
         <h1>Guess What ?</h1>
@@ -175,6 +176,7 @@
     </div>
 </div>
 </section>
+</div>
 
 <aside>
     <div>
@@ -211,7 +213,7 @@ width: 98vw;
 }
 
 
-section#random-theme {
+#random-theme {
   border: 0.7rem var(--blue-outlines)solid;
   margin-top: -0.7rem;
   margin-left: -0.7rem;
@@ -220,6 +222,10 @@ section#random-theme {
   border-radius: 0.9rem;
   text-align: center;
 }
+
+
+
+
 
 div.hints {
   text-align: center;
@@ -413,6 +419,7 @@ p {
 .random-theme-game {
 display: grid;
 grid-template-columns: 55% auto;
+
 }
 
 
