@@ -30,13 +30,9 @@
 
   let divMessage;
 
-  //Declaring a variable for score calculation
-
-  // let divScore;
-
   //Async function allowing us to fetch randomly the name of a riddle.
 
-  const get_riddles = async () => {
+  const getRiddles = async () => {
       const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=name,id&filter[id]=" + id);
       const json = await response.json();
       return json.data;
@@ -44,7 +40,7 @@
 
   //Async function to fetch indexes related to a riddle.
 
-  const get_hints = async () => {
+  const getHints = async () => {
       const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Clue/?fields=name,id&filter[riddle_id]=" + id);
       const json = await response.json();
       hints = json.data;
@@ -52,14 +48,13 @@
 
   //Async function to fetch the response related to a riddle.
 
-  const get_riddleAnswer = async () => {
+  const getRiddleAnswer = async () => {
       const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=answer,id&filter[id]=" + id);
       const json = await response.json();
       riddleResponse = json.data;
-      console.log (riddleResponse);
   }
 
-  get_riddleAnswer();
+  getRiddleAnswer();
 
   //Creating a function to handle the display of hints (one hint at a time)
 
@@ -104,23 +99,26 @@
       event.target.reset();
     }
     
-    //Creating function to calculate the score 
+    //Creating the variables and function for the score calculation 
       let result = 1000;
       let score = 1000;
       let numberAttempt = 0;
       let clueReveal = 0;
-       
-      
-      const incrementTries = () => {
+     
+    //Creating a counter incrementing the number of attempts
+    const incrementTries = () => {
         numberAttempt += 1;
     }
 
+    //Creating a counter incrementing the number of hints
     const incrementHints = () => {
       clueReveal += 1;
     }
     
-    const get_scores = () => {
-           result = (score) - ((numberAttempt * 5) + (clueReveal * 10));
+    //Creating the function for score calculation
+    const getScores = () => {
+            //Score calculation taking into account the number of tries and the number of hints a user requests
+            result = (score) - ((numberAttempt * 5) + (clueReveal * 10));
             //Condition so that score does not fall below 0
             if (result < 0) result = 0;
             //Correcting score when user gives the correct answer from the beginning.
@@ -128,70 +126,67 @@
               result += 5;
             }
     }
-  
-  
 </script>
 
 <body>
   <div class="container">
-<Header />
-<main  class="random-theme-game">
-  <div class="background-game">
-<section id="random-theme">
-    <div class="guessWhatText">
-        <h1>Guess What ?</h1>
-        {#await get_riddles()}
-        <p>Waiting for riddles to display</p>
-        {:then Riddle}
-        {#each Riddle as riddle}
-        <p>{riddle.name}</p>
-        {/each}
-        {/await}
-          <div class="message" bind:this={divMessage}>
-            <!-- Congratulations message or losing message appearing here -->
-          </div>
-    </div>
-    <div class="hints" bind:this={divHints}>
-      {#await get_hints()}
-        <p>Waiting for hints to display</p>
-      {/await}
-    </div>
-    <div class="hints-button">
-    <button on:click={displayHint} on:click={incrementHints} on:click={get_scores}>Demandez un indice</button>
-  </div>
-    <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm} on:submit={get_scores}>
-      <div class="gamer-response">
-         
-          <div>
-              <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
-          </div>
-          <div class="response-buttons">
-              <button on:click={incrementTries}>Valider</button>
-          </div>
+    <Header />
+    <main  class="random-theme-game">
+      <div class="background-game">
+      <section id="random-theme">
+            <div class="guessWhatText">
+                <h1>Guess What ?</h1>
+                {#await getRiddles()}
+                <p>Waiting for riddles to display</p>
+                {:then Riddle}
+                {#each Riddle as riddle}
+                <p>{riddle.name}</p>
+                {/each}
+                {/await}
+                <div class="message" bind:this={divMessage}>
+                    <!-- Congratulations message or losing message appearing here -->
+                </div>
+            </div>
+            <div class="hints" bind:this={divHints}>
+              {#await getHints()}
+                <p>Waiting for hints to display</p>
+              {/await}
+            </div>
+            <div class="hints-button">
+              <button on:click={displayHint} on:click={incrementHints} on:click={getScores}>Demandez un indice</button>
+            </div>
+            <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm} on:submit={getScores}>
+              <div class="gamer-response">
+                  <div>
+                      <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
+                  </div>
+                  <div class="response-buttons">
+                      <button on:click={incrementTries}>Valider</button>
+                  </div>
+              </div>
+            </form>
+            <div class="score">     
+              <div>
+                Score : {result}
+              </div>
+            </div>
+      </section>
       </div>
-  </form>
-  <div class="score">     
-    <div>
-      Score : {result}
-    </div>
-</div>
-</section>
-</div>
 
-<aside>
-    <div>
-        <p>Username</p>
-        <a href="/connection" use:link> <span id="statusUser" >Déconnecter</span></a>
-    </div>
-        <a href="/" use:link><img class="homeButton" src=".../../src/assets//Bouton Retour Accueil.png" alt="button go back to the home page"></a>
-        <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
-        <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
-        <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
-        <a class="contact" href="/contact" use:link>Contact</a>
-        <a class="contact" href="/about_us" use:link>À propos</a>
-</aside>
-<Footer />
-</main>
+      <aside>
+         <div>
+            <p>Username</p>
+            <a href="/connection" use:link> <span id="statusUser" >Déconnecter</span></a>
+        </div>
+            <a href="/" use:link><img class="homeButton" src=".../../src/assets//Bouton Retour Accueil.png" alt="button go back to the home page"></a>
+            <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+            <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+            <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
+            <a class="contact" href="/contact" use:link>Contact</a>
+            <a class="contact" href="/about_us" use:link>À propos</a>`
+      </aside>
+    <Footer />
+  </main>
 </div>
 </body>
 
@@ -212,7 +207,6 @@ width: 98vw;
   flex-direction: column;
 }
 
-
 #random-theme {
   border: 0.7rem var(--blue-outlines)solid;
   margin-top: -0.7rem;
@@ -222,10 +216,6 @@ width: 98vw;
   border-radius: 0.9rem;
   text-align: center;
 }
-
-
-
-
 
 div.hints {
   text-align: center;
@@ -251,7 +241,6 @@ textarea {
 }
 
 .hints-button button {
-  
   margin-bottom: 5px;
   width: 250px;
   padding: 1rem;
@@ -295,19 +284,19 @@ div.score {
 
    /* Styling the aside section containing the buttons for the homepage, log in, etc. */
 
-   aside {
+aside {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
-    aside div {
+aside div {
         display: flex;
         margin: 1rem;
     }
 
-    #statusUser {
+#statusUser {
       background-color: var(--orange-buttons);
       color: var(--blue-text);
       border-radius: 20px;
@@ -315,26 +304,25 @@ div.score {
       margin-left: 1rem;
   }
 
-    aside a {
+aside a {
         text-decoration: none;
         color: var(--text-color);
     }
 
-  .aside-buttons {
+.aside-buttons {
   color: var(--blue-text);
   }
 
-    /* Styling the homepage button */
-    .homeButton {
+/* Styling the homepage button */
+.homeButton {
       display:block;
         max-width: 80%;
         margin: 0.5rem auto;
 
     }
 
-    /* Styling the remaining navigation buttons */
-
-    aside button {
+/* Styling the remaining navigation buttons */
+aside button {
         display: block;
         max-width: 100%;
         padding: 1rem;
@@ -348,7 +336,7 @@ div.score {
         font-size: 150%;
     }
 
-    aside a.contact {
+aside a.contact {
         display: block;
         max-width: 50%;
         text-align: center;
@@ -357,10 +345,10 @@ div.score {
     }
 
 
-     /*  Media queries version tablette  */
-     @media (min-width: 426px) and (max-width: 768px) {
+  /*  Media queries version tablette  */
+  @media (min-width: 426px) and (max-width: 768px) {
 
-      div.hints {
+div.hints {
   width: 50%;
 }
 
@@ -398,15 +386,12 @@ div.gamer-response {
 
     }
 
-     }
-
-
+}
 
 /*  media queries of desktop  */
   @media (min-width: 769px) {
 
 /* RANDOM THEME GAME PAGE*/
-
 
 h1 {
   font-size: 3rem;
@@ -429,10 +414,10 @@ section#random-theme {
     padding: 1rem;
 }
 
-
 div.hints {
   width: 80%;
 }
+
 div.gamer-response {
   width: 50%;
   display: flex;
@@ -458,8 +443,6 @@ margin: 2rem 0 2rem 0.8rem;
   font-size: 125%;   
 }
 
-
-
 .clueDark {
   padding: 1rem;
   font-size: medium;
@@ -471,7 +454,6 @@ margin: 2rem 0 2rem 0.8rem;
 }
 
 /* Styling the aside section containing the buttons for the homepage, log in, etc. */
-
 
 aside {
   display: flex;
@@ -501,18 +483,15 @@ aside a {
 .homeButton {
   max-width: 300px;
   display: block;
-  
-  
 }
 
 /* Styling the remaining navigation buttons */
 
 aside button {
   max-width: 250px;
-
 }
 
-aside a.contact{
+aside a.contact {
   margin-top: 1rem;
   font-size: large;
 }
