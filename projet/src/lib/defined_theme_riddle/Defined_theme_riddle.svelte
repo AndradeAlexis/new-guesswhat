@@ -23,8 +23,13 @@
     riddles = promise.data;
     //Code allowing us to recover a random riddle from the riddles array
     selectedRiddle = riddles[Math.floor(Math.random() * riddles.length)]
-
+    
   });
+
+  //Function allowing the page to reload when clicking one of the theme buttons, giving a riddle to the user
+  function refreshPage(){
+    window.location.reload();
+} 
 
 </script>
 
@@ -70,9 +75,9 @@
   
 </section>
 <nav>
-      <a href="/defined_theme_riddle/1" use:link><img src=".../../src/assets/Mascotte Thème Animaux.png" alt="Mascot for animal riddle theme"></a> 
-      <a href="/defined_theme_riddle/2" use:link><img src=".../../src/assets//Mascotte Thème Cinéma.png" alt="Mascot for cinema riddle theme"></a>
-      <a href="/defined_theme_riddle/3" use:link><img src=".../../src/assets//Mascotte Thème Musique.png" alt="Mascot for music riddle theme"></a>
+      <a href="/defined_theme_riddle/1" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets/Mascotte Thème Animaux.png" alt="Mascot for animal riddle theme"></a> 
+      <a href="/defined_theme_riddle/2" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets//Mascotte Thème Cinéma.png" alt="Mascot for cinema riddle theme"></a>
+      <a href="/defined_theme_riddle/3" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets//Mascotte Thème Musique.png" alt="Mascot for music riddle theme"></a>
   
 </nav>
 <aside>
