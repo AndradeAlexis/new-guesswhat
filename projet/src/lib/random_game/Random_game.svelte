@@ -126,6 +126,11 @@
               result += 5;
             }
     }
+
+     //Function allowing the page to reload when clicking one of the theme buttons, giving a riddle to the user
+     function refreshPage(){
+      window.location.reload();
+  } 
 </script>
 
 <body>
@@ -162,6 +167,7 @@
                   </div>
                   <div class="response-buttons">
                       <button on:click={incrementTries}>Valider</button>
+                      <button on:click={refreshPage}>Reload game</button>
                   </div>
               </div>
             </form>
