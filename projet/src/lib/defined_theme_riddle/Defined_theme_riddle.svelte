@@ -10,9 +10,33 @@
   //Recovering the route parameters so that a user can get riddles related only to a specific theme via the URL and the theme links
   export let params = {};
   
-
   // Creating a variable representing  a selected riddle
   let selectedRiddle = null;
+
+  //Creating an array to recuperate the hints for the riddles
+
+  let hints = [];
+  // Creating a variable to pass to the hints array.
+
+  let hintId = 0;
+
+  // Declaring a variable to recover the div element containing the hints
+
+  let divHints;
+
+  let id;
+
+  //Creating a variable for the user's response
+  let response;
+
+  //Creating an array to recuperate from the data base the correct answers to a riddle 
+  let riddleResponse = [];
+
+  let riddleResponseId = 0;
+  
+
+    // Creating a variable representing  a selected riddle
+   let riddleClue = 0;
 
   // Using onMount() from Svelte to recover data from the data base
   //onMount runs after the component is rendered to the DOM
@@ -23,13 +47,67 @@
     riddles = promise.data;
     //Code allowing us to recover a random riddle from the riddles array
     selectedRiddle = riddles[Math.floor(Math.random() * riddles.length)]
-    
+    return selectedRiddle;
   });
 
   //Function allowing the page to reload when clicking one of the theme buttons, giving a riddle to the user
   function refreshPage(){
     window.location.reload();
 } 
+
+  //Async function to fetch indexes related to a riddle.
+
+  const get_hints = async () => {
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + 'items/Clue?fields=name&filter[riddle_id]=1') ;
+      const json = await response.json();
+      hints = json.data;
+      console.log(hints);
+      }
+
+      //Creating a function to handle the display of hints (one hint at a time)
+
+  function displayHint() {
+      const child = document.createElement('p');
+      child.classList.add("clueLight");
+
+      // Changing the background color of the div where hints are displayed
+      hintId%2 ? child.style.backgroundColor =  "#0f4d4a" : child.style.backgroundColor =  "#0d4240";
+      child.textContent = hints[hintId].name;
+      child.style.padding = "1rem"
+      child.style.margin = "0"
+      divHints.appendChild(child);
+      
+      // hintId is incremented by 1
+      hintId ++;
+      if( hintId >= hints.length) {
+        alert("Attention, ceci est ton dernier indice!");
+      }
+     }
+
+     //Creating function to calculate the score 
+     let result = 1000;
+      let score = 1000;
+      let numberAttempt = 0;
+      let clueReveal = 0;
+       
+      
+      const incrementTries = () => {
+        numberAttempt += 1;
+    }
+
+    const incrementHints = () => {
+      clueReveal += 1;
+    }
+    
+    const get_scores = () => {
+           result = (score) - ((numberAttempt * 5) + (clueReveal * 10));
+            //Condition so that score does not fall below 0
+            if (result < 0) result = 0;
+            //Correcting score when user gives the correct answer from the beginning.
+            if(response === riddleResponse[riddleResponseId].answer) {
+              result += 5;
+            }
+    }
 
 </script>
 
@@ -47,16 +125,13 @@
           <!-- Congratulations message or losing message appearing here -->
       </p>
   </div>
-  <div class="hints">
-      <p class="clueLight">Indice 1</p>
-      <p class="clueDark">Indice 2</p>
-      <p class="clueLight">Indice 3</p>
-      <p class="clueDark">Indice 4</p>
-      <p class="clueLight">Indice 5</p>
-      <p class="clueDark">Indice 6</p>
+  <div class="hints" bind:this={divHints}>
+    {#await get_hints()}
+      <p>Waiting for hints to display</p>
+    {/await}
   </div>
   <div class="hints-button">
-  <button>Demandez un indice</button>
+  <button on:click={displayHint}>Demandez un indice</button>
 </div>
 <form action="#" method="post" id="responseForm">
   <div class="gamer-response">
@@ -69,8 +144,7 @@
       </div>
   </div>
   <div class="score">
-      <p>Score:</p>
-      <p>952</p>
+    Score : {result}
   </div>
   
 </section>
