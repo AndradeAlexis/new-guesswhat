@@ -6,6 +6,7 @@
 
     let email;
     let password;
+    let error;
 
     //Creating function to recuperate the token to use it for the log in action
 
@@ -20,7 +21,6 @@
 
         //Redirecting to homepage once everything is ok
         push('/');
-
     }
 
     //Creating a function with POST request for log in
@@ -37,8 +37,13 @@
             })
         })
 
+        // if(!response) {
+        //     alert("Try again");
+        // }
+
         const json = await response.json();
         return json.data.access_token;
+        
     }
 
     login();
