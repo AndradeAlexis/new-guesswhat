@@ -310,14 +310,14 @@ nav img:hover {
   animation: tilt-shaking 0.3s infinite;
 }
 
-/* .choose-theme {
+ .choose-theme {
   background-color: none;
 }
 
 .choose-theme:hover {
   background-color: var(--bg-images);;
 animation: none;
-} */
+}
 
 @keyframes tilt-shaking {
   0% { transform: rotate(0deg); }

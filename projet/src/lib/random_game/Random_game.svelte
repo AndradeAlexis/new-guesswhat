@@ -182,7 +182,6 @@
                     </div>
                     <div class="response-buttons">
                         <button on:click={incrementTries}>Valider</button>
-                        <button on:click={refreshPage}>Reload game</button>
                     </div>
                 </div>
               </form>
