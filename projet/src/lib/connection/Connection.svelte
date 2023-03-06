@@ -8,12 +8,10 @@
     <div class="container">
     <Header />
 <main>
-<section class="leftBlock">
+<section class="leftBlock" aria-label="Formulaire de connexion">
     <div class="guessWhatText">
         <h1>Guess What ?</h1>
-        <!--On garde la div ?-->
     </div>
-
     <h2 id="loginFormTitle">Formulaire de connexion</h2>
     <form>
         <div class="loginForm">
@@ -21,27 +19,23 @@
                 <label for="mail">Adresse email</label>
                 <label for="password">Mot de passe</label>
             </div>
-
             <div class="columnLoginForm">
                 <input
                     type="email"
                     id="mail"
                     name="user_mail"
-                    placeholder="Email"
-                />
+                    placeholder="Email"/>
                 <input
                     type="password"
                     id="password"
                     name="user_password"
-                    placeholder="Mot de passe"
-                />
+                    placeholder="Mot de passe"/>
                 <button id="loginFormButton">Connexion</button>
             </div>
         </div>
     </form>
 </section>
-
-<aside>
+<aside aria-label="menu de navigation">
     <div>
         <p>Username</p>
         <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
@@ -50,9 +44,7 @@
         ><img
             class="homeButton"
             src="../../src/assets/Bouton Retour Accueil.png"
-            alt="button go back to the home page"
-        /></a
-    >
+            alt="Retour accueil"/></a>
     <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
     <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
     <a class="contact" href="/contact" use:link>Contact</a>
@@ -88,7 +80,6 @@
   margin-left: -4%;
   margin-bottom: 1rem;
   padding: 5%;
-
 }
 
 .loginForm input {
@@ -99,7 +90,6 @@
   display: flex;
   flex-direction: column;
 }
-
 
 #loginFormButton {
   width: 200px;
@@ -176,7 +166,7 @@ aside a.contact {
 @media (min-width: 426px) and (max-width: 768px) {
 
 .homeButton {
-  width: 300px;
+    width: 300px;
 }
 
 .columnLoginLabels {
@@ -251,7 +241,6 @@ aside a.contact{
 margin-top: 1rem;
 font-size: large;
 }
-
 }
 
 </style>

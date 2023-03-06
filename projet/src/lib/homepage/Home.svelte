@@ -6,16 +6,17 @@
 </script>
 
 <body>
-<div class="container">
-    <Header/>
-<main>
-     <Main/>
-     <Footer/>
-</main>
-</div>
-</body>
+    <div class="container">
+        <Header/>
+        <main>
+            <Main/>
+            <Footer/>
+        </main>
+    </div>
+    </body>
 
 <style>
+    /* Importing font */
     @font-face {
         font-family: "Mentimun";
         src: 

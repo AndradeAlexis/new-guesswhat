@@ -2,56 +2,40 @@
     import {link} from 'svelte-spa-router';
 </script>
 
-<section class="leftBlock">
+<section class="leftBlock" aria-label="Page d'accueil, regles du jeu">
     <div class="guessWhatText">
         <h1>Guess What ?</h1>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-            officiis voluptate fugit quaerat qui suscipit ratione repellendus,
-            consequatur autem ipsam aut blanditiis quae saepe. Quod
-            exercitationem soluta et tenetur ad reiciendis mollitia earum
-            aliquid culpa animi non voluptatum eveniet, laudantium iste
-            necessitatibus, debitis quos doloremque sit at magnam rerum sequi
-            itaque consectetur dignissimos! Sequi, suscipit sit necessitatibus
-            maxime at aperiam?
+            Bienvenue à Guess What?, un jeu des devinettes en ligne. Vous pouvez choisir entre deux modes de jeu : jeu à thème aléatoire ou jeu à thème défini. Les thèmes que nous proposons sont les animaux, le cinéma et la musique. Si vous choisissez le mode de jeu aléatoire, vous obtiendrez automatiquement une devinette. Si vous choisissez le mode de jeu à thème défini veuillez choisir votre thème, avant d'obtenir une devinette. Si vous avez des difficultés à trouver la bonne réponse, vous pouvez demander un ou plusieurs indices pour vous aider à trouver la réponse. Une alerte vous indiquera s'il n'y a plus d'indices à demander. Attention, chaque indice que vous demandez a un impact sur votre score. Vous avez un nombre illimité de tentatives, mais gardez à l'esprit que chaque tentative retirera des points à votre score.
         </p>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-            officiis voluptate fugit quaerat qui suscipit ratione repellendus,
-            consequatur autem ipsam aut blanditiis quae saepe. Quod
-            exercitationem soluta et tenetur ad reiciendis mollitia earum
-            aliquid culpa animi non voluptatum eveniet, laudantium iste
-            necessitatibus, debitis quos doloremque sit at magnam rerum sequi
-            itaque consectetur dignissimos! Sequi, suscipit sit necessitatibus
-            maxime at aperiam?
+            Vous démarrez le jeu avec 1000 points à votre disposition. Le score final est calculé en fonction de votre nombre des tentatives et du nombre d'indices que vous avez demandé. Si vous souhaitez créer un compte utilisateur sur notre site, vous aurez la possibilité d'ajouter votre score au tableau des scores, cependant seuls les 10 meilleurs scores sont affichés. Amusez-vous bien et bonne chance !
         </p>
     </div>
     <div class="game-modes">
         <div id="random-game">
             <img
                 src="../../src/assets/Mascotte.png"
-                alt="logo for riddle game with a random theme"/>
+                alt="Mascotte pour jeu des devinettes à thème aléatoire"/>
             <button><a href="/random_theme_riddle" use:link>Devinettes <br/> au hasard</a></button>
         </div>
         <div id="theme-game">
             <img
                 src="../../src/assets/Mascotte Thèmes.png"
-                alt="logo for riddle game with a defined theme"/>
+                alt="Mascotte pour jeu des devinettes à thème défini"/>
             <button><a href="/defined_theme_riddle" use:link>Devinettes <br/> par theme</a></button>
         </div>
     </div>
 </section>
-<aside>
+<aside aria-label="menu de navigation">
     <div>
         <p>Username</p>
         <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
     </div>
-    <a href="/" use:link
-        ><img
+    <a href="/" use:link><img
             class="homeButton"
             src=".../../src/assets/Bouton Retour Accueil.png"
-            alt="button go back to the home page"
-        /></a>
+            alt="Retour accueil"/></a>
     <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
     <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
     <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
@@ -63,8 +47,8 @@
     /* Styling the game modes section */
 
     .leftBlock {
-  text-align: center;
-}
+        text-align: center;
+    }
 
     .game-modes {
         margin: -30px 0;
@@ -199,8 +183,8 @@
   /*  media queries of desktop  */
   @media (min-width: 769px) {
 
-        .game-modes {
-    margin: -110px 0;
+.game-modes {
+        margin: -110px 0;
 }
 
 #random-game, #theme-game {
@@ -235,22 +219,18 @@ aside a {
 
 /* Styling the homepage button */
 .homeButton {
-    max-width: 300px;
-       
+    max-width: 300px;     
 }
 
 /* Styling the remaining navigation buttons */
 
 aside button {
     max-width: 250px;
-
 }
 
 aside a.contact{
     margin-top: 1rem;
     font-size: large;
 }
-
 }
-
 </style>

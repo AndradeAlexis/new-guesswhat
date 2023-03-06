@@ -5,70 +5,59 @@
 </script>
 
 <body>
-<div class="container">
-<Header />
-<main>
-<section class="leftBlock">
-    <div class="guessWhatText">
-        <h1>Guess What ?</h1>
-        <!--On garde la div ?-->
-    </div>
-
-    <h2 id="subscriptionFormTitle">Formulaire d'inscription</h2>
-    <form>
-        <div class="subscriptionForm">
-            <div class="columnSubscriptionForm">
-                <label for="name">Adresse email</label>
-                <label for="mail">Nom d'utilisateur</label>
-                <label for="password">Mot de passe</label>
+    <div class="container">
+    <Header />
+    <main>
+        <section class="leftBlock" aria-label="Formulaire d'inscription">
+            <div class="guessWhatText">
+                <h1>Guess What ?</h1>
             </div>
-            <div class="columnSubscriptionForm">
-                <input
-                    type="email"
-                    id="mail"
-                    name="user_mail"
-                    placeholder="Email"
-                />
-                <input
-                    type="text"
-                    id="name"
-                    name="user_name"
-                    placeholder="Username"
-                />
-                <input
-                    type="password"
-                    id="password"
-                    name="user_password"
-                    placeholder="Mot de passe"
-                />
-                <button id="subscriptionFormButton">Valider</button>
+            <h2 id="subscriptionFormTitle">Formulaire d'inscription</h2>
+            <form>
+                <div class="subscriptionForm">
+                    <div class="columnSubscriptionForm">
+                        <label for="name">Adresse email</label>
+                        <label for="mail">Nom d'utilisateur</label>
+                        <label for="password">Mot de passe</label>
+                    </div>
+                    <div class="columnSubscriptionForm">
+                        <input
+                            type="email"
+                            id="mail"
+                            name="user_mail"
+                            placeholder="Email"/>
+                        <input
+                            type="text"
+                            id="name"
+                            name="user_name"
+                            placeholder="Username"/>
+                        <input
+                            type="password"
+                            id="password"
+                            name="user_password"
+                            placeholder="Mot de passe"/>
+                        <button id="subscriptionFormButton">Valider</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <aside aria-label="menu de navigation">
+            <div>
+                <p>Username</p>
+                <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
             </div>
-        </div>
-        <!-- <button id="subscriptionFormButton">Valider</button> -->
-    </form>
-</section>
-
-<aside>
-    <div>
-        <p>Username</p>
-        <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
+            <a href="/" use:link><img
+                    class="homeButton"
+                    src="../../src/assets/Bouton Retour Accueil.png"
+                    alt="Retour accueil"/></a>
+            <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+            <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
+            <a class="contact" href="/contact" use:link>Contact</a>
+            <a class="contact" href="/about_us" use:link>À propos</a>
+        </aside>
+    <Footer />
+    </main>
     </div>
-    <a href="/" use:link
-        ><img
-            class="homeButton"
-            src="../../src/assets/Bouton Retour Accueil.png"
-            alt="button go back to the home page"
-        /></a
-    >
-    <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
-    <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
-    <a class="contact" href="/contact" use:link>Contact</a>
-    <a class="contact" href="/about_us" use:link>À propos</a>
-</aside>
-
-<Footer />
-</main>
-</div>
 </body>
 
 <style>
@@ -77,7 +66,6 @@
 #subscriptionFormTitle {
   text-align: center;
 }
-
 
 .subscriptionForm {
   width: 100%;
@@ -106,7 +94,6 @@
   display: flex;
   flex-direction: column;
 }
-
 
 #subscriptionFormButton {
   width: 100%;
@@ -239,18 +226,16 @@ max-width: 45%;
     }
 
 aside a {
-margin-top: 1.1rem;
+    margin-top: 1.1rem;
 }
 
 aside button {
-max-width: 300px;
+    max-width: 300px;
 }
 
 aside a.contact{
-margin-top: 1rem;
-font-size: large;
+    margin-top: 1rem;
+    font-size: large;
 }
-
 }
-
   </style>

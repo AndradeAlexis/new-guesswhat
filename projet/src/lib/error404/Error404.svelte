@@ -8,30 +8,24 @@
   <div class="container">
     <Header />
     <main>
-      <section>
+      <section aria-label="Page d'erreur">
         <div class="guessWhatText">
           <h1>Guess What ?</h1>
-          <!--On garde la div ?-->
         </div>
-
         <div class="text404">
           <h2>La page que vous avez demandée n'existe pas</h2>
-          <img class="image404" src="../../src/assets/Mascotte 404.png" />
+          <img class="image404" src="../../src/assets/Mascotte 404.png" alt="Mascotte d'erreur si la page n'existe pas"/>
         </div>
       </section>
-      <aside>
+      <aside aria-label="menu de navigation">
         <div>
           <p>Username</p>
           <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
         </div>
-        <a href="/" use:link
-          ><img
+        <a href="/" use:link><img
             class="homeButton"
             src="../../src/assets/Bouton Retour Accueil.png"
-            alt="button go back to the home page"
-          /></a
-        >
-
+            alt="Retour accueil"/></a>
         <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
         <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
         <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
@@ -61,7 +55,6 @@
   .image404 {
     width: 200px;
   }
-
 
 /* Styling the aside section containing the buttons for the homepage, log in, etc. */
   aside {
@@ -144,10 +137,10 @@
   @media (min-width: 769px) {
 
     .text404 {
-    text-align: center;
-    padding: 10% 10%;
-    margin-left: auto;
-    font-size: medium;
+      text-align: center;
+      padding: 10% 10%;
+      margin-left: auto;
+      font-size: medium;
   }
 
   .text404 h2 {
@@ -176,7 +169,7 @@
 
     /* Styling the homepage button */
     .homeButton {
-max-width: 45%;
+        max-width: 45%;
 }
 
     /* Styling the remaining navigation buttons */

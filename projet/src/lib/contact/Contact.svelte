@@ -8,7 +8,7 @@
   <div class="container">
     <Header />
     <main>
-      <section>
+      <section aria-label="Contact">
         <div class="guessWhatText">
           <h1>Guess What ?</h1>
         </div>
@@ -20,27 +20,22 @@
             aspernatur labore numquam consequuntur dolorum voluptas non
             consequatur quisquam suscipit.
           </p>
-
           <div class="logo-container">
             <div class="logoImages">
               <img
                 class="logoImagesPhone"
                 src="../../src/assets/phone-call.png"
-                alt="phone logo"
-              />
+                alt="logo de téléphone"/>
               <img
                 class="logoImagesMail"
                 src="../../src/assets/at-symbol.png"
-                alt="mail logo"
-              />
+                alt="logo email"/>
               <img
                 class="logoImagesTwitter"
                 src="../../src/assets/twitter.png"
-                alt="twitter logo"
-              />
+                alt="logo twitter"/>
             </div>
-
-            <div class="logoText">
+            <div class="logoText" aria-label="Coordonnées">
               <p>0612345678</p>
               <p>guesswhat@fake.com</p>
               <p>@GuessWhatGame</p>
@@ -48,18 +43,15 @@
           </div>
         </div>
       </section>
-      <aside>
+      <aside aria-label="menu de navigation">
         <div>
           <p>Username</p>
           <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
         </div>
-        <a href="/" use:link
-          ><img
+        <a href="/" use:link><img
             class="homeButton"
             src="../../src/assets/Bouton Retour Accueil.png"
-            alt="button go back to the home page"
-          /></a
-        >
+            alt="button go back to the home page"/></a>
         <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
         <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
         <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
@@ -191,7 +183,6 @@
       max-width: 300px;
     }
   }
-  
 
   /*  Media queries for desktop version */
   @media (min-width: 769px) {
@@ -234,12 +225,12 @@
         margin-left: none;
     }
 
-    /* Styling the homepage button */
+  /* Styling the homepage button */
     .homeButton {
-max-width: 45%;
+        max-width: 45%;
 }
 
-    /* Styling the remaining navigation buttons */
+  /* Styling the remaining navigation buttons */
 
     aside button {
       max-width: 250px;

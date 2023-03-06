@@ -8,11 +8,10 @@
   <div class="container">
     <Header />
     <main>
-      <section class="leftBlock">
+      <section class="leftBlock" aria-label="Formulaire ajouter une devinette">
         <div class="guessWhatText">
             <h1>Guess What ?</h1>
         </div>
-    
         <h2 id="addRiddleFormTitle">Ajouter une devinette</h2>
         <form>
             <div class="addRiddleForm">
@@ -21,8 +20,8 @@
                     <label for="riddle">Ecrivez votre énigme</label>
                     <label for="answer">Ecrivez votre réponse</label>
                     <label for="clue">Donnez des indices</label>
-                    <label for="clue" />
-                    <label for="clue" />
+                    <label for="clue"/>
+                    <label for="clue"/>
                 </div>
                 <div class="columnAddRiddleForm">
                     <div class="dropdownMain">
@@ -84,24 +83,19 @@
                     />
                     <button id="addRiddleFormButton">Valider</button>
                 </div>
-                
             </div>
-            <!-- <button id="addRiddleFormButton">Valider</button> -->
         </form>
     </section>
     
-    <aside>
+    <aside aria-label="menu de navigation">
         <div>
             <p>Username</p>
             <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
         </div>
-        <a href="/" use:link
-            ><img
+        <a href="/" use:link><img
                 class="homeButton"
                 src="../../src/assets/Bouton Retour Accueil.png"
-                alt="button go back to the home page"
-            /></a
-        >
+                alt="Retour accueil"/></a>
         <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
         <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
         <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
@@ -113,11 +107,9 @@
   </div>
 </body>
 
-
-
 <style>
   
-    /* ADD A RIDDLE FORM */
+/* ADD A RIDDLE FORM */
 
 #addRiddleFormTitle {
   text-align: center;
@@ -151,7 +143,6 @@
   flex-direction: column;
   text-align: center;
   z-index: 1;
-  
 }
 
 #addRiddleFormButton {
@@ -343,7 +334,6 @@ aside a.contact{
 margin-top: 1rem;
 font-size: large;
 }
-
 }
 
 </style>
