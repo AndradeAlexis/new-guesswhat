@@ -30,7 +30,10 @@
 
   //Declaring a variable for message of victory/defeat
   let divMessage;
-  
+
+  //Declaring a variable to target the textarea value, in case the user provides an empty input
+  let textArea;
+
   // Using onMount() from Svelte to recover data from the data base
   //onMount runs after the component is rendered to the DOM
     onMount(async () => {
@@ -71,6 +74,15 @@
           alert("Attention, ceci est ton dernier indice!");
         }
     }
+
+  //Adding a function alerting the user if he clicks on validate button before writing his response.
+    function validateForm() {
+      var userInput = textArea.value;
+      if(userInput == '') {
+        alert("Veuillez écrire votre réponse avant de cliquer sur le bouton valider !")
+        return false;
+      }
+     }
 
   //Creating a function to handle the submission button and a condition showing a message of victory/defeat to the user
         const handleSubmitForm = async (event) => {
@@ -158,10 +170,10 @@
       <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm} on:submit={getScores}>
         <div class="gamer-response">
             <div>
-                <textarea name="response" id="response" placeholder="Répondre" bind:value={response} aria-label="Votre réponse"></textarea>
+                <textarea name="response" id="response" placeholder="Répondre" bind:value={response} bind:this={textArea} aria-label="Votre réponse"></textarea>
             </div>
             <div class="response-buttons">
-                <button on:click={incrementTries}>Valider</button>
+                <button on:click={incrementTries} on:click={validateForm}>Valider</button>
             </div>
         </div>
       </form>
