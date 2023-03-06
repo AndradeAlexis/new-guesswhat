@@ -102,6 +102,15 @@
         border-radius: 0.9rem;
         font-family: "Mentimun";
         font-size: 75%;
+        transition: all .2s ease-in-out;
+    }
+
+    #random-game button:hover {
+        transform: scale(1.1);
+    }
+
+    #theme-game button:hover {
+        transform: scale(1.1);
     }
 
     /* Styling the aside section containing the buttons for the homepage, log in, etc. */

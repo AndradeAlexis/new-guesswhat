@@ -145,7 +145,7 @@
       </div>
       <div class="hints" bind:this={divHints}>
         {#await hints}
-          <p>Waiting for hints to display</p>
+          <p>Les indices arrivent</p>
         {/await}
       </div>
       <div class="hints-button">
@@ -154,7 +154,7 @@
     <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm} on:submit={getScores}>
       <div class="gamer-response">
           <div>
-              <textarea name="response" id="response" placeholder="Réponses" bind:value={response}></textarea>
+              <textarea name="response" id="response" placeholder="Répondre" bind:value={response}></textarea>
           </div>
           <div class="response-buttons">
               <button on:click={incrementTries}>Valider</button>
@@ -166,6 +166,7 @@
       </div>
     </section>
     <nav>
+          <a href="/defined_theme_riddle" use:link><img class="choose-theme" src=".../../src/assets/choixtheme.png" alt="Choose a theme icon"></a> 
           <a href="/defined_theme_riddle/1" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets/Mascotte Thème Animaux.png" alt="Mascot for animal riddle theme"></a> 
           <a href="/defined_theme_riddle/2" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets//Mascotte Thème Cinéma.png" alt="Mascot for cinema riddle theme"></a>
           <a href="/defined_theme_riddle/3" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets//Mascotte Thème Musique.png" alt="Mascot for music riddle theme"></a>
@@ -175,7 +176,7 @@
       <p>Username</p>
       <a href="/connection" use:link> <span id="statusUser" >Déconnecter</span></a>
   </div>
-      <a href="/" use:link><img class="homeButton" src=".../../src/assets//Bouton Retour Accueil.png" alt="button go back to the home page"></a>
+      <a href="/" use:link><img class="homeButton" src=".../../src/assets/Bouton Retour Accueil.png" alt="button go back to the home page"></a>
       <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
       <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
       <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
@@ -203,7 +204,12 @@ width: 98vw;
   flex-direction: column;
 }
 
-section#defined-theme {
+#defined-theme {
+  background-image: url(../../src/assets/backgroundgame.png);
+  background-size: 40%;
+  background-repeat: repeat;
+  background-position: center;
+
 border: 0.7rem var(--blue-outlines)solid;
 margin-top: -0.7rem;
 margin-left: -0.7rem;
@@ -213,6 +219,7 @@ border-radius: 0.9rem;
 text-align: center;
 }
 
+
 div.hints {
 text-align: center;
 border: 0.7rem var(--blue-outlines)solid;
@@ -220,6 +227,8 @@ border-radius: 0.9rem;
 margin: 1.5rem auto;
 width: 250px;
 }
+
+
 
 div.gamer-response {
 width: 250px;
@@ -229,11 +238,29 @@ justify-content: center;
 }
 
 textarea {
-border-radius: 0.5rem;
+background-color: var(--bg-buttons);
+border: 0.7rem var(--blue-outlines)solid;
+border-radius: 0.9rem;
 padding: 1rem;
 width: 100%;
 height: 75px;
 resize: none;
+text-align: center;
+font-weight: bold;
+}
+
+/*textarea {
+border-radius: 8rem;
+padding: 1rem;
+width: 100%;
+height: 75px;
+resize: none;
+}*/
+
+::placeholder {
+  color: var(--blue-text);
+  text-align: center;
+  font-weight: normal;
 }
 
 .hints-button button {
@@ -248,6 +275,11 @@ border-radius: 0.9rem;
 font-family: 'Mentimun';
 font-size: 50%;   
 text-align: center;
+}
+
+.hints-button button:hover {
+  background-color: var(--text-color);
+  color: var(--blue-outlines);
 }
 
 .response-buttons button {
@@ -265,6 +297,10 @@ font-family: 'Mentimun';
 font-size: 75%;   
 }
 
+.response-buttons button:hover {
+  border: 0.7rem var(--bg-buttons)solid;
+}
+
 div.score {
 display: flex;
 justify-content: center;
@@ -275,6 +311,7 @@ display: flex;
 justify-content: center;
 width: 100%;
 }
+
 
 nav img {
 width: 100%;
@@ -290,6 +327,15 @@ background-color: var(--bg-buttons);
 animation: tilt-shaking 0.3s infinite;
 }
 
+.choose-theme {
+  background-color: none;
+}
+
+.choose-theme:hover {
+  background-color: var(--bg-images);;
+animation: none;
+}
+
 @keyframes tilt-shaking {
   0% { transform: rotate(0deg); }
   25% { transform: rotate(5deg); }
@@ -297,6 +343,8 @@ animation: tilt-shaking 0.3s infinite;
   75% { transform: rotate(-5deg); }
   100% { transform: rotate(0deg); }
 }
+
+
 
 .clueDark {
 background-color: #0d4240;
@@ -469,12 +517,20 @@ div.gamer-response {
   }
 
 textarea {
+  border-radius: 0.9rem;
+  padding: 1rem;
+  width: 200px;
+  height: 78px;
+  resize: none;
+}
+
+/*textarea {
   border-radius: 0.5rem;
   padding: 1rem;
   width: 200px;
   height: 150px;
   resize: none;
-}
+}*/
 
 .hints-button button {
   margin: 0 0 2rem 0.8rem;
@@ -483,7 +539,7 @@ textarea {
 }
 
 .response-buttons button {
-  margin: 2rem 0 2rem 0.8rem;
+  margin: 0rem 0 2rem 0.8rem;
   color: var(--blue-text);
   font-size: 125%;   
 }

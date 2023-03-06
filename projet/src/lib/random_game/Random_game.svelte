@@ -5,7 +5,7 @@
 
   //Creating a variable allowing us to get a random number from 1 to 17.
 
-  let id = [Math.floor(Math.random() * 17)];
+  let id = [Math.floor(Math.random() * 22)];
   
   //Creating an array to recuperate the hints for the riddles
 
@@ -142,7 +142,7 @@
             <div class="guessWhatText">
                 <h1>Guess What ?</h1>
                 {#await getRiddles()}
-                <p>Waiting for riddles to display</p>
+                <p>En attente d'une devinette</p>
                 {:then Riddle}
                 {#each Riddle as riddle}
                 <p>{riddle.name}</p>
@@ -154,7 +154,7 @@
             </div>
             <div class="hints" bind:this={divHints}>
               {#await getHints()}
-                <p>Waiting for hints to display</p>
+                <p>Les indices s'afficheront ici</p>
               {/await}
             </div>
             <div class="hints-button">
@@ -167,7 +167,6 @@
                   </div>
                   <div class="response-buttons">
                       <button on:click={incrementTries}>Valider</button>
-                      <button on:click={refreshPage}>Reload game</button>
                   </div>
               </div>
             </form>
@@ -178,6 +177,9 @@
             </div>
       </section>
       </div>
+      <nav>
+        <a href="/random_theme_riddle" use:link on:click={refreshPage}><img src=".../../src/assets/Mascotte Refresh.png" alt="Mascot for animal riddle theme"></a>
+      </nav>
 
       <aside>
          <div>
@@ -214,6 +216,11 @@ width: 98vw;
 }
 
 #random-theme {
+  background-image: url(../../src/assets/backgroundgame.png);
+  background-size: 40%;
+  background-repeat: repeat;
+  background-position: center;
+
   border: 0.7rem var(--blue-outlines)solid;
   margin-top: -0.7rem;
   margin-left: -0.7rem;
@@ -239,45 +246,93 @@ div.gamer-response {
 }
 
 textarea {
-  border-radius: 0.5rem;
-  padding: 1rem;
-  width: 100%;
-  height: 75px;
-  resize: none;
+background-color: var(--bg-buttons);
+border: 0.7rem var(--blue-outlines)solid;
+border-radius: 0.9rem;
+padding: 1rem;
+width: 100%;
+height: 75px;
+resize: none;
+text-align: center;
+font-weight: bold;
+}
+
+::placeholder {
+  color: var(--blue-text);
+  text-align: center;
+  font-weight: normal;
 }
 
 .hints-button button {
-  margin-bottom: 5px;
-  width: 250px;
-  padding: 1rem;
-  background-color: #0f4d4a;
-  border: 0.7rem var(--blue-outlines)solid;
-  color: var(--text-color);
-  font-weight: bolder;
-  border-radius: 0.9rem;
-  font-family: 'Mentimun';
-  font-size: 50%;   
-  text-align: center;
+margin-bottom: 5px;
+width: 250px;
+padding: 1rem;
+background-color: #0f4d4a;
+border: 0.7rem var(--blue-outlines)solid;
+color: var(--text-color);
+font-weight: bolder;
+border-radius: 0.9rem;
+font-family: 'Mentimun';
+font-size: 50%;   
+text-align: center;
+}
+
+.hints-button button:hover {
+  background-color: var(--text-color);
+  color: var(--blue-outlines);
 }
 
 .response-buttons button {
-  display: block;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  width: 100%;
-  padding: 1rem;
-  background-color: var(--orange-buttons);
-  border: 0.7rem var(--blue-outlines)solid;
-  color: var(--blue-text);
-  font-weight: bolder;
-  border-radius: 0.9rem;
-  font-family: 'Mentimun';
-  font-size: 75%;   
+display: block;
+margin-top: 20px;
+margin-bottom: 5px;
+width: 100%;
+padding: 1rem;
+background-color: var(--orange-buttons);
+border: 0.7rem var(--blue-outlines)solid;
+color: var(--blue-text);
+font-weight: bolder;
+border-radius: 0.9rem;
+font-family: 'Mentimun';
+font-size: 75%;   
+}
+
+.response-buttons button:hover {
+  border: 0.7rem var(--bg-buttons)solid;
 }
 
 div.score {
   display: flex;
   justify-content: center;
+}
+
+nav {
+display: flex;
+justify-content: center;
+text-align: center;
+width: 100%;
+}
+
+nav img {
+width: 30%;
+background-color: var(--bg-images);
+border: var(--blue-outlines) solid 5px;
+border-radius: 10px;
+margin-top: -0.7rem;
+min-width: 20px;
+}
+
+nav img:hover {
+background-color: var(--bg-buttons);
+animation: tilt-shaking 0.3s infinite;
+}
+
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .clueLight {
@@ -371,6 +426,22 @@ div.gamer-response {
   font-size: 200%;   
 }
 
+nav {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+}
+
+  nav a {
+      text-align: center;
+}
+
+  nav img {
+      margin-top: -0.3rem;
+      width: 50%;
+      min-width: 50px;
+}
+
 .clueDark {
   padding: 1rem;
   margin: 0px;
@@ -408,10 +479,9 @@ p {
 }
 
 .random-theme-game {
-display: grid;
-grid-template-columns: 55% auto;
-
-}
+  display: grid;
+  grid-template-columns: 55% auto auto;
+  }
 
 
 section#random-theme {
@@ -430,10 +500,10 @@ div.gamer-response {
 }
 
 textarea {
-  border-radius: 0.5rem;
+  border-radius: 0.9rem;
   padding: 1rem;
   width: 200px;
-  height: 150px;
+  height: 78px;
   resize: none;
 }
 
@@ -444,9 +514,23 @@ textarea {
 }
 
 .response-buttons button {
-margin: 2rem 0 2rem 0.8rem;
+margin: 0rem 0 2rem 0.8rem;
   color: var(--blue-text);
   font-size: 125%;   
+}
+
+nav {
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: flex-start;
+  text-align: start;
+}
+
+nav img {
+  margin-left: 0.35rem;
+  margin-top: -5px;
+  width: 20%;
+  min-width: 100px;
 }
 
 .clueDark {
@@ -469,16 +553,15 @@ aside {
 }
 
 aside div {
-margin: 1.9rem;
-
+  margin: 1.9rem;
 }
 
 #statusUser {
-      background-color: var(--orange-buttons);
-      color: var(--blue-text);
-      border-radius: 20px;
-      padding: 5px;
-      margin-left: none;
+    background-color: var(--orange-buttons);
+    color: var(--blue-text);
+    border-radius: 20px;
+    padding: 5px;
+    margin-left: none;
   }
 
 aside a {
@@ -487,8 +570,9 @@ aside a {
 
 /* Styling the homepage button */
 .homeButton {
-  max-width: 300px;
-  display: block;
+  max-width: 60%;
+  min-width: 200px;
+  display: block;  
 }
 
 /* Styling the remaining navigation buttons */
@@ -497,7 +581,7 @@ aside button {
   max-width: 250px;
 }
 
-aside a.contact {
+aside a.contact{
   margin-top: 1rem;
   font-size: large;
 }

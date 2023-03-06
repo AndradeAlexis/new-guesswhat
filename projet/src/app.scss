@@ -37,11 +37,20 @@ body {
     display: grid;
     grid-template-columns: 100%;
     background-color: var(--bg-main);
+
+    background-image: url(../src/assets/pattern.png);
+    background-size: 100px 100px;
+    background-repeat: repeat;
+    
     border: 0.7rem var(--bg-color) solid;
     border-radius: 0.4rem;
     border: 0.7rem var(--blue-outlines) solid;
     border-radius: 1.9rem;
   }
+
+
+
+
 
 .guessWhatText {
     margin: 20px;
