@@ -2,6 +2,46 @@
     import {link} from 'svelte-spa-router';
     import Header from "../homepage/Header.svelte";
     import Footer from "../homepage/Footer.svelte";
+    import {push} from 'svelte-spa-router'
+
+    let email;
+    let password;
+
+    //Creating function to recuperate the token to use it for the log in action
+
+    const handleSubmitForm = async (event) => {
+        event.preventDefault();
+
+        //Recovering the token
+        const token = await login();
+
+        //Saving the token in the local storage and giving it a key and a value
+        localStorage.setItem('token', token);
+
+        //Redirecting to homepage once everything is ok
+        push('/');
+
+    }
+
+    //Creating a function with POST request for log in
+
+    const login = async () => {
+        const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "auth/login", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                "email": email,
+                "password": password
+            })
+        })
+
+        const json = await response.json();
+        return json.data.access_token;
+    }
+
+    login();
 </script>
 
 <body>
@@ -13,7 +53,7 @@
         <h1>Guess What ?</h1>
     </div>
     <h2 id="loginFormTitle">Formulaire de connexion</h2>
-    <form>
+    <form on:submit={handleSubmitForm}>
         <div class="loginForm">
             <div class="columnLoginLabels">
                 <label for="mail">Adresse email</label>
@@ -24,12 +64,14 @@
                     type="email"
                     id="mail"
                     name="user_mail"
-                    placeholder="Email"/>
+                    placeholder="Email"
+                    bind:value={email}/>
                 <input
                     type="password"
                     id="password"
                     name="user_password"
-                    placeholder="Mot de passe"/>
+                    placeholder="Mot de passe"
+                    bind:value={password}/>
                 <button id="loginFormButton">Connexion</button>
             </div>
         </div>
