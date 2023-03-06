@@ -27,14 +27,10 @@
 
   //Creating an array to recuperate from the data base the correct answers to a riddle 
   let riddleResponse = [];
-  let riddleResponseId = 0;
 
   //Declaring a variable for message of victory/defeat
   let divMessage;
   
-  // Creating a variable representing  a selected riddle
-   let riddleClue = 0;
-
   // Using onMount() from Svelte to recover data from the data base
   //onMount runs after the component is rendered to the DOM
     onMount(async () => {
@@ -45,15 +41,14 @@
      
       //Code allowing us to recover a random riddle from the riddles array
       selectedRiddle = riddles[Math.floor(Math.random() * riddles.length)]
-      // Dans mon tableau hints, je récupère le tableau d'objets des indices
-      // récupérés depuis l'API
+      //Recovering an array of objects containing the hints and assigning it to the hints array
       hints = selectedRiddle.clues;
+      //Recovering the responses to the riddles and assigning them to the riddleResponse array
       riddleResponse = selectedRiddle.answer;
-      console.log(riddleResponse);
       return selectedRiddle;
     });
 
-  //Function allowing the page to reload when clicking one of the theme buttons, giving a riddle to the user
+  //Function allowing the page to reload when clicking one of the theme buttons, giving thus a riddle to the user
     function refreshPage(){
       window.location.reload();
   } 
@@ -61,7 +56,6 @@
   //Creating a function to handle the display of hints (one hint at a time)
     function displayHint() {
         const child = document.createElement('p');
-        child.classList.add("clueLight");
 
   // Changing the background color of the div where hints are displayed
         hintId%2 ? child.style.backgroundColor =  "#0f4d4a" : child.style.backgroundColor =  "#0d4240";
@@ -77,41 +71,43 @@
         }
     }
 
-  //Creating a function to handle the submission button
+  //Creating a function to handle the submission button and a condition showing a message of victory/defeat to the user
         const handleSubmitForm = async (event) => {
           event.preventDefault();
           if (divMessage.hasChildNodes()) {
             divMessage.removeChild(divMessage.children[0]);
           }
+          //If user submits the correct answer, the corresponding image is displayed
           const message = document.createElement('img')
           if (response === riddleResponse) {
             message.src = '../../src/assets/victory.png';
             message.style.width = "30%";
             message.style.margin = "auto auto";
             divMessage.appendChild(message);
-          
+          //If user does not submit the correct answer, game over message is displayed
           } else {
             message.src = '../../src/assets/game-over.png';
             message.style.width = "30%";
             message.style.margin = "auto auto";
             divMessage.appendChild(message); 
         }
-//Emptying the text area after submission
+
+  //Emptying the text area after submission
             event.target.reset();
     }
 
-//Creating function to calculate the score 
+  //Creating the variables for score calculation 
       let result = 1000;
       let score = 1000;
       let numberAttempt = 0;
       let clueReveal = 0;
        
-//Creating a counter incrementing the number of attempts
+  //Creating a counter incrementing the number of attempts
       const incrementTries = () => {
         numberAttempt += 1;
     }
 
-//Creating a counter incrementing the number of hints
+  //Creating a counter incrementing the number of hints
       const incrementHints = () => {
         clueReveal += 1;
     }
@@ -130,63 +126,63 @@
 </script>
 
 <body>
-<div class="container">
-  <Header />
-  <main  class="defined-theme-game">
-    <section id="defined-theme">
-      <div class="guessWhatText">
-          <h1>Guess What ?</h1>
-          {#if selectedRiddle}
-          <p>{selectedRiddle.name}</p>
-          {/if}
-          <div class="message" bind:this={divMessage}>
-            <!-- Congratulations message or losing message appearing here -->
+  <div class="container">
+    <Header />
+    <main  class="defined-theme-game">
+      <section id="defined-theme" aria-label="Jeu à thème défini">
+        <div class="guessWhatText">
+            <h1>Guess What ?</h1>
+            {#if selectedRiddle}
+            <p>{selectedRiddle.name}</p>
+            {/if}
+            <div class="message" bind:this={divMessage}>
+              <!-- Congratulations message or game over message appearing here -->
+            </div>
         </div>
+        <div class="hints" bind:this={divHints}>
+          {#await hints}
+            <p>Les indices arrivent</p>
+          {/await}
+        </div>
+        <div class="hints-button">
+        <button on:click={displayHint} on:click={incrementHints} on:click={getScores}>Demandez un indice</button>
       </div>
-      <div class="hints" bind:this={divHints}>
-        {#await hints}
-          <p>Les indices arrivent</p>
-        {/await}
-      </div>
-      <div class="hints-button">
-      <button on:click={displayHint} on:click={incrementHints} on:click={getScores}>Demandez un indice</button>
-    </div>
-    <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm} on:submit={getScores}>
-      <div class="gamer-response">
-          <div>
-              <textarea name="response" id="response" placeholder="Répondre" bind:value={response}></textarea>
-          </div>
-          <div class="response-buttons">
-              <button on:click={incrementTries}>Valider</button>
-          </div>
-      </div>
-    </form>
-      <div class="score">
-        Score : {result}
-      </div>
-    </section>
-    <nav>
-          <a href="/defined_theme_riddle" use:link><img class="choose-theme" src=".../../src/assets/choixtheme.png" alt="Choose a theme icon"></a> 
-          <a href="/defined_theme_riddle/1" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets/Mascotte Thème Animaux.png" alt="Mascot for animal riddle theme"></a> 
-          <a href="/defined_theme_riddle/2" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets//Mascotte Thème Cinéma.png" alt="Mascot for cinema riddle theme"></a>
-          <a href="/defined_theme_riddle/3" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets//Mascotte Thème Musique.png" alt="Mascot for music riddle theme"></a>
-    </nav>
-<aside>
-  <div>
-      <p>Username</p>
-      <a href="/connection" use:link> <span id="statusUser" >Déconnecter</span></a>
+      <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm} on:submit={getScores}>
+        <div class="gamer-response">
+            <div>
+                <textarea name="response" id="response" placeholder="Répondre" bind:value={response} aria-label="Votre réponse"></textarea>
+            </div>
+            <div class="response-buttons">
+                <button on:click={incrementTries}>Valider</button>
+            </div>
+        </div>
+      </form>
+        <div class="score" aria-label="Affichage du score">
+          Score : {result}
+        </div>
+      </section>
+      <nav>
+            <a href="/defined_theme_riddle" use:link><img class="choose-theme" src=".../../src/assets/choixtheme.png" alt="Choisissez un thème"></a>
+            <a href="/defined_theme_riddle/1" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets/Mascotte Thème Animaux.png" alt="Mascotte pour le thème animaux"></a> 
+            <a href="/defined_theme_riddle/2" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets//Mascotte Thème Cinéma.png" alt="Mascotte pour le thème cinema"></a>
+            <a href="/defined_theme_riddle/3" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets//Mascotte Thème Musique.png" alt="Mascotte pour le thème musique"></a>
+      </nav>
+    <aside aria-label="menu de navigation">
+        <div>
+            <p>Username</p>
+            <a href="/connection" use:link> <span id="statusUser" >Déconnecter</span></a>
+        </div>
+            <a href="/" use:link><img class="homeButton" src=".../../src/assets//Bouton Retour Accueil.png" alt="Retour accueil"></a>
+            <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+            <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+            <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
+            <a class="contact" href="/contact" use:link>Contact</a>
+            <a class="contact" href="/about_us" use:link>À propos</a>
+    </aside>
+  <Footer />
+  </main>
   </div>
-      <a href="/" use:link><img class="homeButton" src=".../../src/assets/Bouton Retour Accueil.png" alt="button go back to the home page"></a>
-      <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
-      <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
-      <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
-      <a class="contact" href="/contact" use:link>Contact</a>
-      <a class="contact" href="/about_us" use:link>À propos</a>
-</aside>
-<Footer />
-</main>
-</div>
-</body>
+  </body>
 
 <style>
   /* DEFINED THEME GAME PAGE*/
@@ -209,53 +205,41 @@ width: 98vw;
   background-size: 40%;
   background-repeat: repeat;
   background-position: center;
-
-border: 0.7rem var(--blue-outlines)solid;
-margin-top: -0.7rem;
-margin-left: -0.7rem;
-margin-right: -0.7rem;
-padding-bottom: 0.7rem;
-border-radius: 0.9rem;
-text-align: center;
+  border: 0.7rem var(--blue-outlines)solid;
+  margin-top: -0.7rem;
+  margin-left: -0.7rem;
+  margin-right: -0.7rem;
+  padding-bottom: 0.7rem;
+  border-radius: 0.9rem;
+  text-align: center;
 }
-
 
 div.hints {
-text-align: center;
-border: 0.7rem var(--blue-outlines)solid;
-border-radius: 0.9rem;
-margin: 1.5rem auto;
-width: 250px;
+  text-align: center;
+  border: 0.7rem var(--blue-outlines)solid;
+  border-radius: 0.9rem;
+  margin: 1.5rem auto;
+  width: 250px;
 }
 
-
-
 div.gamer-response {
-width: 250px;
-display: block;
-margin: 1rem auto;
-justify-content: center; 
+  width: 250px;
+  display: block;
+  margin: 1rem auto;
+  justify-content: center; 
 }
 
 textarea {
-background-color: var(--bg-buttons);
-border: 0.7rem var(--blue-outlines)solid;
-border-radius: 0.9rem;
-padding: 1rem;
-width: 100%;
-height: 75px;
-resize: none;
-text-align: center;
-font-weight: bold;
+  background-color: var(--bg-buttons);
+  border: 0.7rem var(--blue-outlines)solid;
+  border-radius: 0.9rem;
+  padding: 1rem;
+  width: 100%;
+  height: 75px;
+  resize: none;
+  text-align: center;
+  font-weight: bold;
 }
-
-/*textarea {
-border-radius: 8rem;
-padding: 1rem;
-width: 100%;
-height: 75px;
-resize: none;
-}*/
 
 ::placeholder {
   color: var(--blue-text);
@@ -264,17 +248,17 @@ resize: none;
 }
 
 .hints-button button {
-margin-bottom: 5px;
-width: 250px;
-padding: 1rem;
-background-color: #0f4d4a;
-border: 0.7rem var(--blue-outlines)solid;
-color: var(--text-color);
-font-weight: bolder;
-border-radius: 0.9rem;
-font-family: 'Mentimun';
-font-size: 50%;   
-text-align: center;
+  margin-bottom: 5px;
+  width: 250px;
+  padding: 1rem;
+  background-color: #0f4d4a;
+  border: 0.7rem var(--blue-outlines)solid;
+  color: var(--text-color);
+  font-weight: bolder;
+  border-radius: 0.9rem;
+  font-family: 'Mentimun';
+  font-size: 50%;   
+  text-align: center;
 }
 
 .hints-button button:hover {
@@ -283,18 +267,18 @@ text-align: center;
 }
 
 .response-buttons button {
-display: block;
-margin-top: 20px;
-margin-bottom: 5px;
-width: 100%;
-padding: 1rem;
-background-color: var(--orange-buttons);
-border: 0.7rem var(--blue-outlines)solid;
-color: var(--blue-text);
-font-weight: bolder;
-border-radius: 0.9rem;
-font-family: 'Mentimun';
-font-size: 75%;   
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--orange-buttons);
+  border: 0.7rem var(--blue-outlines)solid;
+  color: var(--blue-text);
+  font-weight: bolder;
+  border-radius: 0.9rem;
+  font-family: 'Mentimun';
+  font-size: 75%;   
 }
 
 .response-buttons button:hover {
@@ -302,39 +286,38 @@ font-size: 75%;
 }
 
 div.score {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 nav {
-display: flex;
-justify-content: center;
-width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-
 nav img {
-width: 100%;
-background-color: var(--bg-images);
-border: var(--blue-outlines) solid 5px;
-border-radius: 10px;
-margin-top: -0.7rem;
-min-width: 20px;
+  width: 100%;
+  background-color: var(--bg-images);
+  border: var(--blue-outlines) solid 5px;
+  border-radius: 10px;
+  margin-top: -0.7rem;
+  min-width: 20px;
 }
 
 nav img:hover {
-background-color: var(--bg-buttons);
-animation: tilt-shaking 0.3s infinite;
+  background-color: var(--bg-buttons);
+  animation: tilt-shaking 0.3s infinite;
 }
 
-.choose-theme {
+/* .choose-theme {
   background-color: none;
 }
 
 .choose-theme:hover {
   background-color: var(--bg-images);;
 animation: none;
-}
+} */
 
 @keyframes tilt-shaking {
   0% { transform: rotate(0deg); }
@@ -342,24 +325,6 @@ animation: none;
   50% { transform: rotate(0deg); }
   75% { transform: rotate(-5deg); }
   100% { transform: rotate(0deg); }
-}
-
-
-
-.clueDark {
-background-color: #0d4240;
-border: 2px solid #0d4240;
-padding: 0.5rem;
-margin: 0px;
-font-size: x-small;
-}
-
-.clueLight {
-background-color: #0f4d4a;
-border: 2px solid #0f4d4a;
-padding: 0.5rem;
-margin: 0px;
-font-size: x-small;
 }
 
  /* Styling the aside section containing the buttons for the homepage, log in, etc. */
@@ -398,7 +363,6 @@ font-size: x-small;
       display:block;
       max-width: 80%;
       margin: 0.5rem auto;
-
   }
 
   /* Styling the remaining navigation buttons */
@@ -424,7 +388,6 @@ font-size: x-small;
       margin-top: 0.5rem;
       font-size: medium;
   }
-
 
    /*  Media queries version tablette  */
    @media (min-width: 426px) and (max-width: 768px) {
@@ -462,26 +425,12 @@ font-size: x-small;
       min-width: 50px;
 }
 
-  .clueDark {
-      padding: 1rem;
-      margin: 0px;
-      font-size: medium;
-}
-
-  .clueLight {
-      padding: 1rem;
-      margin: 0px;
-      font-size: medium;
-}
-
   .homeButton {
       display:block;
       max-width: 300px;
       margin: 0.5rem auto;
 }
 }
-
-
 
 /*  Desktop media queries  */
 @media (min-width: 769px) {
@@ -505,7 +454,6 @@ section#defined-theme {
   padding-bottom: none;
   padding: 1rem;
   }
-
 
 div.hints {
   width: 60%;
@@ -555,16 +503,6 @@ nav img {
   margin-top: -5px;
   width: 30%;
   min-width: 100px;
-}
-
-.clueDark {
-  padding: 1rem;
-  font-size: medium;
-}
-
-.clueLight {
-  padding: 1rem;
-  font-size: medium;
 }
 
 /* Styling the aside section containing the buttons for the homepage, log in, etc. */

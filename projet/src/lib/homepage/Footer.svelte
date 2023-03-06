@@ -1,7 +1,3 @@
-<script>
-
-</script>
-
 <footer>
     <div>
         <p>V.0.1</p>

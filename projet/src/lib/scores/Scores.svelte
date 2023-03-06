@@ -8,7 +8,7 @@
     <div class="container">
   <Header />
   <main>
-<section>
+<section aria-label="Tableau des scores">
     <div class="guessWhatText">
         <h1>Guess What?</h1>
     </div>
@@ -73,23 +73,19 @@
         </table>
     </div>
 </section>
-<aside>
+<aside aria-label="menu de navigation">
     <div>
         <p>Username</p>
         <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
     </div>
-    <a href="/" use:link
-        ><img
-            class="homeButton"
-            src="../../src/assets/Bouton Retour Accueil.png"
-            alt="button go back to the home page"
-        /></a
-    >
-    <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
-    <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
-
-    <a class="contact" href="/contact" use:link>Contact</a>
-    <a class="contact" href="/about_us" use:link>À propos</a>
+        <a href="/" use:link><img
+                class="homeButton"
+                src="../../src/assets/Bouton Retour Accueil.png"
+                alt="Retour accueil"/></a>
+        <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+        <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+        <a class="contact" href="/contact" use:link>Contact</a>
+        <a class="contact" href="/about_us" use:link>À propos</a>
 </aside>
 <Footer />
 </main>
@@ -104,7 +100,6 @@ div.score-table {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 
 .score-table h2 {
@@ -119,7 +114,6 @@ table {
   border-radius: 0.9rem;
   margin: 1.5rem 1rem;
 }
-
 
 .tabDarkBlue {
   background-color: #083a38;
@@ -152,7 +146,7 @@ td {
     padding: 0.2rem;
 }
 
-     /* Styling the aside section containing the buttons for the homepage, log in, etc. */
+/* Styling the aside section containing the buttons for the homepage, log in, etc. */
   
      aside {
           display: flex;
@@ -182,7 +176,6 @@ td {
         display:block;
           max-width: 80%;
           margin: 0.5rem auto;
-  
       }
   
       /* Styling the remaining navigation buttons */
@@ -202,7 +195,7 @@ td {
       }
 
     .aside-buttons {
-    color: var(--blue-text);
+            color: var(--blue-text);
     }
   
       aside a.contact {
@@ -215,22 +208,22 @@ td {
 
 
 
-           /*  Media queries version tablette  */
+    /*  Media queries version tablette  */
      @media (min-width: 426px) and (max-width: 768px) {
 
         .homeButton {
-      display:block;
-        max-width: 300px;
-        margin: 0.5rem auto;
+            display:block;
+            max-width: 300px;
+            margin: 0.5rem auto;
     }
 
     .tabDark {
-  background-color: #0d4240;
-  border: 2px solid #0d4240;
-  padding: 7rem;
-  margin: 0px;
-  font-size: small;
-  text-align: center;
+        background-color: #0d4240;
+        border: 2px solid #0d4240;
+        padding: 7rem;
+        margin: 0px;
+        font-size: small;
+        text-align: center;
 }
 
 .tabLight {
@@ -248,22 +241,17 @@ td {
 
      }
 
-
-            /*  media queries of desktop  */
+/*  media queries of desktop  */
   @media (min-width: 769px) {
 
     main {
-  grid-template-columns: 70% auto;
-
+        grid-template-columns: 70% auto;
 }
-
-
     td {
     padding: 0.5rem;
 }
 
 /* Styling the aside section containing the buttons for the homepage, log in, etc. */
-
 
 aside {
     display: flex;
@@ -289,23 +277,18 @@ aside a {
 /* Styling the homepage button */
 .homeButton {
     max-width: 60%;
-    display: block;
-    
-    
+    display: block; 
 }
 
 /* Styling the remaining navigation buttons */
 
 aside button {
     max-width: 250px;
-
 }
 
 aside a.contact{
     margin-top: 1rem;
     font-size: large;
 }
-
   }
-
   </style>

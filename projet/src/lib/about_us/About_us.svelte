@@ -8,10 +8,9 @@
   <div class="container">
     <Header />
     <main>
-      <section class="leftBlock">
+      <section class="leftBlock" aria-label="Á propos">
         <div class="guessWhatText">
           <h1>Guess What ?</h1>
-          <!--On garde la div ?-->
         </div>
         <div class="aboutTitle">
           <h2>Á propos</h2>
@@ -33,18 +32,15 @@
           </p>
         </div>
       </section>
-      <aside>
+      <aside aria-label="menu de navigation">
         <div>
           <p>Username</p>
-          <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
+          <a href="/connection" use:link><span id="statusUser">Déconnecter</span></a>
         </div>
-        <a href="/" use:link
-          ><img
+        <a href="/" use:link ><img
             class="homeButton"
             src="../../src/assets/Bouton Retour Accueil.png"
-            alt="button go back to the home page"
-          /></a
-        >
+            alt="Retour accueil"/></a>
         <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
         <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
         <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
@@ -137,17 +133,13 @@
   /*  Media queries tablet version  */
   @media (min-width: 426px) and (max-width: 768px) {
 
-
-
     .homeButton {
       max-width: 300px;
     }
   }
 
-  /*  media queries desktop version  */
+  /*  Media queries desktop version  */
   @media (min-width: 769px) {
-
-
 
     aside div {
       margin: 1.9rem;
@@ -167,7 +159,7 @@
 
     /* Styling the homepage button */
     .homeButton {
-max-width: 45%;
+        max-width: 45%;
 }
 
     /* Styling the remaining navigation buttons */
