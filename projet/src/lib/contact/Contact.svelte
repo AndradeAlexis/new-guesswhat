@@ -13,12 +13,9 @@
           <h1>Guess What ?</h1>
         </div>
         <div class="logoTitle">
-          <h2>Reste en contact</h2>
+          <h2>Restez en contact</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio sint
-            ullam quasi saepe suscipit tempora alias, totam qui! Nihil dolore,
-            aspernatur labore numquam consequuntur dolorum voluptas non
-            consequatur quisquam suscipit.
+            Avez-vous des suggestions ou des commentaires à partager avec nous? Veuillez nous contacter aux coordonnées suivantes.
           </p>
           <div class="logo-container">
             <div class="logoImages">
@@ -115,6 +112,10 @@
     padding-top: 5px;
     font-size: medium;
     text-align: start;
+  }
+
+  p {
+    line-height: 1.5rem;
   }
 
   aside {

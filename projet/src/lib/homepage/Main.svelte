@@ -9,6 +9,9 @@
             Bienvenue à Guess What?, un jeu des devinettes en ligne. Vous pouvez choisir entre deux modes de jeu : jeu à thème aléatoire ou jeu à thème défini. Les thèmes que nous proposons sont les animaux, le cinéma et la musique. Si vous choisissez le mode de jeu aléatoire, vous obtiendrez automatiquement une devinette. Si vous choisissez le mode de jeu à thème défini veuillez choisir votre thème, avant d'obtenir une devinette. Si vous avez des difficultés à trouver la bonne réponse, vous pouvez demander un ou plusieurs indices pour vous aider à trouver la réponse. Une alerte vous indiquera s'il n'y a plus d'indices à demander. Attention, chaque indice que vous demandez a un impact sur votre score. Vous avez un nombre illimité de tentatives, mais gardez à l'esprit que chaque tentative retirera des points à votre score.
         </p>
         <p>
+            Veuillez noter que votre réponse à une devinette doit être écrite soit en lettres minuscules, soit avec seulement la première lettre de chaque mot en majuscules, sinon votre réponse ne sera pas acceptée comme correcte. Les accents doivent également être pris en compte.
+        </p>
+        <p>
             Vous démarrez le jeu avec 1000 points à votre disposition. Le score final est calculé en fonction de votre nombre des tentatives et du nombre d'indices que vous avez demandé. Si vous souhaitez créer un compte utilisateur sur notre site, vous aurez la possibilité d'ajouter votre score au tableau des scores, cependant seuls les 10 meilleurs scores sont affichés. Amusez-vous bien et bonne chance !
         </p>
     </div>
@@ -95,6 +98,10 @@
 
     #theme-game button:hover {
         transform: scale(1.1);
+    }
+
+    p {
+        margin-bottom: 1rem;
     }
 
     /* Styling the aside section containing the buttons for the homepage, log in, etc. */

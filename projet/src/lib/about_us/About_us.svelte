@@ -18,17 +18,11 @@
         <div class="aboutText">
           <h3>Qui sommes nous</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio sint
-            ullam quasi saepe suscipit tempora alias, totam qui! Nihil dolore,
-            aspernatur labore numquam consequuntur dolorum voluptas non
-            consequatur quisquam suscipit.
+            Nous sommes trois développeurs web qui avons créé ce projet dans le cadre de notre formation avec l'école O'clock.
           </p>
           <h3>Notre projet</h3>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti
-            id ipsam, expedita fugiat modi beatae nulla deserunt ab ipsa dicta
-            accusamus nemo magnam obcaecati. Soluta voluptatem quaerat ab quos
-            illum?
+            Nous avons choisi de travailler sur ce projet car l'idée d'un jeu d'énigmes serait amusante et stimulante et nous permettrait d'explorer notre côté créatif.
           </p>
         </div>
       </section>
