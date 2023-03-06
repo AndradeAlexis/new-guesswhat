@@ -54,7 +54,6 @@
       const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=answer,id&filter[id]=" + id);
       const json = await response.json();
       riddleResponse = json.data;
-      console.log(riddleResponse);
   }
 
   getRiddleAnswer();
@@ -94,7 +93,15 @@
 
       //If user submits the correct answer, the corresponding image is displayed
       const message = document.createElement('img');
-      if (response == riddleResponse[riddleResponseId].answer) {
+      //If user's response is written in lowercase letters, we transform the first letter of each word
+      //to capital letters, so that it matches the way our data is written in the database
+      const words = response.split(" ");
+      for(let i = 0; i < words.length; i++) {
+        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+      }
+      const userResponse = words.join(" ");
+    
+      if (userResponse === riddleResponse[riddleResponseId].answer) {
         message.src = '../../src/assets/victory.png';
         message.style.width = "30%";
         message.style.margin = "auto auto";
