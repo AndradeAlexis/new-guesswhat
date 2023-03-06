@@ -15,5 +15,10 @@
 
   header img {
     max-width: 200px;
+    transition: all .2s ease-in-out;
   }
+
+  header img:hover {
+        transform: scale(1.2);
+    }
 </style>
