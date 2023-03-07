@@ -3,11 +3,14 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
 
+  //Creating the variables for the subscription form
+
   let name;
   let email;
   let password;
-  let roles;
+  let roles = "Joueur";
 
+  //Creating function with POST request allowing the user to submit his information for user account creation
   async function createUser() {
     try {
       let endpoint = import.meta.env.VITE_URL_DIRECTUS + "items/User"; 
@@ -21,30 +24,31 @@
           "name": name,
           "email": email,
           "password": password,
-           "roles": roles
+          "roles": roles
         })
       });
 
+      //Alerting user if account has been successfully created
       const data = await response.json();
-      console.log("item created");
+      alert("Votre compte a été créé.");
       return data.data;
     } catch (error) {
-      console.log("Error during fetch");
+      alert("Erreur, veuillez réessayer.");
       console.error(error);
       return [];
     }
   }
 
+  //Function allowing to create a user on submit, emptying form after submission
   const handleSubmitUser = async (event) => {
     event.preventDefault();
 
     const user = await createUser();
-    return user;
     //Emptying the text area
-     name = name;
-     email = email;
-     password= password;
-     roles = roles;
+     name = "";
+     email = "";
+     password = "";
+     return user;
   };
 </script>
 
@@ -71,23 +75,24 @@
                 id="name"
                 name="user_name"
                 placeholder="Username"
-                bind:value={name}
-              />
+                bind:value={name}/>
               <input
                 type="email"
                 id="mail"
                 name="user_mail"
                 placeholder="Email"
-                bind:value={email}
-              />
+                bind:value={email}/>
               <input
                 type="password"
                 id="password"
                 name="user_password"
                 placeholder="Mot de passe"
-                bind:value={password}
-              />
-              <input bind:value={roles} type="text" id="role" name="role" />
+                bind:value={password}/>
+              <input 
+                bind:value={roles} 
+                type="text" id="role" 
+                name="role" 
+                readonly/>
               <button id="subscriptionFormButton">Valider</button>
             </div>
           </div>
