@@ -32,6 +32,9 @@
 
   let divMessage;
 
+  //Declaring a variable to target the textarea value, in case the user provides an empty input
+  let textArea;
+
   //Async function allowing us to fetch a random riddle.
 
   const getRiddles = async () => {
@@ -54,7 +57,6 @@
       const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle/?fields=answer,id&filter[id]=" + id);
       const json = await response.json();
       riddleResponse = json.data;
-      console.log(riddleResponse);
   }
 
   getRiddleAnswer();
@@ -83,6 +85,15 @@
         }
      }
 
+     //Adding a function alerting the user if he clicks on validate button before writing his response.
+     function validateForm() {
+      var userInput = textArea.value;
+      if(userInput == '') {
+        alert("Veuillez écrire votre réponse avant de cliquer sur le bouton valider !")
+        return false;
+      }
+     }
+
      //Creating a function to handle the submission button and a condition showing a message of victory/defeat to the user
      const handleSubmitForm = async (event) => {
       event.preventDefault();
@@ -94,7 +105,15 @@
 
       //If user submits the correct answer, the corresponding image is displayed
       const message = document.createElement('img');
-      if (response == riddleResponse[riddleResponseId].answer) {
+      //If user's response is written in lowercase letters, we transform the first letter of each word
+      //to capital letters, so that it matches the way our data is written in the database
+      const words = response.split(" ");
+      for(let i = 0; i < words.length; i++) {
+        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+      }
+      const userResponse = words.join(" ");
+
+      if (userResponse === riddleResponse[riddleResponseId].answer) {
         message.src = '../../src/assets/victory.png';
         message.style.width = "30%";
         message.style.margin = "auto auto";
@@ -178,10 +197,10 @@
               <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm} on:submit={getScores}>
                 <div class="gamer-response">
                     <div>
-                        <textarea name="response" id="response" placeholder="Réponses" bind:value={response} aria-label="Votre réponse"></textarea>
+                        <textarea name="response" id="response" placeholder="Réponses" bind:value={response} bind:this={textArea} aria-label="Votre réponse"></textarea>
                     </div>
                     <div class="response-buttons">
-                        <button on:click={incrementTries}>Valider</button>
+                        <button on:click={incrementTries} on:click={validateForm}>Valider</button>
                     </div>
                 </div>
               </form>
