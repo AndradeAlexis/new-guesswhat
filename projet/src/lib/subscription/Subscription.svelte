@@ -4,15 +4,9 @@
   import Footer from "../homepage/Footer.svelte";
 
   //Creating the variables for the subscription form
-
-  let name;
   let email;
   let password;
-  let roles = "Joueur";
-
-  //Creating an array to recover the list of users from the database
-  let listUsers = [];
-  let userListId = 0;
+  let role = "1a7bf53e-50c7-4125-ba73-7d3a4bc726df";
 
   //Creating a variable to target the text area for username
   let textArea;
@@ -26,7 +20,7 @@
   //Creating function with POST request allowing the user to submit his information for user account creation
   async function createUser() {
     try {
-      let endpoint = import.meta.env.VITE_URL_DIRECTUS + "items/User"; 
+      let endpoint = import.meta.env.VITE_URL_DIRECTUS + "users"; 
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -34,48 +28,39 @@
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          "name": name,
           "email": email,
           "password": password,
-          "roles": roles
+          "role": role
         })
       });
 
-      //Alerting user if account has been successfully created
-      const data = await response.json();
+      if (response.status === 204) {
       alert("Votre compte a été créé.");
-      return data.data;
-    } catch (error) {
+      return [];
+    } else {
+      const data = await response.json();
       alert("Erreur, veuillez réessayer.");
-      console.error(error);
+      console.error(data.errors);
       return [];
     }
+  } catch (error) {
+    alert("Erreur, veuillez réessayer.");
+    console.error(error);
+    return [];
   }
+}
 
   //Function allowing to create a user on submit, emptying form after submission
   const handleSubmitUser = async (event) => {
     event.preventDefault();
 
     //Creating a condition to alert the user if he's trying to create a duplicate account
-    let userInput = textArea.value;
     let userEmail = userEmailArea.value;
 
-    if(userInput === listUsers[userListId].name || userEmail === listUsers[userListId].email) {
-      alert("Ce nom d'utilisateur ou l'adresse email existe déjà");
-      return false;
-    }
-
     //Creating a condition to alert the user if username exceeds/is less than required length
-
     let userPassword = userPasswordArea.value;
     
-    if (userInput.length <= 20 && userInput.length >= 5) {} else {
-    alert("Le nom d'utilisateur doit comporter entre 5 et 20 caractères")
-    return false;
-    }
-
     //Creating a condition to alert the user if the password exceeds/is less than required length
-    
     if (userPassword.length <= 20 && userPassword.length >= 8) {} else {
     alert("Le mot de passe doit comporter entre 8 et 20 caractères")
     return false;
@@ -83,20 +68,10 @@
     
     const user = await createUser();
     //Emptying the text area
-     name = "";
      email = "";
      password = "";
      return user;
   };
-
-  const userList = async () => {
-      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/User");
-      const json = await response.json();
-      listUsers = json.data;
-      console.log(listUsers[userListId].name);
-  }
-
-  userList();
 </script>
 
 <body>
@@ -111,21 +86,11 @@
         <form on:submit={handleSubmitUser}>
           <div class="subscriptionForm">
             <div class="columnSubscriptionForm">
-              <label for="mail">Nom d'utilisateur</label>
               <label for="name">Adresse email</label>
               <label for="password">Mot de passe</label>
-              <label for="role">Role</label>
             </div>
             <div class="columnSubscriptionForm">
-              <input
-                type="text" 
-                required
-                id="name"
-                name="user_name"
-                placeholder="Username"
-                bind:this={textArea}
-                bind:value={name}/>
-                
+              
               <input
                 type="email" 
                 required
@@ -134,7 +99,8 @@
                 placeholder="Email"
                 bind:this={userEmailArea}
                 bind:value={email}/>
-              <input
+              
+                <input
                 type="password" 
                 required
                 id="password"
@@ -142,12 +108,7 @@
                 placeholder="Mot de passe"
                 bind:this={userPasswordArea}
                 bind:value={password}/>
-              <input 
-                bind:value={roles} 
-                type="text" id="role" 
-                required
-                name="role" 
-                readonly/>
+
               <button id="subscriptionFormButton">Valider</button>
             </div>
           </div>

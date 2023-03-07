@@ -6,7 +6,13 @@
 
   let email;
   let password;
-  let error;
+
+  let userNameArea;
+  // let userName = userNameArea.value;
+  let userAddressEmail;
+  let emailInput;
+
+  let divUserName;
 
   //Creating function to recuperate the token to use it for the log in action
 
@@ -19,7 +25,7 @@
     //Saving the token in the local storage and giving it a key and a value
     localStorage.setItem("token", token);
 
-    //Redirecting to homepage once everything is ok
+    push("/");
   };
 
   //Creating a function with POST request for log in
@@ -39,16 +45,15 @@
       }
     );
 
-
     const json = await response.json();
     if (response.status === 200) {
-      console.log(json);
-      push("/");
+      console.log(json.data.access_token);
       return json.data.access_token;
     } else {
       alert("Essayez encore");
     }
   };
+
 </script>
 
 <body>
@@ -73,6 +78,7 @@
                 name="user_mail"
                 placeholder="Email"
                 bind:value={email}
+                bind:this={emailInput}
               />
               <input
                 type="password"
@@ -87,8 +93,8 @@
         </form>
       </section>
       <aside aria-label="menu de navigation">
-        <div>
-          <p>{name}</p>
+        <div bind:this={divUserName}>
+          <!-- <p bind:this={userNameArea}></p> -->
           <a href="/connection" use:link>
             <span id="statusUser">Déconnecter</span></a
           >

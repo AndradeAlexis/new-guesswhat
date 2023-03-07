@@ -1,1 +1,1 @@
-GET https://rq0q3cq4.directus.app/items/User HTTP/1.1
+GET https://rq0q3cq4.directus.app/users HTTP/1.1
