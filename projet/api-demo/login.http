@@ -1,0 +1,8 @@
+POST https://rq0q3cq4.directus.app/auth/login HTTP/1.1
+  content-type: application/json
+
+  { 
+    "email": "alexis.andrade@outlook.com", 
+    "password": "Ereul9Aeng"
+}
+
