@@ -10,6 +10,19 @@
   let password;
   let roles = "Joueur";
 
+  //Creating an array to recover the list of users from the database
+  let listUsers = [];
+  let userListId = 0;
+
+  //Creating a variable to target the text area for username
+  let textArea;
+
+  //Creating a variable to target the text area for the email address
+  let userEmailArea;
+
+  //Creating a variable to target the text area for the password
+  let userPasswordArea;
+
   //Creating function with POST request allowing the user to submit his information for user account creation
   async function createUser() {
     try {
@@ -43,6 +56,31 @@
   const handleSubmitUser = async (event) => {
     event.preventDefault();
 
+    //Creating a condition to alert the user if he's trying to create a duplicate account
+    let userInput = textArea.value;
+    let userEmail = userEmailArea.value;
+
+    if(userInput === listUsers[userListId].name || userEmail === listUsers[userListId].email) {
+      alert("Ce nom d'utilisateur ou l'adresse email existe déjà");
+      return false;
+    }
+
+    //Creating a condition to alert the user if username exceeds/is less than required length
+
+    let userPassword = userPasswordArea.value;
+    
+    if (userInput.length <= 20 && userInput.length >= 5) {} else {
+    alert("Le nom d'utilisateur doit comporter entre 5 et 20 caractères")
+    return false;
+    }
+
+    //Creating a condition to alert the user if the password exceeds/is less than required length
+    
+    if (userPassword.length <= 20 && userPassword.length >= 8) {} else {
+    alert("Le mot de passe doit comporter entre 8 et 20 caractères")
+    return false;
+  }
+    
     const user = await createUser();
     //Emptying the text area
      name = "";
@@ -50,6 +88,15 @@
      password = "";
      return user;
   };
+
+  const userList = async () => {
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/User");
+      const json = await response.json();
+      listUsers = json.data;
+      console.log(listUsers[userListId].name);
+  }
+
+  userList();
 </script>
 
 <body>
@@ -71,26 +118,34 @@
             </div>
             <div class="columnSubscriptionForm">
               <input
-                type="text"
+                type="text" 
+                required
                 id="name"
                 name="user_name"
                 placeholder="Username"
+                bind:this={textArea}
                 bind:value={name}/>
+                
               <input
-                type="email"
+                type="email" 
+                required
                 id="mail"
                 name="user_mail"
                 placeholder="Email"
+                bind:this={userEmailArea}
                 bind:value={email}/>
               <input
-                type="password"
+                type="password" 
+                required
                 id="password"
                 name="user_password"
                 placeholder="Mot de passe"
+                bind:this={userPasswordArea}
                 bind:value={password}/>
               <input 
                 bind:value={roles} 
                 type="text" id="role" 
+                required
                 name="role" 
                 readonly/>
               <button id="subscriptionFormButton">Valider</button>

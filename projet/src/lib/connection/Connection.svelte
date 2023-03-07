@@ -39,9 +39,6 @@
       }
     );
 
-    // if(!response.status === 400 ) {
-    //     alert("Try again");
-    // }
 
     const json = await response.json();
     if (response.status === 200) {
@@ -49,7 +46,7 @@
       push("/");
       return json.data.access_token;
     } else {
-      alert("Try again");
+      alert("Essayez encore");
     }
   };
 </script>
@@ -91,7 +88,7 @@
       </section>
       <aside aria-label="menu de navigation">
         <div>
-          <p>Username</p>
+          <p>{name}</p>
           <a href="/connection" use:link>
             <span id="statusUser">Déconnecter</span></a
           >
