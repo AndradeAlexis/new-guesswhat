@@ -10,7 +10,7 @@
 
   async function createUser() {
     try {
-      let endpoint = import.meta.env.VITE_DIRECTUS_API_URL + "items/User";
+      let endpoint = import.meta.env.VITE_URL_DIRECTUS + "items/User"; 
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -41,10 +41,10 @@
     const user = await createUser();
     return user;
     //Emptying the text area
-    // name = "";
-    // email = "";
-    // password= "";
-    // roles = "Joueur";
+     name = name;
+     email = email;
+     password= password;
+     roles = roles;
   };
 </script>
 
