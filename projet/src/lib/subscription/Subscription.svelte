@@ -2,6 +2,7 @@
   import { link } from "svelte-spa-router";
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
+  import { push } from "svelte-spa-router";
 
   //Creating the variables for the subscription form
   let first_name;
@@ -36,8 +37,10 @@
         })
       });
 
+      //If no error, user is alerted that account has been created and redirected to login page
       if (response.status === 204) {
       alert("Votre compte a été créé.");
+      push("/connection");
       return [];
     } else {
       const data = await response.json();
@@ -53,13 +56,13 @@
 }
 
   //Function allowing to create a user on submit, emptying form after submission
-  const handleSubmitUser = async (event) => {
+    const handleSubmitUser = async (event) => {
     event.preventDefault();
 
-    //Creating a condition to alert the user if he's trying to create a duplicate account
+    //Creating a condition to alert the user if the username exceeds/is less than required length
+
     let userName = textArea.value;
 
-    //Creating a condition to alert the user if the username exceeds/is less than required length
     if (userName.length <= 20 && userName.length >= 5) {} else {
     alert("Le nom d'utilisateur doit comporter entre 5 et 20 caractères")
     return false;

@@ -1,19 +1,20 @@
-<script>
+<script context="module">
   import { link } from "svelte-spa-router";
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import { push } from "svelte-spa-router";
 
+
   let email;
   let password;
 
   let userNameArea;
-  // let userName = userNameArea.value;
+
   let userAddressEmail;
   let emailInput;
 
   let divUserName;
-
+ 
   //Creating function to recuperate the token to use it for the log in action
 
   const handleSubmitForm = async (event) => {
@@ -53,15 +54,19 @@
       divUserName.appendChild(child);
       alert("You are connected");
       // push('/');
-      console.log(json.data);
       return json.data.access_token;
     } else {
       alert("Essayez encore");
     }
   };
 
-  
+//Creating a function allowing to delete the token when user clicks on disconnet button
 
+export const logout = () => {
+  localStorage.removeItem('token')
+  alert("Vous vous êtes bien déconnecté");
+}
+  
 </script>
 
 <body>
@@ -103,7 +108,7 @@
       <aside aria-label="menu de navigation">
         <div bind:this={divUserName}>
           <!-- <p bind:this={userNameArea}></p> -->
-          <a href="/connection" use:link>
+          <a href="/connection" use:link on:click={logout}>
             <span id="statusUser">Déconnecter</span></a
           >
         </div>
