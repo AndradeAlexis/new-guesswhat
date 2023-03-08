@@ -25,7 +25,7 @@
     //Saving the token in the local storage and giving it a key and a value
     localStorage.setItem("token", token);
 
-    push("/");
+    // push("/");
   };
 
   //Creating a function with POST request for log in
@@ -47,12 +47,20 @@
 
     const json = await response.json();
     if (response.status === 200) {
-      console.log(json.data.access_token);
+      userAddressEmail=emailInput.value;
+      const child = document.createElement('p');
+      child.textContent = userAddressEmail;
+      divUserName.appendChild(child);
+      alert("You are connected");
+      // push('/');
+      console.log(json.data);
       return json.data.access_token;
     } else {
       alert("Essayez encore");
     }
   };
+
+  
 
 </script>
 

@@ -32,8 +32,9 @@
 </section>
 <aside aria-label="menu de navigation">
     <div>
-        <p>Username</p>
+    
         {#if localStorage.getItem('token')} 
+        <p>Username</p>
         <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
         {/if}
     </div>
