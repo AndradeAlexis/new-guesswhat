@@ -112,20 +112,12 @@ export const logout = () => {
             <span id="statusUser">Déconnecter</span></a
           >
         </div>
-        <a href="/" use:link
-          ><img
+        <a href="/" use:link><img
             class="homeButton"
             src="../../src/assets/Bouton Retour Accueil.png"
-            alt="Retour accueil"
-          /></a
-        >
-        <button
-          ><a href="/subscription" use:link class="aside-buttons">Inscription</a
-          ></button
-        >
-        <button
-          ><a href="/scores" use:link class="aside-buttons">Scores</a></button
-        >
+            alt="Retour accueil"/></a>
+        <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+        <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
       </aside>

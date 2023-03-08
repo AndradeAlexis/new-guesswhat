@@ -33,12 +33,10 @@
 </section>
 <aside aria-label="menu de navigation">
     <div>
-    
         {#if localStorage.getItem('token')} 
         <p>Username</p>
         <a href="/" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
         {/if}
-        
     </div>
     <a href="/" use:link><img
             class="homeButton"

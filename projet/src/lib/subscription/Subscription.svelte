@@ -3,6 +3,7 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import { push } from "svelte-spa-router";
+  import {logout} from "../connection/Connection.svelte";
 
   //Creating the variables for the subscription form
   let first_name;
@@ -141,25 +142,20 @@
       </section>
       <aside aria-label="menu de navigation">
         <div>
+         
+          {#if localStorage.getItem('token')} 
           <p>Username</p>
-          <a href="/connection" use:link>
-            <span id="statusUser">Déconnecter</span></a
-          >
+          <a href="/subscription" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
+          {/if}
         </div>
-        <a href="/" use:link
-          ><img
+        <a href="/" use:link><img
             class="homeButton"
             src="../../src/assets/Bouton Retour Accueil.png"
-            alt="Retour accueil"
-          /></a
-        >
-        <button
-          ><a href="/connection" use:link class="aside-buttons">Connexion</a
-          ></button
-        >
-        <button
-          ><a href="/scores" use:link class="aside-buttons">Scores</a></button
-        >
+            alt="Retour accueil"/></a>
+        {#if !localStorage.getItem('token')}        
+    <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+    <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+    {/if}
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
       </aside>

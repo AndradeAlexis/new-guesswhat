@@ -3,6 +3,7 @@
   import {onMount} from 'svelte';
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
+  import {logout} from "../connection/Connection.svelte";
 
   //Creating an empty array to recover all riddles
   let riddles = [];
@@ -189,12 +190,16 @@
       </nav>
     <aside aria-label="menu de navigation">
         <div>
-            <p>Username</p>
-            <a href="/connection" use:link> <span id="statusUser" >Déconnecter</span></a>
+          {#if localStorage.getItem('token')} 
+          <p>Username</p>
+          <a href="/" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
+          {/if}
         </div>
             <a href="/" use:link><img class="homeButton" src=".../../src/assets//Bouton Retour Accueil.png" alt="Retour accueil"></a>
+            {#if !localStorage.getItem('token')}        
             <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
             <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+            {/if}
             <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
             <a class="contact" href="/contact" use:link>Contact</a>
             <a class="contact" href="/about_us" use:link>À propos</a>
