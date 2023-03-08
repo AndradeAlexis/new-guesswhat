@@ -3,14 +3,24 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
 
-  let name;
+  //Creating the variables for the subscription form
   let email;
   let password;
-  let roles;
+  let role = "1a7bf53e-50c7-4125-ba73-7d3a4bc726df";
 
+  //Creating a variable to target the text area for username
+  let textArea;
+
+  //Creating a variable to target the text area for the email address
+  let userEmailArea;
+
+  //Creating a variable to target the text area for the password
+  let userPasswordArea;
+
+  //Creating function with POST request allowing the user to submit his information for user account creation
   async function createUser() {
     try {
-      let endpoint = import.meta.env.VITE_URL_DIRECTUS + "items/User"; 
+      let endpoint = import.meta.env.VITE_URL_DIRECTUS + "users"; 
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -18,33 +28,49 @@
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          "name": name,
           "email": email,
           "password": password,
-           "roles": roles
+          "role": role
         })
       });
 
+      if (response.status === 204) {
+      alert("Votre compte a été créé.");
+      return [];
+    } else {
       const data = await response.json();
-      console.log("item created");
-      return data.data;
-    } catch (error) {
-      console.log("Error during fetch");
-      console.error(error);
+      alert("Erreur, veuillez réessayer.");
+      console.error(data.errors);
       return [];
     }
+  } catch (error) {
+    alert("Erreur, veuillez réessayer.");
+    console.error(error);
+    return [];
   }
+}
 
+  //Function allowing to create a user on submit, emptying form after submission
   const handleSubmitUser = async (event) => {
     event.preventDefault();
 
+    //Creating a condition to alert the user if he's trying to create a duplicate account
+    let userEmail = userEmailArea.value;
+
+    //Creating a condition to alert the user if username exceeds/is less than required length
+    let userPassword = userPasswordArea.value;
+    
+    //Creating a condition to alert the user if the password exceeds/is less than required length
+    if (userPassword.length <= 20 && userPassword.length >= 8) {} else {
+    alert("Le mot de passe doit comporter entre 8 et 20 caractères")
+    return false;
+  }
+    
     const user = await createUser();
-    return user;
     //Emptying the text area
-     name = name;
-     email = email;
-     password= password;
-     roles = roles;
+     email = "";
+     password = "";
+     return user;
   };
 </script>
 
@@ -60,34 +86,29 @@
         <form on:submit={handleSubmitUser}>
           <div class="subscriptionForm">
             <div class="columnSubscriptionForm">
-              <label for="mail">Nom d'utilisateur</label>
               <label for="name">Adresse email</label>
               <label for="password">Mot de passe</label>
-              <label for="role">Role</label>
             </div>
             <div class="columnSubscriptionForm">
+              
               <input
-                type="text"
-                id="name"
-                name="user_name"
-                placeholder="Username"
-                bind:value={name}
-              />
-              <input
-                type="email"
+                type="email" 
+                required
                 id="mail"
                 name="user_mail"
                 placeholder="Email"
-                bind:value={email}
-              />
-              <input
-                type="password"
+                bind:this={userEmailArea}
+                bind:value={email}/>
+              
+                <input
+                type="password" 
+                required
                 id="password"
                 name="user_password"
                 placeholder="Mot de passe"
-                bind:value={password}
-              />
-              <input bind:value={roles} type="text" id="role" name="role" />
+                bind:this={userPasswordArea}
+                bind:value={password}/>
+
               <button id="subscriptionFormButton">Valider</button>
             </div>
           </div>
