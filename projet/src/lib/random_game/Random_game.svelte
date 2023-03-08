@@ -2,6 +2,7 @@
   import {link} from 'svelte-spa-router';
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
+  import {logout} from "../connection/Connection.svelte";
 
   //Creating a variable allowing us to get a random number from 1 to 17.
 
@@ -213,13 +214,17 @@
         <a href="/random_theme_riddle" use:link on:click={refreshPage}><img src=".../../src/assets/Mascotte Refresh.png" alt="Mascotte pour relancer le jeu"></a>
       </nav>
       <aside aria-label="menu de navigation">
-         <div>
-            <p>Username</p>
-            <a href="/connection" use:link> <span id="statusUser" >Déconnecter</span></a>
-          </div>
+        <div>
+          {#if localStorage.getItem('token')} 
+          <p>Username</p>
+          <a href="/" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
+          {/if}
+        </div>
             <a href="/" use:link><img class="homeButton" src=".../../src/assets//Bouton Retour Accueil.png" alt="Retour accueil"></a>
+            {#if !localStorage.getItem('token')}        
             <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
             <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+            {/if}
             <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
             <a class="contact" href="/contact" use:link>Contact</a>
             <a class="contact" href="/about_us" use:link>À propos</a>

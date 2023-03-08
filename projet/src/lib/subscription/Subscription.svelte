@@ -2,8 +2,11 @@
   import { link } from "svelte-spa-router";
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
+  import { push } from "svelte-spa-router";
+  import {logout} from "../connection/Connection.svelte";
 
   //Creating the variables for the subscription form
+  let first_name;
   let email;
   let password;
   let role = "1a7bf53e-50c7-4125-ba73-7d3a4bc726df";
@@ -28,14 +31,17 @@
           "content-type": "application/json",
         },
         body: JSON.stringify({
+          "first_name": first_name,
           "email": email,
           "password": password,
           "role": role
         })
       });
 
+      //If no error, user is alerted that account has been created and redirected to login page
       if (response.status === 204) {
       alert("Votre compte a été créé.");
+      push("/connection");
       return [];
     } else {
       const data = await response.json();
@@ -51,8 +57,17 @@
 }
 
   //Function allowing to create a user on submit, emptying form after submission
-  const handleSubmitUser = async (event) => {
+    const handleSubmitUser = async (event) => {
     event.preventDefault();
+
+    //Creating a condition to alert the user if the username exceeds/is less than required length
+
+    let userName = textArea.value;
+
+    if (userName.length <= 20 && userName.length >= 5) {} else {
+    alert("Le nom d'utilisateur doit comporter entre 5 et 20 caractères")
+    return false;
+  }
 
     //Creating a condition to alert the user if he's trying to create a duplicate account
     let userEmail = userEmailArea.value;
@@ -68,6 +83,7 @@
     
     const user = await createUser();
     //Emptying the text area
+     first_name = "";
      email = "";
      password = "";
      return user;
@@ -86,11 +102,21 @@
         <form on:submit={handleSubmitUser}>
           <div class="subscriptionForm">
             <div class="columnSubscriptionForm">
-              <label for="name">Adresse email</label>
+              <label for="first_name">Nom d'utilisateur</label>
+              <label for="email">Adresse email</label>
               <label for="password">Mot de passe</label>
             </div>
             <div class="columnSubscriptionForm">
               
+              <input
+                type="first_name" 
+                required
+                id="first_name"
+                name="first_name"
+                placeholder="Nom d'utilisateur"
+                bind:this={textArea}
+                bind:value={first_name}/>
+
               <input
                 type="email" 
                 required
@@ -116,25 +142,20 @@
       </section>
       <aside aria-label="menu de navigation">
         <div>
+         
+          {#if localStorage.getItem('token')} 
           <p>Username</p>
-          <a href="/connection" use:link>
-            <span id="statusUser">Déconnecter</span></a
-          >
+          <a href="/subscription" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
+          {/if}
         </div>
-        <a href="/" use:link
-          ><img
+        <a href="/" use:link><img
             class="homeButton"
             src="../../src/assets/Bouton Retour Accueil.png"
-            alt="Retour accueil"
-          /></a
-        >
-        <button
-          ><a href="/connection" use:link class="aside-buttons">Connexion</a
-          ></button
-        >
-        <button
-          ><a href="/scores" use:link class="aside-buttons">Scores</a></button
-        >
+            alt="Retour accueil"/></a>
+        {#if !localStorage.getItem('token')}        
+    <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+    <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+    {/if}
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
       </aside>

@@ -1,5 +1,6 @@
 <script>
     import {link} from 'svelte-spa-router';
+    import {logout} from "../connection/Connection.svelte";
 </script>
 
 <section class="leftBlock" aria-label="Page d'accueil, regles du jeu">
@@ -32,8 +33,10 @@
 </section>
 <aside aria-label="menu de navigation">
     <div>
+        {#if localStorage.getItem('token')} 
         <p>Username</p>
-        <a href="/connection" use:link> <span id="statusUser">Déconnecter</span></a>
+        <a href="/" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
+        {/if}
     </div>
     <a href="/" use:link><img
             class="homeButton"

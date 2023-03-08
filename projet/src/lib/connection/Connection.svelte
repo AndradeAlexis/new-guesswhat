@@ -1,19 +1,20 @@
-<script>
+<script context="module">
   import { link } from "svelte-spa-router";
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import { push } from "svelte-spa-router";
 
+
   let email;
   let password;
 
   let userNameArea;
-  // let userName = userNameArea.value;
+
   let userAddressEmail;
   let emailInput;
 
   let divUserName;
-
+ 
   //Creating function to recuperate the token to use it for the log in action
 
   const handleSubmitForm = async (event) => {
@@ -25,7 +26,7 @@
     //Saving the token in the local storage and giving it a key and a value
     localStorage.setItem("token", token);
 
-    push("/");
+    // push("/");
   };
 
   //Creating a function with POST request for log in
@@ -47,13 +48,25 @@
 
     const json = await response.json();
     if (response.status === 200) {
-      console.log(json.data.access_token);
+      userAddressEmail=emailInput.value;
+      const child = document.createElement('p');
+      child.textContent = userAddressEmail;
+      divUserName.appendChild(child);
+      alert("You are connected");
+      // push('/');
       return json.data.access_token;
     } else {
       alert("Essayez encore");
     }
   };
 
+//Creating a function allowing to delete the token when user clicks on disconnet button
+
+export const logout = () => {
+  localStorage.removeItem('token')
+  alert("Vous vous êtes bien déconnecté");
+}
+  
 </script>
 
 <body>
@@ -95,24 +108,16 @@
       <aside aria-label="menu de navigation">
         <div bind:this={divUserName}>
           <!-- <p bind:this={userNameArea}></p> -->
-          <a href="/connection" use:link>
+          <a href="/connection" use:link on:click={logout}>
             <span id="statusUser">Déconnecter</span></a
           >
         </div>
-        <a href="/" use:link
-          ><img
+        <a href="/" use:link><img
             class="homeButton"
             src="../../src/assets/Bouton Retour Accueil.png"
-            alt="Retour accueil"
-          /></a
-        >
-        <button
-          ><a href="/subscription" use:link class="aside-buttons">Inscription</a
-          ></button
-        >
-        <button
-          ><a href="/scores" use:link class="aside-buttons">Scores</a></button
-        >
+            alt="Retour accueil"/></a>
+        <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+        <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
       </aside>
