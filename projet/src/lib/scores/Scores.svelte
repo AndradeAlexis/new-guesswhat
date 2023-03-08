@@ -3,6 +3,13 @@
     import Header from "../homepage/Header.svelte";
     import Footer from "../homepage/Footer.svelte";
     import {logout} from "../connection/Connection.svelte";
+
+    const getScores = async () => {
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Game");
+      const json = await response.json();
+      return json.data;
+      }
+
 </script>
 
 <body>
@@ -15,63 +22,31 @@
     </div>
     <div class="score-table">
         <h2>Tableau des scores</h2>
-        <table>
-            <tr class="tabDarkBlue">
-                <td>Rang</td>
-                <td>Nom</td>
-                <td>Score</td>
-            </tr>
-            <tr class="tabLight">
-                <td>1</td>
-                <td>User1</td>
-                <td>999</td>
-            </tr>
-            <tr class="tabDark">
-                <td>2</td>
-                <td>User2</td>
-                <td>879</td>
-            </tr>
-            <tr class="tabLight">
-                <td>3</td>
-                <td>User3</td>
-                <td>769</td>
-            </tr>
-            <tr class="tabDark">
-                <td>4</td>
-                <td>User4</td>
-                <td>634</td>
-            </tr>
-            <tr class="tabLight">
-                <td>5</td>
-                <td>User5</td>
-                <td>514</td>
-            </tr>
-            <tr class="tabDark">
-                <td>6</td>
-                <td>User6</td>
-                <td>510</td>
-            </tr>
-            <tr class="tabLight">
-                <td>7</td>
-                <td>User7</td>
-                <td>485</td>
-            </tr>
-            <tr class="tabDark">
-                <td>8</td>
-                <td>User8</td>
-                <td>436</td>
-            </tr>
-            <tr class="tabLight">
-                <td>9</td>
-                <td>User9</td>
-                <td>401</td>
-            </tr>
-            <tr class="tabDark">
-                <td>10</td>
-                <td>User10</td>
-                <td>389</td>
-            </tr>
-        </table>
+    
+            
+            <table>
+                {#await getScores()}
+                <p>En attente des scores</p>
+                {:then Game}
+                <tr class="tabDarkBlue">
+                    <td>Rang</td>
+                    <td>Nom</td>
+                    <td>Score</td>
+                </tr>
+                {#each Game as game}
+                <tr class="tabLight">
+                    <td>1</td>
+                    <td>User1</td>
+                    <td>{game.score}</td>
+                </tr>
+                {/each}
+                {/await} 
+            </table>
+               
+            
+            
+           
+         
     </div>
 </section>
 <aside aria-label="menu de navigation">

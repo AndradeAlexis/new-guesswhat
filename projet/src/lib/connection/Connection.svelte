@@ -53,7 +53,7 @@
       child.textContent = userAddressEmail;
       divUserName.appendChild(child);
       alert("You are connected");
-      // push('/');
+      push('/');
       return json.data.access_token;
     } else {
       alert("Essayez encore");
