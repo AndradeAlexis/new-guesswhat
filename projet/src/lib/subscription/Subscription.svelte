@@ -4,6 +4,7 @@
   import Footer from "../homepage/Footer.svelte";
 
   //Creating the variables for the subscription form
+  let first_name;
   let email;
   let password;
   let role = "1a7bf53e-50c7-4125-ba73-7d3a4bc726df";
@@ -28,6 +29,7 @@
           "content-type": "application/json",
         },
         body: JSON.stringify({
+          "first_name": first_name,
           "email": email,
           "password": password,
           "role": role
@@ -55,6 +57,15 @@
     event.preventDefault();
 
     //Creating a condition to alert the user if he's trying to create a duplicate account
+    let userName = textArea.value;
+
+    //Creating a condition to alert the user if the username exceeds/is less than required length
+    if (userName.length <= 20 && userName.length >= 5) {} else {
+    alert("Le nom d'utilisateur doit comporter entre 5 et 20 caractères")
+    return false;
+  }
+
+    //Creating a condition to alert the user if he's trying to create a duplicate account
     let userEmail = userEmailArea.value;
 
     //Creating a condition to alert the user if username exceeds/is less than required length
@@ -68,6 +79,7 @@
     
     const user = await createUser();
     //Emptying the text area
+     first_name = "";
      email = "";
      password = "";
      return user;
@@ -86,11 +98,21 @@
         <form on:submit={handleSubmitUser}>
           <div class="subscriptionForm">
             <div class="columnSubscriptionForm">
-              <label for="name">Adresse email</label>
+              <label for="first_name">Nom d'utilisateur</label>
+              <label for="email">Adresse email</label>
               <label for="password">Mot de passe</label>
             </div>
             <div class="columnSubscriptionForm">
               
+              <input
+                type="first_name" 
+                required
+                id="first_name"
+                name="first_name"
+                placeholder="Nom d'utilisateur"
+                bind:this={textArea}
+                bind:value={first_name}/>
+
               <input
                 type="email" 
                 required
