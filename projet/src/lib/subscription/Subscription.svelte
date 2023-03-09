@@ -213,6 +213,12 @@
     display: block;
   }
 
+  #subscriptionFormButton:hover {
+    transform: scale(1.1);
+        cursor: pointer;
+        border: 0.7rem var(--bg-buttons)solid;
+    }
+
   aside {
     display: flex;
     flex-direction: column;

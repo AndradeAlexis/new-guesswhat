@@ -198,7 +198,7 @@
               <form action="#" method="post" id="responseForm" on:submit={handleSubmitForm} on:submit={getScores}>
                 <div class="gamer-response">
                     <div>
-                        <textarea name="response" id="response" placeholder="Réponses" bind:value={response} bind:this={textArea} aria-label="Votre réponse"></textarea>
+                        <textarea name="response" id="response" placeholder="Répondre" bind:value={response} bind:this={textArea} aria-label="Votre réponse"></textarea>
                     </div>
                     <div class="response-buttons">
                         <button on:click={incrementTries} on:click={validateForm}>Valider</button>
@@ -207,6 +207,9 @@
               </form>
               <div class="score" aria-label="Affichage du score">     
                   Score : {result}
+              </div>
+              <div class="save-score">
+                <button> Sauvegarder le score</button>
               </div>
         </section>
       </div>
@@ -315,6 +318,7 @@ textarea {
 .hints-button button:hover {
   background-color: var(--text-color);
   color: var(--blue-outlines);
+  cursor: pointer;
 }
 
 .response-buttons button {
@@ -334,11 +338,32 @@ textarea {
 
 .response-buttons button:hover {
   border: 0.7rem var(--bg-buttons)solid;
+  cursor: pointer;
 }
 
 div.score {
   display: flex;
   justify-content: center;
+}
+
+.save-score button{
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 0.1rem;
+  background-color: #0f4d4a;
+  border: 0.2rem var(--blue-outlines)solid;
+  color: var(--text-color);
+  font-weight: bolder;
+  border-radius: 0.4rem;
+  font-size: 70%;   
+  text-align: center;
+}
+
+.save-score button:hover {
+  background-color: var(--text-color);
+  color: var(--blue-outlines);
+  transform: scale(1.1);
+        cursor: pointer;
 }
 
 nav {
