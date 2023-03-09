@@ -2,6 +2,7 @@
     import {link} from 'svelte-spa-router';
     import Header from "../homepage/Header.svelte";
     import Footer from "../homepage/Footer.svelte";
+    import {logout} from "../connection/Connection.svelte";
 </script>
 
 <body>
