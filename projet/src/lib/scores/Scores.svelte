@@ -4,6 +4,7 @@
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
 
+  let theme;
 
 //Creating a function to recover the score-related data from the database
   const getScores = async () => {
@@ -11,6 +12,14 @@
       const json = await response.json();
       return json.data;
       }
+
+      const getScoresTheme = async () => {
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Games?fields=*&filter[theme]=" + theme);
+      const json = await response.json();
+      console.log (json.data);
+      }
+
+      getScoresTheme();
 </script>
 
 <body>
@@ -23,7 +32,14 @@
   </div>
   <div class="score-table">
       <h2>Tableau des scores</h2>
-  
+      <div class="dropdownMain">
+        <div class="dropdownThemes">
+            <input type="radio" id="Animaux" name="Animaux" bind:value={theme} > Animaux
+            <input type="radio" id="Cinéma" name="Cinéma"  bind:value={theme}> Cinéma
+            <input type="radio" id="Musique" name="Musique" bind:value={theme}> Musique
+            <button on:click={getScoresTheme}>Filtrer par thème</button>
+        </div>
+    </div>
       <table>
         {#await getScores()}
         <p>En attente des scores</p>

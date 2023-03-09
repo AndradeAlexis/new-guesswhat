@@ -1,6 +1,6 @@
 <footer>
     <div>
-        <p>V.0.1</p>
+        <p>V.0.8</p>
     </div>    
 </footer>
 

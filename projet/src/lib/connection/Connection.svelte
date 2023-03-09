@@ -106,11 +106,12 @@ export const logout = () => {
         </form>
       </section>
       <aside aria-label="menu de navigation">
-        <div bind:this={divUserName}>
-          <!-- <p bind:this={userNameArea}></p> -->
-          <a href="/connection" use:link on:click={logout}>
-            <span id="statusUser">Déconnecter</span></a
-          >
+        <div>
+         
+          {#if localStorage.getItem('token')} 
+          <p>Username</p>
+          <a href="/subscription" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
+          {/if}
         </div>
         <a href="/" use:link><img
             class="homeButton"

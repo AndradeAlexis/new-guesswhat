@@ -4,7 +4,7 @@
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
 
-  //Creating a variable allowing us to get a random number from 1 to 17.
+  //Creating a variable allowing us to get a random number from 1 to 22.
 
   let id = [Math.floor(Math.random() * 22)];
   
