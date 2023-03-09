@@ -320,7 +320,7 @@ textarea {
 .hints-button button:hover {
   background-color: var(--text-color);
   color: var(--blue-outlines);
-  cursor: pointer;
+  
 }
 
 .response-buttons button {
@@ -340,7 +340,7 @@ textarea {
 
 .response-buttons button:hover {
   border: 0.7rem var(--bg-buttons)solid;
-  cursor: pointer;
+  
 }
 
 div.score {
@@ -365,7 +365,7 @@ div.score {
   background-color: var(--text-color);
   color: var(--blue-outlines);
   transform: scale(1.1);
-        cursor: pointer;
+        
 }
 
 nav {

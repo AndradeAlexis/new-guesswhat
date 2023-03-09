@@ -99,13 +99,13 @@
 
     #random-game button:hover {
         transform: scale(1.1);
-        cursor: pointer;
+        
         border: 0.7rem var(--bg-buttons)solid;
     }
 
     #theme-game button:hover {
         transform: scale(1.1);
-        cursor: pointer;
+        
         border: 0.7rem var(--bg-buttons)solid;
     }
 
