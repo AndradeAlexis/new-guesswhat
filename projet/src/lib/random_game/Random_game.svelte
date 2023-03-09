@@ -209,7 +209,9 @@
                   Score : {result}
               </div>
               <div class="save-score">
+                {#if localStorage.getItem('token')}
                 <button> Sauvegarder le score</button>
+                {/if}
               </div>
         </section>
       </div>
