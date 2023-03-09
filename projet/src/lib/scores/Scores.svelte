@@ -3,6 +3,7 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
+  import {refreshPage} from "../random_game/Random_game.svelte";
 
   let theme;
 
@@ -62,7 +63,7 @@
   <div>
       {#if localStorage.getItem('token')} 
       <p>Username</p>
-      <a href="/" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
+      <a href="/scores" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
       {/if}
   </div>
       <a href="/" use:link><img
