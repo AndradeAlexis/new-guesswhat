@@ -5,6 +5,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+html {
+  cursor: url("../../src/assets/default_cursor.png"), url("../../src/assets/default_cursor.cur"), default;
+}
 
 /* Colors to be used throughout the different website elements */
 
@@ -25,6 +28,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--bg-color);
   margin: 0;
+  cursor: url("../../src/assets/default_cursor.png"), url("../../src/assets/default_cursor.cur"), default;
+  
 }
 
 .container {
@@ -67,12 +72,25 @@ h1 {
   text-align : center;
 }
 
+p {
+  cursor: url("../../src/assets/default_cursor.png"), url("../../src/assets/default_cursor.cur"), default;
+}
+
 label {
   font-size: small;
 }
 
 a {
   text-decoration: none;
+  cursor: url("../../src/assets/pointer.png"), url("../../src/assets/pointer.cur"), pointer;
+}
+
+button {
+  cursor: url("../../src/assets/pointer.png"), url("../../src/assets/pointer.cur"), pointer;
+}
+
+button:hover {
+  cursor: url("../../src/assets/pointer.png"), url("../../src/assets/pointer.cur"), pointer;
 }
 
 a:visited {

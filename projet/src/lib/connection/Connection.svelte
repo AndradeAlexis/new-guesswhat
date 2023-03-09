@@ -53,7 +53,7 @@
       child.textContent = userAddressEmail;
       divUserName.appendChild(child);
       alert("You are connected");
-      // push('/');
+      push('/');
       return json.data.access_token;
     } else {
       alert("Essayez encore");
@@ -106,17 +106,20 @@ export const logout = () => {
         </form>
       </section>
       <aside aria-label="menu de navigation">
-        <div bind:this={divUserName}>
-          <!-- <p bind:this={userNameArea}></p> -->
-          <a href="/connection" use:link on:click={logout}>
-            <span id="statusUser">Déconnecter</span></a
-          >
+        <div>
+         
+          {#if localStorage.getItem('token')} 
+          <p>Username</p>
+          <a href="/subscription" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
+          {/if}
         </div>
         <a href="/" use:link><img
             class="homeButton"
             src="../../src/assets/Bouton Retour Accueil.png"
             alt="Retour accueil"/></a>
+        {#if !localStorage.getItem('token')}  
         <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+        {/if}
         <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
@@ -174,6 +177,12 @@ export const logout = () => {
     margin: 30px auto 0 auto;
     display: block;
   }
+
+  #loginFormButton:hover {
+    transform: scale(1.1);
+        
+        border: 0.7rem var(--bg-buttons)solid;
+    }
 
   aside {
     display: flex;

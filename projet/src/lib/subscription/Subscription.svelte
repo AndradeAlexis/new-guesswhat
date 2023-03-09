@@ -153,9 +153,9 @@
             src="../../src/assets/Bouton Retour Accueil.png"
             alt="Retour accueil"/></a>
         {#if !localStorage.getItem('token')}        
-    <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
-    <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
-    {/if}
+        <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+        <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+        {/if}
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
       </aside>
@@ -212,6 +212,11 @@
     margin: 30px auto 0 auto;
     display: block;
   }
+
+  #subscriptionFormButton:hover {
+    transform: scale(1.1);
+        border: 0.7rem var(--bg-buttons)solid;
+    }
 
   aside {
     display: flex;
