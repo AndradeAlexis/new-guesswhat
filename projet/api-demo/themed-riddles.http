@@ -1,0 +1,3 @@
+GET https://rq0q3cq4.directus.app/items/Clue?fields=name&filter[riddle_id]=2 HTTP/1.1
+
+

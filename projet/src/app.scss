@@ -1,0 +1,152 @@
+/* Reset */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  cursor: url("../../src/assets/default_cursor.png"), url("../../src/assets/default_cursor.cur"), default;
+}
+
+/* Colors to be used throughout the different website elements */
+
+:root {
+  --bg-color: #1A373B;
+  --text-color: #C8DD36;
+  --bg-main: #0B3B3B;
+  --bg-images: #125E5C;
+  --bg-buttons: #F3B210;
+  --blue-outlines: #00313A;
+  --orange-buttons: #F27E08;
+  --blue-text: #0D2935;
+}
+
+/* Styling the body and the container wrapping all the elements */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-color);
+  margin: 0;
+  cursor: url("../../src/assets/default_cursor.png"), url("../../src/assets/default_cursor.cur"), default;
+  
+}
+
+.container {
+  color: var(--text-color);
+  border: 10px var(--bg-buttons) solid;
+  border-radius: 1.9rem;  
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: 100%;
+    background-color: var(--bg-main);
+
+    background-image: url(../src/assets/pattern.png);
+    background-size: 100px 100px;
+    background-repeat: repeat;
+    
+    border: 0.7rem var(--bg-color) solid;
+    border-radius: 0.4rem;
+    border: 0.7rem var(--blue-outlines) solid;
+    border-radius: 1.9rem;
+  }
+
+
+
+
+
+.guessWhatText {
+    margin: 20px;
+    margin-bottom: 5px;
+    text-align: justify;
+    font-size: 75%;
+}
+
+h1 {
+  font-weight: bolder;
+  font-size: 3rem;
+  font-family: 'Mentimun';
+  margin-bottom: 1.9rem;
+  text-align : center;
+}
+
+p {
+  cursor: url("../../src/assets/default_cursor.png"), url("../../src/assets/default_cursor.cur"), default;
+}
+
+label {
+  font-size: small;
+}
+
+a {
+  text-decoration: none;
+  cursor: url("../../src/assets/pointer.png"), url("../../src/assets/pointer.cur"), pointer;
+}
+
+button {
+  cursor: url("../../src/assets/pointer.png"), url("../../src/assets/pointer.cur"), pointer;
+}
+
+button:hover {
+  cursor: url("../../src/assets/pointer.png"), url("../../src/assets/pointer.cur"), pointer;
+}
+
+a:visited {
+  color: var(--blue-text);
+}
+
+/*  media queries of tablette  */
+ @media (min-width: 426px) and (max-width: 768px) {
+
+  .guessWhatText p{
+    font-size: 1rem;
+    margin: 0 20px;
+}
+
+h1 {
+    font-weight: bolder;
+    font-size: 3rem;
+    font-family: 'Mentimun';
+    margin-bottom: 1.9rem;
+    text-align : center;
+}
+
+ }
+/*  Media queries version desktop  */
+ @media (min-width: 769px) {
+body {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* HOMEPAGE */
+
+/* Styling the header, and the content for the two different game modes */
+
+main {
+  grid-template-columns: auto auto;
+
+}
+
+.guessWhatText {
+    max-width: 90%;
+    margin: 20px 90px 50px 90px;
+    margin-bottom: none;
+    text-align: justify;
+}
+
+h1 {
+    font-size: 5rem;
+}
+
+p {
+    margin: 1rem;
+}
+}
+
+
+
+
