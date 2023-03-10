@@ -11,6 +11,7 @@
   import Mascotte_Theme_Musique from "../../assets/Mascotte_Theme_Musique.png";
   import Accueil from "../../assets/Accueil.png"
   import Choix_theme from "../../assets/Choix_theme.png"
+  import Background_game from "../../assets/Background_game.png"
 
 
   //Creating an empty array to recover all riddles
@@ -239,7 +240,7 @@ width: 98vw;
 }
 
 #defined-theme {
-  background-image: url(../../src/assets/backgroundgame.png);
+  background-image: url(Background_game);
   background-size: 40%;
   background-repeat: repeat;
   background-position: center;

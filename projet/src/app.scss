@@ -9,6 +9,12 @@ html {
   cursor: url("../../src/assets/default_cursor.png"), url("../../src/assets/default_cursor.cur"), default;
 }
 
+/** Font-face */
+@font-face {
+  font-family: 'Mentimun';
+  src: url('./assets/Mentimun.ttf') format('truetype');
+}
+
 /* Colors to be used throughout the different website elements */
 
 :root {

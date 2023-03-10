@@ -7,6 +7,7 @@
   import Accueil from "../../assets/Accueil.png";
   import Victory from "../../assets/victory.png";
   import Game_over from "../../assets/game_over.png";
+  import Background_game from "../../assets/Background_game.png"
 
   //Creating a variable allowing us to get a random number from 1 to 22.
 
@@ -261,7 +262,7 @@ body {
 }
 
 #random-theme {
-  background-image: url(../../src/assets/backgroundgame.png);
+  background-image: url(Background_game);
   background-size: 40%;
   background-repeat: repeat;
   background-position: center;

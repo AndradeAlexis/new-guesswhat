@@ -3,9 +3,10 @@
     import Header from "./Header.svelte";
     import Main from "./Main.svelte";
     import Footer from "./Footer.svelte";
+    import Mentimun from '../../assets/Mentimun.ttf'; 
 </script>
 
-<body>
+<body style="">
     <div class="container">
         <Header/>
         <main>
@@ -15,12 +16,13 @@
     </div>
     </body>
 
-<style>
-    /* Importing font */
-    @font-face {
-        font-family: "Mentimun";
-        src: 
-        local('Mentimun'),
-        url("../../src/assets/Mentimun.ttf")
-      }
+<style lang="scss">
+/* Importing font */
+@font-face {
+    font-family: "Mentimun";
+    src: 
+        url('${Mentimun}'),
+        format('truetype');
+}
+
 </style>

@@ -96,7 +96,7 @@
         font-weight: bolder;
         border: 0.7rem var(--blue-outlines) solid;
         border-radius: 0.9rem;
-        font-family: "Mentimun";
+        font-family: 'Mentimun', sans-serif;
         font-size: 75%;
         transition: all .2s ease-in-out;
     }
