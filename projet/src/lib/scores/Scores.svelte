@@ -4,7 +4,7 @@
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
   import {refreshPage} from "../random_game/Random_game.svelte";
-
+  import Accueil from "../../assets/Accueil.png"
   let cinema;
   let theme
 
@@ -39,7 +39,7 @@
             <input type="radio" id="Animaux" name="theme" bind:value={theme} > Animaux
             <input type="radio" id="Cinéma" name="theme"  bind:value={cinema}> Cinéma
             <input type="radio" id="Musique" name="theme" bind:value={theme}> Musique
-            <button on:click={getScoresTheme} class="aside-buttons">Filtrer par thème</button>
+            <button on:click={getScoresTheme} class="filter">Filtrer par thème</button>
         </div>
     </div>
       <table>
@@ -70,7 +70,7 @@
   </div>
       <a href="/" use:link><img
               class="homeButton"
-              src="../../src/assets/Bouton Retour Accueil.png"
+              src= {Accueil}
               alt="Retour accueil"/></a>
               {#if !localStorage.getItem('token')}        
               <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
@@ -165,9 +165,23 @@ td {
         color: var(--text-color);
     }
 
-    .aside-buttons {
-      color: var(--blue-text);
-  }
+.filter {
+  margin-bottom: 5px;
+  padding: 0.2rem;
+  background-color: #0f4d4a;
+  border: 0.2rem var(--blue-outlines)solid;
+  color: var(--text-color);
+  font-weight: bolder;
+  border-radius: 0.4rem;
+  font-size: 100%;   
+  text-align: center;
+}
+
+.filter:hover {
+  background-color: var(--text-color);
+  color: var(--blue-outlines);
+        
+}
 
     /* Styling the homepage button */
     .homeButton {

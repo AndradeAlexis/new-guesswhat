@@ -4,6 +4,14 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
+  import Victory from "../../assets/victory.png";
+  import Game_over from "../../assets/game_over.png";
+  import Mascotte_Theme_Animaux from "../../assets/Mascotte_Theme_Animaux.png";
+  import Mascotte_Theme_Cinema from "../../assets/Mascotte_Theme_Cinema.png";
+  import Mascotte_Theme_Musique from "../../assets/Mascotte_Theme_Musique.png";
+  import Accueil from "../../assets/Accueil.png"
+  import Choix_theme from "../../assets/Choix_theme.png"
+
 
   //Creating an empty array to recover all riddles
   let riddles = [];
@@ -101,13 +109,13 @@
           }
           const userResponse = words.join(" ");
           if (userResponse === riddleResponse) {
-            message.src = '../../src/assets/victory.png';
+            message.src = Victory;
             message.style.width = "30%";
             message.style.margin = "auto auto";
             divMessage.appendChild(message);
           //If user does not submit the correct answer, game over message is displayed
           } else {
-            message.src = '../../src/assets/game-over.png';
+            message.src = Game_over;
             message.style.width = "30%";
             message.style.margin = "auto auto";
             divMessage.appendChild(message); 
@@ -188,10 +196,10 @@
         </div>
       </section>
       <nav>
-            <a href="/defined_theme_riddle" use:link><img class="choose-theme" src=".../../src/assets/choixtheme.png" alt="Choisissez un thème"></a>
-            <a href="/defined_theme_riddle/1" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets/Mascotte Thème Animaux.png" alt="Mascotte pour le thème animaux"></a> 
-            <a href="/defined_theme_riddle/2" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets//Mascotte Thème Cinéma.png" alt="Mascotte pour le thème cinema"></a>
-            <a href="/defined_theme_riddle/3" use:link on:click={refreshPage} on:click={onMount}><img src=".../../src/assets//Mascotte Thème Musique.png" alt="Mascotte pour le thème musique"></a>
+            <a href="/defined_theme_riddle" use:link><img class="choose-theme" src= {Choix_theme} alt="Choisissez un thème"></a>
+            <a href="/defined_theme_riddle/1" use:link on:click={refreshPage} on:click={onMount}><img src= {Mascotte_Theme_Animaux} alt="Mascotte pour le thème animaux"></a> 
+            <a href="/defined_theme_riddle/2" use:link on:click={refreshPage} on:click={onMount}><img src= {Mascotte_Theme_Cinema} alt="Mascotte pour le thème cinema"></a>
+            <a href="/defined_theme_riddle/3" use:link on:click={refreshPage} on:click={onMount}><img src= {Mascotte_Theme_Musique} alt="Mascotte pour le thème musique"></a>
       </nav>
     <aside aria-label="menu de navigation">
         <div>
@@ -200,7 +208,7 @@
           <a href="/defined_theme_riddle" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
         </div>
-            <a href="/" use:link><img class="homeButton" src=".../../src/assets//Bouton Retour Accueil.png" alt="Retour accueil"></a>
+            <a href="/" use:link><img class="homeButton" src= {Accueil} alt="Retour accueil"></a>
             {#if !localStorage.getItem('token')}        
             <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
             <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>

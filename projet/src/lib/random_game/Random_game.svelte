@@ -3,6 +3,10 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
+  import Mascotte_Refresh from "../../assets/Mascotte_Refresh.png";
+  import Accueil from "../../assets/Accueil.png";
+  import Victory from "../../assets/victory.png";
+  import Game_over from "../../assets/game_over.png";
 
   //Creating a variable allowing us to get a random number from 1 to 22.
 
@@ -115,14 +119,14 @@
       const userResponse = words.join(" ");
 
       if (userResponse === riddleResponse[riddleResponseId].answer) {
-        message.src = '../../src/assets/victory.png';
+        message.src = Victory;
         message.style.width = "30%";
         message.style.margin = "auto auto";
         divMessage.appendChild(message);
        
       //If user does not submit the correct answer, game over message is displayed
       } else {
-        message.src = '../../src/assets/game-over.png';
+        message.src = Game_over;
         message.style.width = "30%";
         message.style.margin = "auto auto";
         divMessage.appendChild(message); 
@@ -216,7 +220,7 @@
         </section>
       </div>
       <nav>
-        <a href="/random_theme_riddle" use:link on:click={refreshPage}><img src=".../../src/assets/Mascotte Refresh.png" alt="Mascotte pour relancer le jeu"></a>
+        <a href="/random_theme_riddle" use:link on:click={refreshPage}><img src={Mascotte_Refresh} alt="Mascotte pour relancer le jeu"></a>
       </nav>
       <aside aria-label="menu de navigation">
         <div>
@@ -225,7 +229,7 @@
           <a href="/random_theme_riddle" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
         </div>
-            <a href="/" use:link><img class="homeButton" src=".../../src/assets//Bouton Retour Accueil.png" alt="Retour accueil"></a>
+            <a href="/" use:link><img class="homeButton" src={Accueil} alt="Retour accueil"></a>
             {#if !localStorage.getItem('token')}        
             <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
             <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>

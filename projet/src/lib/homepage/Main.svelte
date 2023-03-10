@@ -2,6 +2,9 @@
     import {link} from 'svelte-spa-router';
     import {logout} from "../connection/Connection.svelte";
     import {refreshPage} from "../random_game/Random_game.svelte";
+    import Mascotte from "../../assets/Mascotte.png";
+    import Mascotte_Themes from "../../assets/Mascotte_Themes.png";
+    import Accueil from "../../assets/Accueil.png";
 </script>
 
 <section class="leftBlock" aria-label="Page d'accueil, regles du jeu">
@@ -20,13 +23,13 @@
     <div class="game-modes">
         <div id="random-game">
             <img
-                src="../../src/assets/Mascotte.png"
+                src={Mascotte}
                 alt="Mascotte pour jeu des devinettes à thème aléatoire"/>
             <button><a href="/random_theme_riddle" use:link>Devinettes <br/> au hasard</a></button>
         </div>
         <div id="theme-game">
             <img
-                src="../../src/assets/Mascotte Thèmes.png"
+                src="{Mascotte_Themes}"
                 alt="Mascotte pour jeu des devinettes à thème défini"/>
             <button><a href="/defined_theme_riddle" use:link>Devinettes <br/> par theme</a></button>
         </div>
@@ -41,7 +44,7 @@
     </div>
     <a href="/" use:link><img
             class="homeButton"
-            src=".../../src/assets/Bouton Retour Accueil.png"
+            src={Accueil}
             alt="Retour accueil"/></a>
     {#if !localStorage.getItem('token')}        
     <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>

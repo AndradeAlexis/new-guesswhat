@@ -4,6 +4,8 @@
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
   import {refreshPage} from "../random_game/Random_game.svelte";
+  import Accueil from "../../assets/Accueil.png";
+  import Mascotte_404 from "../../assets/Mascotte_404.png";
 </script>
 
 <body>
@@ -16,7 +18,7 @@
         </div>
         <div class="text404">
           <h2>La page que vous avez demandée n'existe pas</h2>
-          <img class="image404" src="../../src/assets/Mascotte 404.png" alt="Mascotte d'erreur si la page n'existe pas"/>
+          <img class="image404" src={Mascotte_404} alt="Mascotte d'erreur si la page n'existe pas"/>
         </div>
       </section>
       <aside aria-label="menu de navigation">
@@ -28,7 +30,7 @@
         </div>
         <a href="/" use:link><img
                 class="homeButton"
-                src=".../../src/assets/Bouton Retour Accueil.png"
+                src={Accueil}
                 alt="Retour accueil"/></a>
         {#if !localStorage.getItem('token')}        
         <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>

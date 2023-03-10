@@ -4,6 +4,7 @@
     import Footer from "../homepage/Footer.svelte";
     import {logout} from "../connection/Connection.svelte";
     import {refreshPage} from "../random_game/Random_game.svelte";
+    import Accueil from "../../assets/Accueil.png"
 </script>
 
 <body>
@@ -98,7 +99,7 @@
         </div>
         <a href="/" use:link><img
                 class="homeButton"
-                src="../../src/assets/Bouton Retour Accueil.png"
+                src={Accueil}
                 alt="Retour accueil"/></a>
                 {#if !localStorage.getItem('token')}        
                 <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>

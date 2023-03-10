@@ -4,6 +4,10 @@
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
   import {refreshPage} from "../random_game/Random_game.svelte";
+  import Phone_call from "../../assets/phone_call.png";
+  import At_symbol from "../../assets/At_symbol.png";
+  import Twitter from "../../assets/twitter.png";
+  import Accueil from "../../assets/Accueil.png"
 </script>
 
 <body>
@@ -23,15 +27,15 @@
             <div class="logoImages">
               <img
                 class="logoImagesPhone"
-                src="../../src/assets/phone-call.png"
+                src= {Phone_call}
                 alt="logo de téléphone"/>
               <img
                 class="logoImagesMail"
-                src="../../src/assets/at-symbol.png"
+                src= {At_symbol}
                 alt="logo email"/>
               <img
                 class="logoImagesTwitter"
-                src="../../src/assets/twitter.png"
+                src= {Twitter}
                 alt="logo twitter"/>
             </div>
             <div class="logoText" aria-label="Coordonnées">
@@ -53,7 +57,7 @@
       </div>
         <a href="/" use:link><img
             class="homeButton"
-            src="../../src/assets/Bouton Retour Accueil.png"
+            src= {Accueil}
             alt="button go back to the home page"/></a>
             {#if !localStorage.getItem('token')}        
             <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
