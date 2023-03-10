@@ -1,4 +1,4 @@
-<script>
+<script context="module">
   import {link} from 'svelte-spa-router';
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
@@ -163,7 +163,7 @@
     }
 
      //Function allowing the page to reload when clicking one of the theme buttons, giving a riddle to the user
-     function refreshPage(){
+     export function refreshPage(){
       window.location.reload();
   } 
 </script>
@@ -222,7 +222,7 @@
         <div>
           {#if localStorage.getItem('token')} 
           <p>Username</p>
-          <a href="/" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
+          <a href="/random_theme_riddle" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
         </div>
             <a href="/" use:link><img class="homeButton" src=".../../src/assets//Bouton Retour Accueil.png" alt="Retour accueil"></a>

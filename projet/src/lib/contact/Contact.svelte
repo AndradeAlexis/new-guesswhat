@@ -3,6 +3,7 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
+  import {refreshPage} from "../random_game/Random_game.svelte";
 </script>
 
 <body>
@@ -46,7 +47,7 @@
     
           {#if localStorage.getItem('token')} 
           <p>Username</p>
-          <a href="/contact" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
+          <a href="/contact" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
           
       </div>
