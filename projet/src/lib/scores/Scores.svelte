@@ -3,8 +3,10 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
+  import {refreshPage} from "../random_game/Random_game.svelte";
 
-  let theme;
+  let cinema;
+  let theme
 
 //Creating a function to recover the score-related data from the database
   const getScores = async () => {
@@ -14,7 +16,7 @@
       }
 
       const getScoresTheme = async () => {
-      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Games?fields=*&filter[theme]=" + theme);
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Games?fields=*&filter[theme]=1");
       const json = await response.json();
       console.log (json.data);
       }
@@ -34,13 +36,14 @@
       <h2>Tableau des scores</h2>
       <div class="dropdownMain">
         <div class="dropdownThemes">
-            <input type="radio" id="Animaux" name="Animaux" bind:value={theme} > Animaux
-            <input type="radio" id="Cinéma" name="Cinéma"  bind:value={theme}> Cinéma
-            <input type="radio" id="Musique" name="Musique" bind:value={theme}> Musique
-            <button on:click={getScoresTheme}>Filtrer par thème</button>
+            <input type="radio" id="Animaux" name="theme" bind:value={theme} > Animaux
+            <input type="radio" id="Cinéma" name="theme"  bind:value={cinema}> Cinéma
+            <input type="radio" id="Musique" name="theme" bind:value={theme}> Musique
+            <button on:click={getScoresTheme} class="aside-buttons">Filtrer par thème</button>
         </div>
     </div>
       <table>
+
         {#await getScores()}
         <p>En attente des scores</p>
         {:then Games}
@@ -54,7 +57,7 @@
             <td>{game.score}</td>
         </tr>
         {/each}
-        {/await} 
+        {/await}
       </table>  
     </div>   
 </section>
@@ -62,7 +65,7 @@
   <div>
       {#if localStorage.getItem('token')} 
       <p>Username</p>
-      <a href="/" use:link on:click={logout}> <span id="statusUser">Déconnecter</span></a>
+      <a href="/scores" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
       {/if}
   </div>
       <a href="/" use:link><img
@@ -161,6 +164,10 @@ td {
         text-decoration: none;
         color: var(--text-color);
     }
+
+    .aside-buttons {
+      color: var(--blue-text);
+  }
 
     /* Styling the homepage button */
     .homeButton {
