@@ -178,7 +178,7 @@
     <Header />
     <main  class="random-theme-game">
       <div class="background-game">
-        <section id="random-theme" aria-label="Jeu à thème aléatoire">
+        <section id="random-theme" aria-label="Jeu à thème aléatoire" style="background-image: url('{Background_game}');">
               <div class="guessWhatText">
                   <h1>Guess What ?</h1>
                   {#await getRiddles()}
@@ -262,7 +262,7 @@ body {
 }
 
 #random-theme {
-  background-image: url(Background_game);
+  /* background-image: url(Background_game); */
   background-size: 40%;
   background-repeat: repeat;
   background-position: center;

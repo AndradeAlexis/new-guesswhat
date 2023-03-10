@@ -159,7 +159,7 @@
   <div class="container">
     <Header />
     <main  class="defined-theme-game">
-      <section id="defined-theme" aria-label="Jeu à thème défini">
+      <section id="defined-theme" aria-label="Jeu à thème défini" style="background-image: url('{Background_game}');">
         <div class="guessWhatText">
             <h1>Guess What ?</h1>
             {#if selectedRiddle}
