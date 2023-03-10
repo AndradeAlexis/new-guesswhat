@@ -39,7 +39,7 @@
       });
 
       //If no error, user is alerted that account has been created and redirected to login page
-      if (response.status === 204) {
+      if (response.status === 204 || response.status === 200) {
       alert("Votre compte a été créé.");
       push("/connection");
       return [];
