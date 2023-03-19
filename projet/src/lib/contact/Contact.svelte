@@ -3,7 +3,7 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
-  import {refreshPage} from "../random_game/Random_game.svelte";
+  import {refreshPage} from "../functions/Functions.svelte";
   import Phone_call from "../../assets/phone_call.png";
   import At_symbol from "../../assets/At_symbol.png";
   import Twitter from "../../assets/twitter.png";

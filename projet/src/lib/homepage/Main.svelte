@@ -1,7 +1,7 @@
 <script>
     import {link} from 'svelte-spa-router';
     import {logout} from "../connection/Connection.svelte";
-    import {refreshPage} from "../random_game/Random_game.svelte";
+    import {refreshPage} from "../functions/Functions.svelte";
     import Mascotte from "../../assets/Mascotte.png";
     import Mascotte_Themes from "../../assets/Mascotte_Themes.png";
     import Accueil from "../../assets/Accueil.png";

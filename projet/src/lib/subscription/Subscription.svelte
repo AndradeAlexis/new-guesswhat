@@ -4,7 +4,7 @@
   import Footer from "../homepage/Footer.svelte";
   import { push } from "svelte-spa-router";
   import {logout} from "../connection/Connection.svelte";
-  import {refreshPage} from "../random_game/Random_game.svelte";
+  import {refreshPage} from "../functions/Functions.svelte";
   import Accueil from "../../assets/Accueil.png"
 
   //Creating the variables for the subscription form
@@ -154,9 +154,9 @@
             class="homeButton"
             src={Accueil}
             alt="Retour accueil"/></a>
-        {#if !localStorage.getItem('token')}        
-        <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
-        <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
+        {#if !localStorage.getItem('token')} 
+        <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>       
+        <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
         {/if}
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>

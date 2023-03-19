@@ -1,4 +1,4 @@
-<script context="module">
+<script>
   import {link} from 'svelte-spa-router';
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
@@ -168,7 +168,7 @@
     }
 
      //Function allowing the page to reload when clicking one of the theme buttons, giving a riddle to the user
-     export function refreshPage(){
+    function refreshPage(){
       window.location.reload();
   } 
 </script>
