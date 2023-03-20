@@ -4,9 +4,18 @@
   import Footer from "../homepage/Footer.svelte";
   import {logout} from "../connection/Connection.svelte";
   import {refreshPage} from "../functions/Functions.svelte";
-  import Accueil from "../../assets/Accueil.png"
-  let cinema;
-  let theme
+  import Accueil from "../../assets/Accueil.png";
+  
+
+  export let params = {};
+
+  //Creating an empty array to recover score-related data from the data base
+  let theme = [];
+  //Creating a variable to target <table> to be displayed when a user chooses to filter scores by theme
+  let table;
+  //Creating a variable to target the <table> containing random scores (no theme chosen by user) by default
+  let tableRandom;
+  
 
 //Creating a function to recover the score-related data from the database
   const getScores = async () => {
@@ -15,13 +24,18 @@
       return json.data;
       }
 
-      const getScoresTheme = async () => {
-      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Games?fields=*&filter[theme]=1");
+      //Creating a function to filter scores by theme
+      const scoreTheme = async () => {
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Games?fields=*,player.first_name&sort=-score&limit=10&filter[theme]=" + params.themeId);
       const json = await response.json();
-      console.log (json.data);
-      }
+      theme = json.data;
+      //Removing class selectedTheme so that table with filtered scores can be visible to user when selecting a theme
+      table.classList.remove("selectedTheme");
+      tableRandom.style.display = "none";
+      return theme;
+      };
 
-      getScoresTheme();
+     
 </script>
 
 <body>
@@ -36,14 +50,13 @@
       <h2>Tableau des scores</h2>
       <div class="dropdownMain">
         <div class="dropdownThemes">
-            <input type="radio" id="Animaux" name="theme" bind:value={theme} > Animaux
-            <input type="radio" id="Cinéma" name="theme"  bind:value={cinema}> Cinéma
-            <input type="radio" id="Musique" name="theme" bind:value={theme}> Musique
-            <button on:click={getScoresTheme} class="filter">Filtrer par thème</button>
+          <p>Filtrer les scores par thème</p>
+          <a href="/scores/1" use:link on:click={scoreTheme}>Animaux</a>
+          <a href="/scores/2" use:link on:click={scoreTheme}>Cinéma</a>
+          <a href="/scores/3" use:link on:click={scoreTheme}>Musique</a>
         </div>
     </div>
-      <table>
-
+      <table bind:this={tableRandom}>
         {#await getScores()}
         <p>En attente des scores</p>
         {:then Games}
@@ -59,6 +72,22 @@
         {/each}
         {/await}
       </table>  
+
+      <table class="selectedTheme" bind:this={table}>
+        <tr class="tabDarkBlue">
+          <td>Nom</td>
+          <td>Score</td>
+        </tr>
+        {#if theme}
+        {#each theme as theme}
+        <tr class="tabLight">
+            <td>{theme.player.first_name}</td>
+            <td>{theme.score}</td>
+        </tr>
+        {/each}
+        {/if}
+      </table>
+
     </div>   
 </section>
 <aside aria-label="menu de navigation">
@@ -105,6 +134,10 @@ width: 90%;
 border: 0.7rem var(--blue-outlines) solid;
 border-radius: 0.9rem;
 margin: 1.5rem 1rem;
+}
+
+.selectedTheme {
+  display: none;
 }
 
 .tabDarkBlue {

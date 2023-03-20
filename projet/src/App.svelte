@@ -22,6 +22,7 @@
       '/defined_theme_riddle/': Defined_theme_riddle,
       '/defined_theme_riddle/:themeId': Defined_theme_riddle,
       '/scores': Scores,
+      '/scores/:themeId': Scores,
       '/random_theme_riddle': Random_game,
       '/contact': Contact,
   
