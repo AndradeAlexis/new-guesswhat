@@ -15,6 +15,8 @@
   let emailInput;
 
   let divUserName;
+
+  let users = [];
  
   //Creating function to recuperate the token to use it for the log in action
 
@@ -27,7 +29,7 @@
     //Saving the token in the local storage and giving it a key and a value
     localStorage.setItem("token", token);
 
-    // push("/");
+    push("/");
   };
 
   //Creating a function with POST request for log in
@@ -47,13 +49,21 @@
       }
     );
 
+    const getUsername = async () => {
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "users?fields=first_name");
+      const json = await response.json();
+      users = json.data;
+      // console.log (users[0].first_name);
+      return users;
+    }
+
+    getUsername();
+
     const json = await response.json();
+    email = "";
+    password = "";
     if (response.status === 200) {
-      userAddressEmail=emailInput.value;
-      const child = document.createElement('p');
-      child.textContent = userAddressEmail;
-      divUserName.appendChild(child);
-      alert("You are connected");
+      alert("Vous êtes connectés");
       push('/');
       return json.data.access_token;
     } else {
