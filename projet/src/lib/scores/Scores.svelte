@@ -33,9 +33,8 @@
       table.classList.remove("selectedTheme");
       tableRandom.style.display = "none";
       return theme;
-      };
+      };    
 
-     
 </script>
 
 <body>
@@ -50,42 +49,46 @@
       <h2>Tableau des scores</h2>
       <div class="dropdownMain">
         <div class="dropdownThemes">
-          <p>Filtrer les scores par thème</p>
+          <p>Filtrer les scores par thème :</p>
           <a href="/scores/1" use:link on:click={scoreTheme}>Animaux</a>
           <a href="/scores/2" use:link on:click={scoreTheme}>Cinéma</a>
           <a href="/scores/3" use:link on:click={scoreTheme}>Musique</a>
+          <a href="/scores" use:link on:click={getScores}>Tous les thèmes</a>
         </div>
-    </div>
+      </div>
+
+    <!-- Table to display by default (no theme selected) when user arrives on score page -->
       <table bind:this={tableRandom}>
-        {#await getScores()}
-        <p>En attente des scores</p>
-        {:then Games}
-        <tr class="tabDarkBlue">
-            <td>Nom</td>
-            <td>Score</td>
-        </tr>
-        {#each Games as game}
-        <tr class="tabLight">
-            <td>{game.player.first_name}</td>
-            <td>{game.score}</td>
-        </tr>
-        {/each}
-        {/await}
+          {#await getScores()}
+          <p>En attente des scores</p>
+          {:then Games}
+          <tr class="tabDarkBlue">
+              <td>Nom</td>
+              <td>Score</td>
+          </tr>
+          {#each Games as game}
+          <tr class="tabLight">
+              <td>{game.player.first_name}</td>
+              <td>{game.score}</td>
+          </tr>
+          {/each}
+          {/await}
       </table>  
 
+      <!-- Table to display if a user filters scores by theme -->
       <table class="selectedTheme" bind:this={table}>
-        <tr class="tabDarkBlue">
-          <td>Nom</td>
-          <td>Score</td>
-        </tr>
-        {#if theme}
-        {#each theme as theme}
-        <tr class="tabLight">
-            <td>{theme.player.first_name}</td>
-            <td>{theme.score}</td>
-        </tr>
-        {/each}
-        {/if}
+          <tr class="tabDarkBlue">
+            <td>Nom</td>
+            <td>Score</td>
+          </tr>
+          {#if theme}
+          {#each theme as theme}
+          <tr class="tabLight">
+              <td>{theme.player.first_name}</td>
+              <td>{theme.score}</td>
+          </tr>
+          {/each}
+          {/if}
       </table>
 
     </div>   
@@ -115,6 +118,17 @@
 
 <style>
 /* SCORE PAGE */
+
+.dropdownThemes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdownThemes a {
+  margin-right: 1rem;
+  color: var(--text-color);
+}
 
 div.score-table {
 display: flex;
