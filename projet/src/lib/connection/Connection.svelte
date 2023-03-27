@@ -6,20 +6,23 @@
   import {refreshPage} from "../functions/Functions.svelte";
   import Accueil from "../../assets/Accueil.png"
 
+  //Creating variables for user input: email and password
   let email;
   let password;
 
+  //Creating variables to use later to target the user's email input
   let userAddressEmail;
-
   let emailInput;
 
+  //Creating a variable to target the div where we want to display the username
   let divUserName;
 
+
+  //Creating variables to use later when recovering data related to the array users
   let users = [];
   let userId = 0;
 
-  
- 
+
   //Creating function to recuperate the token to use it for the log in action
 
   const handleSubmitForm = async (event) => {
@@ -51,12 +54,15 @@
       }
     );
 
+    //Creating a function to recover the username from the database based on the address email the user inputs when logging in
+
     const getUsername = async () => {
+      //Recovering the email value the user submits when connecting
       userAddressEmail = emailInput.value;
+      //Filtering data based on email address, so when the user inputs his email, we recover the username associated with the submitted email address.
       const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "users?fields=first_name,email&filter[email]=" + userAddressEmail);
       const json = await response.json();
       users = json.data;
-      console.log(users[userId].first_name)
       return users[userId].first_name;
     }
 
@@ -124,7 +130,7 @@ export const logout = () => {
       <aside aria-label="menu de navigation">
         <div bind:this={divUserName}>
           {#if localStorage.getItem('token')} 
-          <p>{users[userId].first_name}</p>
+          <!-- <p>{users[userId].first_name}</p> -->
           <a href="/connection" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
         </div>
