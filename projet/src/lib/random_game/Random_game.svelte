@@ -87,7 +87,7 @@
 
         //Condition alerting the user that he's running out of hints to request
         if( hintId >= hints.length) {
-          alert("Attention, ceci est ton dernier indice!");
+          alert("Attention, ceci est votre dernier indice!");
         }
      }
 

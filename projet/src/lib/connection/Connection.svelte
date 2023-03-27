@@ -9,14 +9,16 @@
   let email;
   let password;
 
-  let userNameArea;
-
   let userAddressEmail;
+
   let emailInput;
 
   let divUserName;
 
   let users = [];
+  let userId = 0;
+
+  
  
   //Creating function to recuperate the token to use it for the log in action
 
@@ -50,15 +52,16 @@
     );
 
     const getUsername = async () => {
-      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "users?fields=first_name");
+      userAddressEmail = emailInput.value;
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "users?fields=first_name,email&filter[email]=" + userAddressEmail);
       const json = await response.json();
       users = json.data;
-      // console.log (users[0].first_name);
-      return users;
+      console.log(users[userId].first_name)
+      return users[userId].first_name;
     }
 
     getUsername();
-
+  
     const json = await response.json();
     email = "";
     password = "";
@@ -69,7 +72,9 @@
     } else {
       alert("Essayez encore");
     }
+
   };
+    
 
 //Creating a function allowing to delete the token when user clicks on disconnet button
 
@@ -119,6 +124,7 @@ export const logout = () => {
       <aside aria-label="menu de navigation">
         <div bind:this={divUserName}>
           {#if localStorage.getItem('token')} 
+          <p>{users[userId].first_name}</p>
           <a href="/connection" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
         </div>
