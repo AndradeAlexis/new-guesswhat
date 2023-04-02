@@ -47,7 +47,7 @@
   let textArea;
 
   //Creating variables for score recuperation and submitting it to the data base
-  let theme = 1;
+  // let theme = 1;
   let scoreToSubmit;
 
   //Creating a variable to target the area where the username is displayed
@@ -204,7 +204,7 @@
         },
         body: JSON.stringify({
           "score": scoreToSubmit,
-          "theme": theme,
+          "theme": params.themeId,
           "player": {
           "first_name": username}
         })
