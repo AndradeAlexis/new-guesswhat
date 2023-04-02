@@ -3,24 +3,24 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import { push } from "svelte-spa-router";
-  import {refreshPage} from "../functions/Functions.svelte";
-  import Accueil from "../../assets/Accueil.png"
+  import { refreshPage } from "../functions/Functions.svelte";
+  import Accueil from "../../assets/Accueil.png";
 
   //Creating variables for user input: email and password
   let email;
   let password;
 
   //Creating variables to use later to target the user's email input
-  let userAddressEmail;
-  let emailInput;
+  export let userAddressEmail;
+  export let emailInput;
 
   //Creating a variable to target the div where we want to display the username
   let divUserName;
 
   //Creating variables to use later when recovering data related to the array users
-  let users = [];
-  let userId = 0;
-  let username;
+  export let users = [];
+  export let userId = 0;
+  export let username;
 
   //Creating function to recuperate the token to use it for the log in action
 
@@ -38,7 +38,7 @@
 
   //Creating a function with POST request for log in
 
-  const login = async () => {
+  export const login = async () => {
     const response = await fetch(
       import.meta.env.VITE_URL_DIRECTUS + "auth/login",
       {
@@ -59,36 +59,38 @@
       //Recovering the email value the user submits when connecting
       userAddressEmail = emailInput.value;
       //Filtering data based on email address, so when the user inputs his email, we recover the username associated with the submitted email address.
-      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "users?fields=first_name,email&filter[email]=" + userAddressEmail);
+      const response = await fetch(
+        import.meta.env.VITE_URL_DIRECTUS +
+          "users?fields=first_name,email&filter[email]=" +
+          userAddressEmail
+      );
       const json = await response.json();
       users = json.data;
-      username = users[userId].first_name
+      username = users[userId].first_name;
+      localStorage.setItem("username", username);
       return username;
-    }
+    };
 
     getUsername();
-  
+
     const json = await response.json();
     email = "";
     password = "";
     if (response.status === 200) {
       alert("Vous êtes connectés");
-      push('/');
+      push("/");
       return json.data.access_token;
     } else {
       alert("Essayez encore");
     }
-
   };
-    
 
-//Creating a function allowing to delete the token when user clicks on disconnet button
+  //Creating a function allowing to delete the token when user clicks on disconnet button
 
-export const logout = () => {
-  localStorage.removeItem('token')
-  alert("Vous vous êtes bien déconnecté");
-}
-  
+  export const logout = () => {
+    localStorage.removeItem("token");
+    alert("Vous vous êtes bien déconnecté");
+  };
 </script>
 
 <body>
@@ -129,19 +131,31 @@ export const logout = () => {
       </section>
       <aside aria-label="menu de navigation">
         <div bind:this={divUserName}>
-          {#if localStorage.getItem('token')} 
-          <p>{username}</p>
-          <a href="/connection" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
+          {#if localStorage.getItem("token")}
+            <p>{username}</p>
+            <a
+              href="/connection"
+              use:link
+              on:click={logout}
+              on:click={refreshPage}
+            >
+              <span id="statusUser">Déconnecter</span></a
+            >
           {/if}
         </div>
-        <a href="/" use:link><img
-            class="homeButton"
-            src= {Accueil}
-            alt="Retour accueil"/></a>
-        {#if !localStorage.getItem('token')}  
-        <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
+        <a href="/" use:link
+          ><img class="homeButton" src={Accueil} alt="Retour accueil" /></a
+        >
+        {#if !localStorage.getItem("token")}
+          <button
+            ><a href="/subscription" use:link class="aside-buttons"
+              >Inscription</a
+            ></button
+          >
         {/if}
-        <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
+        <button
+          ><a href="/scores" use:link class="aside-buttons">Scores</a></button
+        >
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
       </aside>
@@ -201,9 +215,9 @@ export const logout = () => {
 
   #loginFormButton:hover {
     transform: scale(1.1);
-        
-        border: 0.7rem var(--bg-buttons)solid;
-    }
+
+    border: 0.7rem var(--bg-buttons) solid;
+  }
 
   aside {
     display: flex;

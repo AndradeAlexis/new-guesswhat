@@ -5,6 +5,39 @@
     import {logout} from "../connection/Connection.svelte";
     import {refreshPage} from "../functions/Functions.svelte";
     import Accueil from "../../assets/Accueil.png"
+
+    let name;
+    let answer;
+    let theme_id;
+
+    const addingRiddle = async () => {
+      const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
+            body: JSON.stringify({
+                "name": name,
+                "answer": answer,
+                "theme_id": theme_id   
+            })
+        })
+
+        //Extracting the token and returning it
+
+        const json = await response.json();
+        console.log (json.data);
+    }
+
+    const handleSubmitRiddle = async (event) => {
+      event.preventDefault();
+      const newRiddle = await addingRiddle();
+      name = "";
+      answer = "";
+      theme_id = "";
+    }
+
 </script>
 
 <body>
@@ -16,23 +49,23 @@
             <h1>Guess What ?</h1>
         </div>
         <h2 id="addRiddleFormTitle">Ajouter une devinette</h2>
-        <form>
+        <form on:submit={handleSubmitRiddle} action="#" method="post">
             <div class="addRiddleForm">
                 <div class="columnAddRiddleForm">
                     <label for="riddle">Choisissez le thème</label>
                     <label for="riddle">Ecrivez votre énigme</label>
                     <label for="answer">Ecrivez votre réponse</label>
                     <label for="clue">Donnez des indices</label>
-                    <label for="clue"/>
-                    <label for="clue"/>
                 </div>
                 <div class="columnAddRiddleForm">
                     <div class="dropdownMain">
                         <button class="dropdownBtn">Thème</button>
                         <div class="dropdownThemes">
-                            <p>Cinéma</p>
-                            <p>Animaux</p>
-                            <p>Musique</p>
+                          <select bind:value={theme_id} name="themes" id="themes">
+                            <option value="1">Animaux</option>
+                            <option value="2">Cinéma</option>
+                            <option value="3">Musique</option>
+                          </select>
                         </div>
                     </div>
                     <div>
@@ -41,12 +74,14 @@
                         id="riddle"
                         name="riddle_name"
                         placeholder="Énigme"
+                        bind:value={name}
                     />
                     <input
                         type="text"
                         id="answer"
                         name="answer_name"
                         placeholder="Réponse"
+                        bind:value={answer}
                     />
                     <input
                         type="text"

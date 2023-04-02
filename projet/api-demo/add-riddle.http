@@ -1,9 +1,10 @@
 POST https://rq0q3cq4.directus.app/items/Riddle HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNlNjY5N2FiLTljMTAtNDc0OS04ZTIzLTk3ZWZjNzJjMzkxZiIsInJvbGUiOiI0MDhjZmZlMy00OWQyLTRkNDEtOTZkOS0xMjg2ZjAwOGViNGIiLCJhcHBfYWNjZXNzIjp0cnVlLCJhZG1pbl9hY2Nlc3MiOnRydWUsImlhdCI6MTY3ODI5NDkyOSwiZXhwIjoxNjc4Mjk1ODI5LCJpc3MiOiJkaXJlY3R1cyJ9.FSXlNhFxDHk3dVRJP36DrYDo477eE0_aWva9XR3TspI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNlNjY5N2FiLTljMTAtNDc0OS04ZTIzLTk3ZWZjNzJjMzkxZiIsInJvbGUiOiI0MDhjZmZlMy00OWQyLTRkNDEtOTZkOS0xMjg2ZjAwOGViNGIiLCJhcHBfYWNjZXNzIjp0cnVlLCJhZG1pbl9hY2Nlc3MiOnRydWUsImlhdCI6MTY4MDAxMDg4NSwiZXhwIjoxNjgwMDExNzg1LCJpc3MiOiJkaXJlY3R1cyJ9.RP5-0qjIGhk7MCSPNAWQKij3Dnfxp2adpbwNk73iAaE            
 
 {
-    "answer": "Whatever",
-    "name": "whatever1",
+    "name": "Whatever",
+    "answer": "whatever1",
     "theme_id": 1
+    
 }

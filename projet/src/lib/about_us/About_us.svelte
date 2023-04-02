@@ -1,11 +1,14 @@
 <script>
-  import {link} from 'svelte-spa-router';
+  import { link } from "svelte-spa-router";
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
-  import {logout} from "../connection/Connection.svelte";
-  import {refreshPage} from "../functions/Functions.svelte";
-  import Accueil from "../../assets/Accueil.png"
-  
+  import { logout } from "../connection/Connection.svelte";
+  import { refreshPage } from "../functions/Functions.svelte";
+  import Functions, { getUsername } from "../functions/Functions.svelte";
+  import Accueil from "../../assets/Accueil.png";
+
+  let username = localStorage.getItem("username");
+  console.log(username);
 </script>
 
 <body>
@@ -22,32 +25,48 @@
         <div class="aboutText">
           <h3>Qui sommes nous</h3>
           <p>
-            Nous sommes trois développeurs web qui avons créé ce projet dans le cadre de notre formation avec l'école O'clock.
+            Nous sommes trois développeurs web qui avons créé ce projet dans le
+            cadre de notre formation avec l'école O'clock.
           </p>
           <h3>Notre projet</h3>
           <p>
-            Nous avons choisi de travailler sur ce projet car l'idée d'un jeu d'énigmes serait amusante et stimulante et nous permettrait d'explorer notre côté créatif.
+            Nous avons choisi de travailler sur ce projet car l'idée d'un jeu
+            d'énigmes serait amusante et stimulante et nous permettrait
+            d'explorer notre côté créatif.
           </p>
         </div>
       </section>
       <aside aria-label="menu de navigation">
         <div>
-    
-          {#if localStorage.getItem('token')} 
-          <p>Username</p>
-          <a href="/about_us" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
+          {#if localStorage.getItem("token")}
+            <p>{username}</p>
+            <a
+              href="/about_us"
+              use:link
+              on:click={logout}
+              on:click={refreshPage}
+            >
+              <span id="statusUser">Déconnecter</span></a
+            >
           {/if}
-          
-      </div>
-        <a href="/" use:link ><img
-            class="homeButton"
-            src= {Accueil}
-            alt="Retour accueil"/></a>
-            {#if !localStorage.getItem('token')}        
-            <button><a href="/subscription" use:link class="aside-buttons">Inscription</a></button>
-            <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
-            {/if}
-        <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
+        </div>
+        <a href="/" use:link
+          ><img class="homeButton" src={Accueil} alt="Retour accueil" /></a
+        >
+        {#if !localStorage.getItem("token")}
+          <button
+            ><a href="/subscription" use:link class="aside-buttons"
+              >Inscription</a
+            ></button
+          >
+          <button
+            ><a href="/connection" use:link class="aside-buttons">Connexion</a
+            ></button
+          >
+        {/if}
+        <button
+          ><a href="/scores" use:link class="aside-buttons">Scores</a></button
+        >
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
       </aside>
@@ -57,23 +76,22 @@
 </body>
 
 <style>
-
   /*About_us page*/
-.aboutTitle {
-  text-align: center;
-  font-size: large;
-  margin-bottom: 50px;
-}
+  .aboutTitle {
+    text-align: center;
+    font-size: large;
+    margin-bottom: 50px;
+  }
 
-.aboutText {
-  text-align: center;
-}
+  .aboutText {
+    text-align: center;
+  }
 
-.aboutText h3 {
-  margin-top: 50px;
-}
+  .aboutText h3 {
+    margin-top: 50px;
+  }
 
-/* Styling the aside section containing the buttons for the homepage, log in, etc. */
+  /* Styling the aside section containing the buttons for the homepage, log in, etc. */
   aside {
     display: flex;
     flex-direction: column;
@@ -87,12 +105,12 @@
   }
 
   #statusUser {
-        background-color: var(--orange-buttons);
-        color: var(--blue-text);
-        border-radius: 20px;
-        padding: 5px;
-        margin-left: 1rem;
-    }
+    background-color: var(--orange-buttons);
+    color: var(--blue-text);
+    border-radius: 20px;
+    padding: 5px;
+    margin-left: 1rem;
+  }
 
   aside a {
     text-decoration: none;
@@ -136,7 +154,6 @@
 
   /*  Media queries tablet version  */
   @media (min-width: 426px) and (max-width: 768px) {
-
     .homeButton {
       max-width: 300px;
     }
@@ -144,7 +161,6 @@
 
   /*  Media queries desktop version  */
   @media (min-width: 769px) {
-
     aside div {
       margin: 1.9rem;
     }
@@ -154,17 +170,17 @@
     }
 
     #statusUser {
-        background-color: var(--orange-buttons);
-        color: var(--blue-text);
-        border-radius: 20px;
-        padding: 5px;
-        margin-left: none;
+      background-color: var(--orange-buttons);
+      color: var(--blue-text);
+      border-radius: 20px;
+      padding: 5px;
+      margin-left: none;
     }
 
     /* Styling the homepage button */
     .homeButton {
-        max-width: 45%;
-}
+      max-width: 45%;
+    }
 
     /* Styling the remaining navigation buttons */
 
