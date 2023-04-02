@@ -44,6 +44,26 @@
   //Declaring a variable to target the textarea value, in case the user provides an empty input
   let textArea;
 
+  //Creating a variable for theme
+
+  let theme = null;
+
+  //Creating variables for score recuperation and submitting it to the data base
+  
+  let scoreToSubmit;
+
+  //Creating a variable to target the area where the username is displayed
+  let usernameArea;
+
+  //Creating a variable to target the area where the score is displayed
+  let scoreArea;
+
+  let submittedScore = [];
+
+  //Creating a variable to target the button to submit the score so that it can be visible only if the user has submitted the correct answer
+
+  let submitScoreButton;
+
   //Async function allowing us to fetch a random riddle.
 
   const getRiddles = async () => {
@@ -127,6 +147,8 @@
         message.style.width = "30%";
         message.style.margin = "auto auto";
         divMessage.appendChild(message);
+        //Displaying the button to submit the score, only if the user is connected and has provided the correct answer
+        submitScoreButton.style.display = "block";
        
       //If user does not submit the correct answer, game over message is displayed
       } else {
@@ -174,6 +196,57 @@
     function refreshPage(){
       window.location.reload();
   } 
+
+  //Creating a function to submit score data when user clicks on the corresponding button
+  const handleSubmitScore = async (event) => {
+    event.preventDefault();
+
+    scoreToSubmit = scoreArea.textContent;
+
+    const scoreData = await submitScore();
+    console.log(scoreData);
+    
+    scoreData.push(submittedScore);
+        //Refreshing list so that Svelte can be aware of new comment addition
+        submittedScore = [...submittedScore];
+    return submittedScore;
+  };
+
+  //Creating a function to submit score when user is connected and has responded correctly to a riddle
+
+    async function submitScore() {
+    try {
+      let endpoint = import.meta.env.VITE_URL_DIRECTUS + "items/Games"; 
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          "score": scoreToSubmit,
+          "theme": theme,
+          "player": {
+          "first_name": username}
+        })
+      });
+
+      //If no error, user is alerted that account has been created and redirected to login page
+      if (response.status === 204 || response.status === 200) {
+      alert("Votre score a été ajouté");
+      return [];
+    } else {
+      const data = await response.json();
+      alert("Erreur, veuillez réessayer.");
+      console.error(data.errors);
+      return [];
+    }
+  } catch (error) {
+    alert("Erreur, veuillez réessayer.");
+    console.error(error);
+    return [];
+  }
+}
 </script>
 
 <body>
@@ -213,12 +286,12 @@
                     </div>
                 </div>
               </form>
-              <div class="score" aria-label="Affichage du score">     
-                  Score : {result}
+              <div class="score" aria-label="Affichage du score">
+                Score :<span bind:this={scoreArea}>{result}</span>
               </div>
               <div class="save-score">
                 {#if localStorage.getItem('token')}
-                <button> Sauvegarder le score</button>
+                <button bind:this={submitScoreButton} on:click = {handleSubmitScore}> Sauvegarder le score</button>
                 {/if}
               </div>
         </section>
@@ -367,6 +440,8 @@ div.score {
   border-radius: 0.4rem;
   font-size: 70%;   
   text-align: center;
+  display: none;
+  margin-left: 38%;
 }
 
 .save-score button:hover {

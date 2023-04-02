@@ -1,10 +1,16 @@
 POST https://rq0q3cq4.directus.app/items/Riddle HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNlNjY5N2FiLTljMTAtNDc0OS04ZTIzLTk3ZWZjNzJjMzkxZiIsInJvbGUiOiI0MDhjZmZlMy00OWQyLTRkNDEtOTZkOS0xMjg2ZjAwOGViNGIiLCJhcHBfYWNjZXNzIjp0cnVlLCJhZG1pbl9hY2Nlc3MiOnRydWUsImlhdCI6MTY4MDAxMDg4NSwiZXhwIjoxNjgwMDExNzg1LCJpc3MiOiJkaXJlY3R1cyJ9.RP5-0qjIGhk7MCSPNAWQKij3Dnfxp2adpbwNk73iAaE            
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNlNjY5N2FiLTljMTAtNDc0OS04ZTIzLTk3ZWZjNzJjMzkxZiIsInJvbGUiOiI0MDhjZmZlMy00OWQyLTRkNDEtOTZkOS0xMjg2ZjAwOGViNGIiLCJhcHBfYWNjZXNzIjp0cnVlLCJhZG1pbl9hY2Nlc3MiOnRydWUsImlhdCI6MTY4MDQ0NjUxNCwiZXhwIjoxNjgwNDQ3NDE0LCJpc3MiOiJkaXJlY3R1cyJ9.ZVXVwT2Ra7uiCYSzjxLROx1mH4Oy6me53gHx8azxTEY
 
 {
-    "name": "Whatever",
-    "answer": "whatever1",
-    "theme_id": 1
-    
+    "name": "pokemon",
+    "answer": "pokemon1",
+    "theme_id": 2,
+    "clues":[ {
+        "name": "pokemon2"
+    }, {
+        "name": "pokemon3"
+    }
+
+ ]
 }

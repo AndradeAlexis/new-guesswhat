@@ -13,8 +13,15 @@
     let name;
     let answer;
     let theme_id;
+    let hint;
+    let hint2;
+    let hint3;
+    let hint4;
+    let hint5;
+    let hint6;
 
 
+    //Creating a function to add a Riddle in the Database when an administrator is connected
     const addingRiddle = async () => {
       const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle", {
             method: "POST",
@@ -25,22 +32,45 @@
             body: JSON.stringify({
                 "name": name,
                 "answer": answer,
-                "theme_id": theme_id   
+                "theme_id": theme_id,
+                "clues":[
+                  {
+                    "name": hint
+                  }, {
+                    "name": hint2
+                  }, {
+                    "name": hint3
+                  }, {
+                    "name": hint4
+                  }, {
+                    "name": hint5
+                  }, {
+                    "name": hint6
+                  }
+
+                ]  
             })
         })
 
         //Extracting the token and returning it
-
         const json = await response.json();
-        console.log (json.data);
+        return json.data;
     }
 
+    //Creating function for when submitting the form
     const handleSubmitRiddle = async (event) => {
       event.preventDefault();
       const newRiddle = await addingRiddle();
       name = "";
       answer = "";
       theme_id = "";
+      hint = "";
+      hint2 = "";
+      hint3 = "";
+      hint4 = "";
+      hint5 = "";
+      hint6 = "";
+      return newRiddle;
     }
 
 </script>
@@ -75,7 +105,8 @@
                     </div>
                     <div>
                     <input
-                        type="text"
+                        type="text" 
+                        required
                         id="riddle"
                         name="riddle_name"
                         placeholder="Énigme"
@@ -83,6 +114,7 @@
                     />
                     <input
                         type="text"
+                        required
                         id="answer"
                         name="answer_name"
                         placeholder="Réponse"
@@ -90,39 +122,51 @@
                     />
                     <input
                         type="text"
+                        required
                         id="clue_1"
                         name="clue_name"
                         placeholder="Indice 1"
+                        bind:value={hint}
                     />
                     <input
                         type="text"
+                        required
                         id="clue_2"
                         name="clue_name"
                         placeholder="Indice 2"
+                        bind:value={hint2}
                     />
                     <input
                         type="text"
+                        required
                         id="clue_3"
                         name="clue_name"
                         placeholder="Indice 3"
+                        bind:value={hint3}
                     />
                     <input
                         type="text"
+                        required
                         id="clue_4"
                         name="clue_name"
                         placeholder="Indice 4"
+                        bind:value={hint4}
                     />
                     <input
                         type="text"
+                        required
                         id="clue_5"
                         name="clue_name"
                         placeholder="Indice 5"
+                        bind:value={hint5}
                     />
                     <input
                         type="text"
+                        required
                         id="clue_6"
                         name="clue_name"
                         placeholder="Indice 6"
+                        bind:value={hint6}
                     />
                     <button id="addRiddleFormButton">Valider</button>
                 </div>

@@ -1,8 +1,9 @@
 POST https://rq0q3cq4.directus.app/items/Clue HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNlNjY5N2FiLTljMTAtNDc0OS04ZTIzLTk3ZWZjNzJjMzkxZiIsInJvbGUiOiI0MDhjZmZlMy00OWQyLTRkNDEtOTZkOS0xMjg2ZjAwOGViNGIiLCJhcHBfYWNjZXNzIjp0cnVlLCJhZG1pbl9hY2Nlc3MiOnRydWUsImlhdCI6MTY3ODI5NDkyOSwiZXhwIjoxNjc4Mjk1ODI5LCJpc3MiOiJkaXJlY3R1cyJ9.FSXlNhFxDHk3dVRJP36DrYDo477eE0_aWva9XR3TspI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNlNjY5N2FiLTljMTAtNDc0OS04ZTIzLTk3ZWZjNzJjMzkxZiIsInJvbGUiOiI0MDhjZmZlMy00OWQyLTRkNDEtOTZkOS0xMjg2ZjAwOGViNGIiLCJhcHBfYWNjZXNzIjp0cnVlLCJhZG1pbl9hY2Nlc3MiOnRydWUsImlhdCI6MTY4MDQzOTc5MywiZXhwIjoxNjgwNDQwNjkzLCJpc3MiOiJkaXJlY3R1cyJ9.k_s6k38zuVX6ZEEd3t5NBQEnyGKNaUp--oN4JoUAJmQ            
 
 {
-    "name": "Yo",
-    "riddle_id": 1
+{
+    "name": "nnnnn",
+    "riddle_id": 99
 }
