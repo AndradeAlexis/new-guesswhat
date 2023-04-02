@@ -9,6 +9,9 @@
   import Game_over from "../../assets/game_over.png";
   import Background_game from "../../assets/Background_game.png"
 
+  //Creating a variable username to recover its value from local storage and display it when user is connected.
+  let username = localStorage.getItem("username");
+
   //Creating a variable allowing us to get a random number from 1 to 22.
 
   let id = [Math.floor(Math.random() * 22)];
@@ -226,7 +229,7 @@
       <aside aria-label="menu de navigation">
         <div>
           {#if localStorage.getItem('token')} 
-          <p>Username</p>
+          <p>{username}</p>
           <a href="/random_theme_riddle" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
         </div>

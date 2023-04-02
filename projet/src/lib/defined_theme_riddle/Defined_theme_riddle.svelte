@@ -13,7 +13,8 @@
   import Choix_theme from "../../assets/Choix_theme.png"
   import Background_game from "../../assets/Background_game.png"
 
-
+  //Creating a variable username to recover its value from local storage and display it when user is connected.
+  let username = localStorage.getItem("username");
   //Creating an empty array to recover all riddles
   let riddles = [];
  
@@ -205,7 +206,7 @@
     <aside aria-label="menu de navigation">
         <div>
           {#if localStorage.getItem('token')} 
-          <p>Username</p>
+          <p>{username}</p>
           <a href="/defined_theme_riddle" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
         </div>

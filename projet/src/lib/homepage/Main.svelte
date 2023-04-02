@@ -5,6 +5,9 @@
     import Mascotte from "../../assets/Mascotte.png";
     import Mascotte_Themes from "../../assets/Mascotte_Themes.png";
     import Accueil from "../../assets/Accueil.png";
+
+    //Creating a variable username to recover its value from local storage and display it when user is connected.
+    let username = localStorage.getItem("username");
 </script>
 
 <section class="leftBlock" aria-label="Page d'accueil, regles du jeu">
@@ -38,7 +41,7 @@
 <aside aria-label="menu de navigation">
     <div>
         {#if localStorage.getItem('token')} 
-        <p>Username</p>
+        <p>{username}</p>
         <a href="/" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
         {/if}
     </div>

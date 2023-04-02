@@ -6,6 +6,9 @@
   import {refreshPage} from "../functions/Functions.svelte";
   import Accueil from "../../assets/Accueil.png";
   import Mascotte_404 from "../../assets/Mascotte_404.png";
+
+  //Creating a variable username to recover its value from local storage and display it when user is connected.
+  let username = localStorage.getItem("username");
 </script>
 
 <body>
@@ -24,7 +27,7 @@
       <aside aria-label="menu de navigation">
         <div>
           {#if localStorage.getItem('token')} 
-          <p>Username</p>
+          <p>{username}</p>
           <a href="/" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
         </div>

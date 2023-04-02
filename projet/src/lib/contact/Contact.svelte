@@ -8,6 +8,9 @@
   import At_symbol from "../../assets/At_symbol.png";
   import Twitter from "../../assets/twitter.png";
   import Accueil from "../../assets/Accueil.png"
+
+  //Creating a variable username to recover its value from local storage and display it when user is connected.
+  let username = localStorage.getItem("username");
 </script>
 
 <body>
@@ -50,7 +53,7 @@
         <div>
     
           {#if localStorage.getItem('token')} 
-          <p>Username</p>
+          <p>{username}</p>
           <a href="/contact" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
           

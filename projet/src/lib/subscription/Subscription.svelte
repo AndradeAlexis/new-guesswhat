@@ -7,6 +7,9 @@
   import {refreshPage} from "../functions/Functions.svelte";
   import Accueil from "../../assets/Accueil.png"
 
+  //Creating a variable username to recover its value from local storage and display it when user is connected.
+  let username = localStorage.getItem("username");
+
   //Creating the variables for the subscription form
   let first_name;
   let email;
@@ -146,7 +149,7 @@
         <div>
          
           {#if localStorage.getItem('token')} 
-          <p>Username</p>
+          <p>{username}</p>
           <a href="/subscription" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
         </div>

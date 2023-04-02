@@ -4,9 +4,9 @@
   import Footer from "../homepage/Footer.svelte";
   import { logout } from "../connection/Connection.svelte";
   import { refreshPage } from "../functions/Functions.svelte";
-  import Functions, { getUsername } from "../functions/Functions.svelte";
   import Accueil from "../../assets/Accueil.png";
 
+  //Creating a variable username to recover its value from local storage and display it when user is connected.
   let username = localStorage.getItem("username");
 </script>
 

@@ -6,9 +6,14 @@
     import {refreshPage} from "../functions/Functions.svelte";
     import Accueil from "../../assets/Accueil.png"
 
+    //Creating a variable username to recover its value from local storage and display it when user is connected.
+    let username = localStorage.getItem("username");
+
+    //Creating variables for POST request when adding a riddle to the database
     let name;
     let answer;
     let theme_id;
+
 
     const addingRiddle = async () => {
       const response = await fetch(import.meta.env.VITE_URL_DIRECTUS + "items/Riddle", {
@@ -128,7 +133,7 @@
     <aside aria-label="menu de navigation">
         <div>
           {#if localStorage.getItem('token')} 
-          <p>Username</p>
+          <p>{username}</p>
           <a href="/add_a_riddle" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
           {/if}
         </div>

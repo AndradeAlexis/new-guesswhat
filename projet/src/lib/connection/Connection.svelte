@@ -67,6 +67,7 @@
       const json = await response.json();
       users = json.data;
       username = users[userId].first_name;
+      //Storing username in local storage so that we can recover it and use it on the other components
       localStorage.setItem("username", username);
       return username;
     };
@@ -88,7 +89,9 @@
   //Creating a function allowing to delete the token when user clicks on disconnet button
 
   export const logout = () => {
+    //Removing token and username when user clicks on disconnet button
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
     alert("Vous vous êtes bien déconnecté");
   };
 </script>
