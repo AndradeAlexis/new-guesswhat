@@ -8,7 +8,6 @@
   import Accueil from "../../assets/Accueil.png";
 
   let username = localStorage.getItem("username");
-  console.log(username);
 </script>
 
 <body>
