@@ -1,0 +1,15 @@
+POST https://rq0q3cq4.directus.app/items/Games HTTP/1.1
+content-type: application/json
+
+{
+    
+    
+   
+      "score": 999,
+      "theme": 1,
+      "player": {
+        "first_name": "Pikachu"
+
+}
+
+}
