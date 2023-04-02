@@ -54,6 +54,7 @@
     <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>
     {/if}
     <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
+    <a class="contact" href="/add_a_riddle" use:link>Formulaire</a>
     <a class="contact" href="/contact" use:link>Contact</a>
     <a class="contact" href="/about_us" use:link>À propos</a>
 </aside>

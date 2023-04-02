@@ -21,6 +21,8 @@
   export let users = [];
   export let userId = 0;
   export let username;
+  
+  let role;
 
   //Creating function to recuperate the token to use it for the log in action
 
@@ -94,6 +96,10 @@
     localStorage.removeItem("username");
     alert("Vous vous êtes bien déconnecté");
   };
+
+
+
+  
 </script>
 
 <body>
@@ -156,11 +162,10 @@
             ></button
           >
         {/if}
-        <button
-          ><a href="/scores" use:link class="aside-buttons">Scores</a></button
-        >
+        <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
+        
       </aside>
       <Footer />
     </main>
