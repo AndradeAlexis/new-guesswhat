@@ -21,7 +21,7 @@
   export let users = [];
   export let userId = 0;
   export let username;
-  
+
   let role;
 
   //Creating function to recuperate the token to use it for the log in action
@@ -60,17 +60,24 @@
     const getUsername = async () => {
       //Recovering the email value the user submits when connecting
       userAddressEmail = emailInput.value;
-      //Filtering data based on email address, so when the user inputs his email, we recover the username associated with the submitted email address.
+      //Filtering data based on email address, so when the user inputs his email, we recover the username and role associated with the submitted email address.
       const response = await fetch(
         import.meta.env.VITE_URL_DIRECTUS +
-          "users?fields=first_name,email&filter[email]=" +
+          "users?fields=first_name,email,role&filter[email]=" +
           userAddressEmail
       );
       const json = await response.json();
       users = json.data;
       username = users[userId].first_name;
-      //Storing username in local storage so that we can recover it and use it on the other components
+      role = users[userId].role;
+      //Storing username and role in local storage so that we can recover it and use it on the other components
       localStorage.setItem("username", username);
+      refreshPage();
+      //Creating a condition so that if role equals administrator, we store the role in local storage to use it in other components.
+      if (users[userId].role === "408cffe3-49d2-4d41-96d9-1286f008eb4b") {
+        localStorage.setItem("role", role);
+        refreshPage();
+      }
       return username;
     };
 
@@ -94,12 +101,9 @@
     //Removing token and username when user clicks on disconnet button
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("role");
     alert("Vous vous êtes bien déconnecté");
   };
-
-
-
-  
 </script>
 
 <body>
@@ -162,10 +166,11 @@
             ></button
           >
         {/if}
-        <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
+        <button
+          ><a href="/scores" use:link class="aside-buttons">Scores</a></button
+        >
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
-        
       </aside>
       <Footer />
     </main>

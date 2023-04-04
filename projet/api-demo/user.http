@@ -1,2 +1,2 @@
-GET https://rq0q3cq4.directus.app/users?fields=first_name,email&filter[email]=vicky.georgiou2012@gmail.com HTTP/1.1
+GET https://rq0q3cq4.directus.app/users?fields=first_name,email,role&filter[email]=vicky.georgiou2012@gmail.com HTTP/1.1
 
