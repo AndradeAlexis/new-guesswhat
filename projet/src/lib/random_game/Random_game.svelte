@@ -52,9 +52,6 @@
 
   let scoreToSubmit;
 
-  //Creating a variable to target the area where the username is displayed
-  let usernameArea;
-
   //Creating a variable to target the area where the score is displayed
   let scoreArea;
 
@@ -398,7 +395,6 @@
   }
 
   #random-theme {
-    /* background-image: url(Background_game); */
     background-size: 40%;
     background-repeat: repeat;
     background-position: center;
@@ -644,7 +640,7 @@
 
     nav img {
       margin-top: -0.3rem;
-      width: 50%;
+      width: 20%;
       min-width: 50px;
     }
 
