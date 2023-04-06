@@ -244,7 +244,7 @@
         }),
       });
 
-      //If no error, user is alerted that account has been created and redirected to login page
+      //If no error, user is alerted that their score has been added in the database
       if (response.status === 204 || response.status === 200) {
         alert("Votre score a été ajouté");
         return [];

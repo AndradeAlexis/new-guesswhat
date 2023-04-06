@@ -15,6 +15,9 @@
   let email;
   let password;
   let role = "1a7bf53e-50c7-4125-ba73-7d3a4bc726df";
+  //Creating a pattern for user password (min: 8 letters, max: 20 letters, at least 1 capital letter, 1 number and 1 special character)
+  const pattern =
+    "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}";
 
   //Creating a variable to target the text area for username
   let textArea;
@@ -89,13 +92,6 @@
     //Creating a variable to target the password input
     let userPassword = userPasswordArea.value;
 
-    //Creating a condition to alert the user if the password exceeds/is less than required length
-    if (userPassword.length <= 20 && userPassword.length >= 8) {
-    } else {
-      alert("Le mot de passe doit comporter entre 8 et 20 caractères");
-      return false;
-    }
-
     const user = await createUser();
     //Emptying the text area
     first_name = "";
@@ -148,6 +144,8 @@
                 id="password"
                 name="user_password"
                 placeholder="Mot de passe"
+                {pattern}
+                title="Le mot de passe doit contenir au moins un chiffre, une lettre majuscule et 8 à 20 caractères"
                 bind:this={userPasswordArea}
                 bind:value={password}
               />
