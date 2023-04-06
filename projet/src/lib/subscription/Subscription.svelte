@@ -3,9 +3,9 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import { push } from "svelte-spa-router";
-  import {logout} from "../connection/Connection.svelte";
-  import {refreshPage} from "../functions/Functions.svelte";
-  import Accueil from "../../assets/Accueil.png"
+  import { logout } from "../connection/Connection.svelte";
+  import { refreshPage } from "../functions/Functions.svelte";
+  import Accueil from "../../assets/Accueil.png";
 
   //Creating a variable username to recover its value from local storage and display it when user is connected.
   let username = localStorage.getItem("username");
@@ -28,7 +28,7 @@
   //Creating function with POST request allowing the user to submit his information for user account creation
   async function createUser() {
     try {
-      let endpoint = import.meta.env.VITE_URL_DIRECTUS + "users"; 
+      let endpoint = import.meta.env.VITE_URL_DIRECTUS + "users";
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -36,62 +36,72 @@
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          "first_name": first_name,
-          "email": email,
-          "password": password,
-          "role": role
-        })
+          first_name: first_name,
+          email: email,
+          password: password,
+          role: role,
+        }),
       });
 
       //If no error, user is alerted that account has been created and redirected to login page
       if (response.status === 204 || response.status === 200) {
-      alert("Votre compte a été créé.");
-      push("/connection");
-      return [];
-    } else {
-      const data = await response.json();
+        alert("Votre compte a été créé.");
+        push("/connection");
+        return [];
+      } else {
+        const data = await response.json();
+        alert("Erreur, veuillez réessayer.");
+        console.error(data.errors);
+        return [];
+      }
+    } catch (error) {
       alert("Erreur, veuillez réessayer.");
-      console.error(data.errors);
+      console.error(error);
       return [];
     }
-  } catch (error) {
-    alert("Erreur, veuillez réessayer.");
-    console.error(error);
-    return [];
   }
-}
+
+  //Creating a function to ensure that user does not put special characters in the username field
+  function isNotValidUsername(username) {
+    const specialCharacters = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    const containsSpecialCharacter = specialCharacters.test(username);
+    return containsSpecialCharacter;
+  }
 
   //Function allowing to create a user on submit, emptying form after submission
-    const handleSubmitUser = async (event) => {
+  const handleSubmitUser = async (event) => {
     event.preventDefault();
 
-    //Creating a condition to alert the user if the username exceeds/is less than required length
-
+    //Creating a variable to target the username input
     let userName = textArea.value;
 
-    if (userName.length <= 20 && userName.length >= 5) {} else {
-    alert("Le nom d'utilisateur doit comporter entre 5 et 20 caractères")
-    return false;
-  }
+    //Writing a condition to alert the user about acceptable username length and that special characters are not accepted.
+    if (userName.length > 20 || userName.length < 5) {
+      alert("Votre nom d'utilisateur doit comporter entre 5 et 20 caractères");
+      return false;
+    } else if (isNotValidUsername(userName)) {
+      alert(
+        "Votre nom d'utilisateur ne doit pas contenir de caractères spéciaux"
+      );
+      return false;
+    }
 
-    //Creating a condition to alert the user if he's trying to create a duplicate account
-    let userEmail = userEmailArea.value;
-
-    //Creating a condition to alert the user if username exceeds/is less than required length
+    //Creating a variable to target the password input
     let userPassword = userPasswordArea.value;
-    
+
     //Creating a condition to alert the user if the password exceeds/is less than required length
-    if (userPassword.length <= 20 && userPassword.length >= 8) {} else {
-    alert("Le mot de passe doit comporter entre 8 et 20 caractères")
-    return false;
-  }
-    
+    if (userPassword.length <= 20 && userPassword.length >= 8) {
+    } else {
+      alert("Le mot de passe doit comporter entre 8 et 20 caractères");
+      return false;
+    }
+
     const user = await createUser();
     //Emptying the text area
-     first_name = "";
-     email = "";
-     password = "";
-     return user;
+    first_name = "";
+    email = "";
+    password = "";
+    return user;
   };
 </script>
 
@@ -112,33 +122,35 @@
               <label for="password">Mot de passe</label>
             </div>
             <div class="columnSubscriptionForm">
-              
               <input
-                type="first_name" 
+                type="first_name"
                 required
                 id="first_name"
                 name="first_name"
                 placeholder="Nom d'utilisateur"
                 bind:this={textArea}
-                bind:value={first_name}/>
+                bind:value={first_name}
+              />
 
               <input
-                type="email" 
+                type="email"
                 required
                 id="mail"
                 name="user_mail"
                 placeholder="Email"
                 bind:this={userEmailArea}
-                bind:value={email}/>
-              
-                <input
-                type="password" 
+                bind:value={email}
+              />
+
+              <input
+                type="password"
                 required
                 id="password"
                 name="user_password"
                 placeholder="Mot de passe"
                 bind:this={userPasswordArea}
-                bind:value={password}/>
+                bind:value={password}
+              />
 
               <button id="subscriptionFormButton">Valider</button>
             </div>
@@ -147,19 +159,29 @@
       </section>
       <aside aria-label="menu de navigation">
         <div>
-         
-          {#if localStorage.getItem('token')} 
-          <p>{username}</p>
-          <a href="/subscription" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
+          {#if localStorage.getItem("token")}
+            <p>{username}</p>
+            <a
+              href="/subscription"
+              use:link
+              on:click={logout}
+              on:click={refreshPage}
+            >
+              <span id="statusUser">Déconnecter</span></a
+            >
           {/if}
         </div>
-        <a href="/" use:link><img
-            class="homeButton"
-            src={Accueil}
-            alt="Retour accueil"/></a>
-        {#if !localStorage.getItem('token')} 
-        <button><a href="/connection" use:link class="aside-buttons">Connexion</a></button>       
-        <button><a href="/scores" use:link class="aside-buttons">Scores</a></button>
+        <a href="/" use:link
+          ><img class="homeButton" src={Accueil} alt="Retour accueil" /></a
+        >
+        {#if !localStorage.getItem("token")}
+          <button
+            ><a href="/connection" use:link class="aside-buttons">Connexion</a
+            ></button
+          >
+          <button
+            ><a href="/scores" use:link class="aside-buttons">Scores</a></button
+          >
         {/if}
         <a class="contact" href="/contact" use:link>Contact</a>
         <a class="contact" href="/about_us" use:link>À propos</a>
@@ -220,8 +242,8 @@
 
   #subscriptionFormButton:hover {
     transform: scale(1.1);
-        border: 0.7rem var(--bg-buttons)solid;
-    }
+    border: 0.7rem var(--bg-buttons) solid;
+  }
 
   aside {
     display: flex;
