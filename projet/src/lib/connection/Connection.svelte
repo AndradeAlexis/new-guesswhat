@@ -34,6 +34,11 @@
 
     //Saving the token in the local storage and giving it a key and a value
     localStorage.setItem("token", token);
+    if (!localStorage.getItem("token")) {
+      alert("Essayez encore");
+    } else {
+      alert("Vous êtes connectés");
+    }
 
     push("/");
   };
@@ -84,15 +89,18 @@
     getUsername();
 
     const json = await response.json();
+    console.log(json);
     email = "";
     password = "";
-    if (response.status === 200) {
-      alert("Vous êtes connectés");
-      push("/");
-      return json.data.access_token;
-    } else {
-      alert("Essayez encore");
-    }
+
+    // if (response.status === 200) {
+    //   alert("Vous êtes connectés");
+    //   push("/");
+    return json.data.access_token;
+    // } else {
+    //   alert("Essayez encore");
+    //   // return false;
+    // }
   };
 
   //Creating a function allowing to delete the token when user clicks on disconnet button
@@ -123,6 +131,7 @@
             </div>
             <div class="columnLoginForm">
               <input
+                required
                 type="email"
                 id="mail"
                 name="user_mail"
@@ -131,6 +140,7 @@
                 bind:this={emailInput}
               />
               <input
+                required
                 type="password"
                 id="password"
                 name="user_password"
