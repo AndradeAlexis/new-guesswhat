@@ -145,7 +145,7 @@
                 name="user_password"
                 placeholder="Mot de passe"
                 {pattern}
-                title="Le mot de passe doit contenir au moins un chiffre, une lettre majuscule et 8 à 20 caractères"
+                title="Le mot de passe doit contenir au moins un chiffre, un symbole, une lettre majuscule et 8 à 20 caractères"
                 bind:this={userPasswordArea}
                 bind:value={password}
               />

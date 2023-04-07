@@ -3,7 +3,7 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import { logout } from "../connection/Connection.svelte";
-  import { isNotValidANswer } from "../functions/Functions.svelte";
+  import { isNotValidAnswer } from "../functions/Functions.svelte";
   import Mascotte_Refresh from "../../assets/Mascotte_Refresh.png";
   import Accueil from "../../assets/Accueil.png";
   import Victory from "../../assets/victory.png";
@@ -135,7 +135,7 @@
         "Veuillez écrire votre réponse avant de cliquer sur le bouton valider !"
       );
       return false;
-    } else if (isNotValidANswer(userInput)) {
+    } else if (isNotValidAnswer(userInput)) {
       alert("Votre réponse ne doit pas contenir de caractères spéciaux");
       return false;
     }

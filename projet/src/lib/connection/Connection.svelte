@@ -21,6 +21,7 @@
   export let users = [];
   export let userId = 0;
   export let username;
+  let usernameToDisplay = localStorage.getItem("username");
 
   let role;
 
@@ -34,7 +35,7 @@
 
     //Saving the token in the local storage and giving it a key and a value
     localStorage.setItem("token", token);
-    if (!localStorage.getItem("token")) {
+    if (token === null) {
       alert("Essayez encore");
     } else {
       alert("Vous êtes connectés");
@@ -81,7 +82,7 @@
       //Creating a condition so that if role equals administrator, we store the role in local storage to use it in other components.
       if (users[userId].role === "408cffe3-49d2-4d41-96d9-1286f008eb4b") {
         localStorage.setItem("role", role);
-        refreshPage();
+        // refreshPage();
       }
       return username;
     };
@@ -93,14 +94,7 @@
     email = "";
     password = "";
 
-    // if (response.status === 200) {
-    //   alert("Vous êtes connectés");
-    //   push("/");
     return json.data.access_token;
-    // } else {
-    //   alert("Essayez encore");
-    //   // return false;
-    // }
   };
 
   //Creating a function allowing to delete the token when user clicks on disconnet button
@@ -155,7 +149,7 @@
       <aside aria-label="menu de navigation">
         <div bind:this={divUserName}>
           {#if localStorage.getItem("token")}
-            <p>{username}</p>
+            <p>{usernameToDisplay}</p>
             <a
               href="/connection"
               use:link

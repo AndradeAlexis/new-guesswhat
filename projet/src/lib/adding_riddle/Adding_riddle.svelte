@@ -5,7 +5,7 @@
   import { push } from "svelte-spa-router";
   import { logout } from "../connection/Connection.svelte";
   import { refreshPage } from "../functions/Functions.svelte";
-  import { isNotValidANswer } from "../functions/Functions.svelte";
+  import { isNotValidAnswer } from "../functions/Functions.svelte";
   import Accueil from "../../assets/Accueil.png";
 
   //Creating a variable username to recover its value from local storage and display it when user is connected.
@@ -98,28 +98,28 @@
     let hintInput6 = hintInput6Area.value;
 
     //Creating conditions to alert the user if they are trying to submit data with special characters in them.
-    if (isNotValidANswer(riddle)) {
+    if (isNotValidAnswer(riddle)) {
       alert("Votre énigme ne doit pas contenir de caractères spéciaux");
       return false;
-    } else if (isNotValidANswer(riddleResponse)) {
+    } else if (isNotValidAnswer(riddleResponse)) {
       alert("Votre réponse ne doit pas contenir de caractères spéciaux");
       return false;
-    } else if (isNotValidANswer(hintInput)) {
+    } else if (isNotValidAnswer(hintInput)) {
       alert("Les indices ne doivent pas contenir de caractères spéciaux");
       return false;
-    } else if (isNotValidANswer(hintInput2)) {
+    } else if (isNotValidAnswer(hintInput2)) {
       alert("Les indices ne doivent pas contenir de caractères spéciaux");
       return false;
-    } else if (isNotValidANswer(hintInput3)) {
+    } else if (isNotValidAnswer(hintInput3)) {
       alert("Les indices ne doivent pas contenir de caractères spéciaux");
       return false;
-    } else if (isNotValidANswer(hintInput4)) {
+    } else if (isNotValidAnswer(hintInput4)) {
       alert("Les indices ne doivent pas contenir de caractères spéciaux");
       return false;
-    } else if (isNotValidANswer(hintInput5)) {
+    } else if (isNotValidAnswer(hintInput5)) {
       alert("Les indices ne doivent pas contenir de caractères spéciaux");
       return false;
-    } else if (isNotValidANswer(hintInput6)) {
+    } else if (isNotValidAnswer(hintInput6)) {
       alert("Les indices ne doivent pas contenir de caractères spéciaux");
       return false;
     }
