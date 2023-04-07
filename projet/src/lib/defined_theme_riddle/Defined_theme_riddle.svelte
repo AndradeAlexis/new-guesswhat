@@ -5,6 +5,7 @@
   import Footer from "../homepage/Footer.svelte";
   import { logout } from "../connection/Connection.svelte";
   import { push } from "svelte-spa-router";
+  import { isNotValidANswer } from "../functions/Functions.svelte";
   import Victory from "../../assets/victory.png";
   import Game_over from "../../assets/game_over.png";
   import Mascotte_Theme_Animaux from "../../assets/Mascotte_Theme_Animaux.png";
@@ -110,12 +111,16 @@
   }
 
   //Adding a function alerting the user if he clicks on validate button before writing his response.
+  //Adding condition to alert user that special characters are not accepted.
   function validateForm() {
     var userInput = textArea.value;
     if (userInput == "") {
       alert(
         "Veuillez écrire votre réponse avant de cliquer sur le bouton valider !"
       );
+      return false;
+    } else if (isNotValidANswer(userInput)) {
+      alert("Votre réponse ne doit pas contenir de caractères spéciaux");
       return false;
     }
   }
