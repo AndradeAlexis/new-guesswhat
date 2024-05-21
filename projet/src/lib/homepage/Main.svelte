@@ -1,4 +1,4 @@
-<script>
+<script >
     import { link } from "svelte-spa-router";
     import { logout } from "../connection/Connection.svelte";
     import { refreshPage } from "../functions/Functions.svelte";
@@ -7,7 +7,12 @@
     import Accueil from "../../assets/Accueil.png";
 
     //Creating a variable username to recover its value from local storage and display it when user is connected.
-    let username = localStorage.getItem("username");
+    let loggedInUsername = localStorage.getItem("name");
+    function isAdministrator() {
+  const userRole = localStorage.getItem("role"); // Remplacez "role" par le nom correct de la clé de stockage.
+  return userRole === "administrateur";
+}
+
 </script>
 
 <section class="leftBlock" aria-label="Page d'accueil, regles du jeu">
@@ -72,8 +77,8 @@
 <aside aria-label="menu de navigation">
     <div>
         {#if localStorage.getItem("token")}
-            <p>{username}</p>
-            <a href="/" use:link on:click={logout} on:click={refreshPage}>
+            <p>{loggedInUsername}</p>
+            <a href="/" use:link on:click={() => {  logout(); }}>
                 <span id="statusUser">Déconnecter</span></a
             >
         {/if}
@@ -81,13 +86,11 @@
     <a href="/" use:link
         ><img class="homeButton" src={Accueil} alt="Retour accueil" /></a
     >
-    {#if localStorage.getItem("role")}
-        <button id="riddle_form"
-            ><a href="/add_a_riddle" use:link class="aside-buttons"
-                >Formulaire Devinette</a
-            ></button
-        >
-    {/if}
+    {#if isAdministrator()}
+  <button id="riddle_form">
+    <a href="/add_a_riddle" use:link class="aside-buttons">Formulaire Devinette</a>
+  </button>
+{/if}       
     {#if !localStorage.getItem("token")}
         <button
             ><a href="/subscription" use:link class="aside-buttons"

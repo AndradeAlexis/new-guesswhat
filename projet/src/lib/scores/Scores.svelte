@@ -5,66 +5,69 @@
   import { logout } from "../connection/Connection.svelte";
   import { refreshPage } from "../functions/Functions.svelte";
   import Accueil from "../../assets/Accueil.png";
+  
+   //Import the "getScoresByTheme" function from "db.js" file.
+  import { getScoresByTheme } from '../../db';
 
-  //Creating a variable username to recover its value from local storage and display it when user is connected.
-  let username = localStorage.getItem("username");
+ //Import the "getAllGames" function from "db.js" file.
+  import { getAllGames} from '../../db';
 
-  //Creating an empty array to recover score-related data from the data base
-  let theme = [];
-  //Creating a variable to target <table> to be displayed when a user chooses to filter scores by theme
-  let table;
-  //Creating a variable to target the <table> containing random scores (no theme chosen by user) by default
-  let tableRandom;
-
-  //Creating a function to recover the score-related data from the database
-  const getScores = async () => {
-    const response = await fetch(
-      import.meta.env.VITE_URL_DIRECTUS +
-        "items/Games?fields=*,player.first_name&sort=-score&limit=10"
-    );
-    const json = await response.json();
-    return json.data;
-  };
-
-  const scoreThemeAnimals = async () => {
-    const response = await fetch(
-      import.meta.env.VITE_URL_DIRECTUS +
-        "items/Games?fields=*,player.first_name&sort=-score&limit=10&filter[theme]=1"
-    );
-    const json = await response.json();
-    theme = json.data;
-    //Removing class selectedTheme so that table with filtered scores can be visible to user when selecting a theme
-    table.classList.remove("selectedTheme");
-    tableRandom.style.display = "none";
-    return theme;
-  };
-
-  const scoreThemeCinema = async () => {
-    const response = await fetch(
-      import.meta.env.VITE_URL_DIRECTUS +
-        "items/Games?fields=*,player.first_name&sort=-score&limit=10&filter[theme]=2"
-    );
-    const json = await response.json();
-    theme = json.data;
-    //Removing class selectedTheme so that table with filtered scores can be visible to user when selecting a theme
-    table.classList.remove("selectedTheme");
-    tableRandom.style.display = "none";
-    return theme;
-  };
-
-  const scoreThemeMusic = async () => {
-    const response = await fetch(
-      import.meta.env.VITE_URL_DIRECTUS +
-        "items/Games?fields=*,player.first_name&sort=-score&limit=10&filter[theme]=3"
-    );
-    const json = await response.json();
-    theme = json.data;
-    //Removing class selectedTheme so that table with filtered scores can be visible to user when selecting a theme
-    table.classList.remove("selectedTheme");
-    tableRandom.style.display = "none";
-    return theme;
-  };
-</script>
+ // Import the "onMount" function from the "svelte" library.
+  import { onMount } from "svelte";
+  
+  
+  // Creating a variable loggedInUsername to recover its value from local storage and display it when user is connected.
+  let loggedInUsername = localStorage.getItem("name");
+  
+  // Variable to display the name of the user.
+  let divUserName;
+  
+  // Creating an empty array to recover score-related data from the data base.
+  let themeScores = [];
+  
+  // Creating a variable to target <table> to be displayed when a user chooses to filter scores by theme.
+    let table;
+    
+    // Creating a variable to target the <table> containing random scores (no theme chosen by user) by default.
+      let tableRandom;
+      
+      
+      // Use onMount to perform operations when the Svelte component is mounted in the DOM.
+      onMount(async () => {
+        // Async function to get the score by theme or all the games.
+        const scores = await getScoresByTheme();
+        const AllGames = await getAllGames();
+        
+      });
+      
+      // Asyn function which allows you to obtain the score of the games recorded with the theme music.
+      const scoreThemeMusic = async () => {
+        themeScores = await getScoresByTheme(3); 
+        
+        // Removing class selectedTheme so that table with filtered scores can be visible to user when selecting a theme.
+        table.classList.remove("selectedTheme");
+        tableRandom.style.display = "none";
+      };
+      
+      // Asyn function which allows you to obtain the score of the games recorded with the theme Cinema.
+      const scoreThemeCinema = async () => {
+        themeScores = await getScoresByTheme(2); 
+        
+        // Removing class selectedTheme so that table with filtered scores can be visible to user when selecting a theme.
+        table.classList.remove("selectedTheme");
+        tableRandom.style.display = "none";
+      };
+      
+      // Asyn function which allows you to obtain the score of the games recorded with the theme Animals.
+      const scoreThemeAnimals = async () => {
+        themeScores = await getScoresByTheme(1); 
+        
+        // Removing class selectedTheme so that table with filtered scores can be visible to user when selecting a theme.
+        table.classList.remove("selectedTheme");
+        tableRandom.style.display = "none";
+      };
+      
+    </script>
 
 <body>
   <div class="container">
@@ -86,14 +89,14 @@
               >
               <a href="/scores/3" use:link on:click={scoreThemeMusic}>Musique</a
               >
-              <a href="/scores" use:link on:click={getScores}>Tous les thèmes</a
+              <a href="/scores" use:link on:click={getAllGames()}>Tous les thèmes</a
               >
             </div>
           </div>
 
           <!-- Table to display by default (no theme selected) when user arrives on score page -->
           <table bind:this={tableRandom}>
-            {#await getScores()}
+            {#await getAllGames()}
               <p>En attente des scores</p>
             {:then Games}
               <tr class="tabDarkBlue">
@@ -102,35 +105,48 @@
               </tr>
               {#each Games as game}
                 <tr class="tabLight">
-                  <td>{game.player.first_name}</td>
+                  <td>{game.name}</td>
                   <td>{game.score}</td>
                 </tr>
               {/each}
             {/await}
           </table>
+<!-- Table to display if a user filters scores by theme -->
+<table class="selectedTheme" bind:this={table}>
+  {#await getScoresByTheme()}
+  <p>En attente des scores</p>
+  {:then scores}
+  <tr class="tabDarkBlue">
+    <td>Nom</td>
+    <td>Score</td>
+  </tr>
+  <!-- We use {#if themeScores.length > 0} to check if themeScores contains any scores. If the length
+    of themeScores is greater than 0, it means that scores are available for the selected theme. -->
+  {#if themeScores.length > 0}
+    {#each themeScores as score}
+      <tr class="tabLight">
+        <td>{score.name}</td>
+        <td>{score.score}</td>
+      </tr>
+    {/each}
+  {:else}
+    <p>Pas de scores disponibles</p>
+  {/if}
+  {/await}
+</table>
 
-          <!-- Table to display if a user filters scores by theme -->
-          <table class="selectedTheme" bind:this={table}>
-            <tr class="tabDarkBlue">
-              <td>Nom</td>
-              <td>Score</td>
-            </tr>
-            {#if theme}
-              {#each theme as theme}
-                <tr class="tabLight">
-                  <td>{theme.player.first_name}</td>
-                  <td>{theme.score}</td>
-                </tr>
-              {/each}
-            {/if}
-          </table>
+
+
+
         </div>
       </section>
       <aside aria-label="menu de navigation">
-        <div>
+        <div bind:this={divUserName}>
           {#if localStorage.getItem("token")}
-            <p>{username}</p>
-            <a href="/scores" use:link on:click={logout} on:click={refreshPage}>
+            <p>{loggedInUsername}</p>
+            <a
+              href="/connection"
+              use:link on:click={() => { refreshPage(); logout(); }}>
               <span id="statusUser">Déconnecter</span></a
             >
           {/if}
@@ -313,7 +329,7 @@
       margin: 0.5rem auto;
     }
 
-    .tabDark {
+    .tabDarkBlue {
       background-color: #0d4240;
       border: 2px solid #0d4240;
       padding: 7rem;
@@ -356,6 +372,7 @@
 
     aside div {
       margin: 1.9rem;
+      display: flex;
     }
 
     #statusUser {
@@ -380,6 +397,7 @@
 
     aside button {
       max-width: 250px;
+     
     }
 
     aside a.contact {

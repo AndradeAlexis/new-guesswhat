@@ -2,4 +2,3 @@ GET https://rq0q3cq4.directus.app/items/Games?fields=*,player.first_name&sort=-s
 
 
 
-# GET https://rq0q3cq4.directus.app/items/Games?fields=*&filter[theme]=1 HTTP/1.1

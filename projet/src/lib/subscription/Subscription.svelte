@@ -3,102 +3,94 @@
   import Header from "../homepage/Header.svelte";
   import Footer from "../homepage/Footer.svelte";
   import { push } from "svelte-spa-router";
-  import { logout } from "../connection/Connection.svelte";
   import { refreshPage } from "../functions/Functions.svelte";
   import Accueil from "../../assets/Accueil.png";
-
-  //Creating a variable username to recover its value from local storage and display it when user is connected.
-  let username = localStorage.getItem("username");
-
-  //Creating the variables for the subscription form
-  let first_name;
-  let email;
-  let password;
-  let role = "1a7bf53e-50c7-4125-ba73-7d3a4bc726df";
-  //Creating a pattern for user password (min: 8 letters, max: 20 letters, at least 1 capital letter, 1 number and 1 special character)
-  const pattern =
-    "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}";
-
-  //Creating a variable to target the text area for username
-  let textArea;
-
-  //Creating a variable to target the text area for the email address
-  let userEmailArea;
-
-  //Creating a variable to target the text area for the password
-  let userPasswordArea;
-
-  //Creating function with POST request allowing the user to submit his information for user account creation
-  async function createUser() {
+  
+  
+  //Import the "getCSRFToken" function from "db.js" file.
+  import { getCSRFToken } from '../../db';
+  
+  //Import the "setCSRFCookie" function from "db.js" file.
+  import { setCSRFCookie } from '../../db'; 
+  
+  // This asynchronous function  to obtain the CSRF token.
+  async function SecurityCSRFToken() {
     try {
-      let endpoint = import.meta.env.VITE_URL_DIRECTUS + "users";
-
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          first_name: first_name,
-          email: email,
-          password: password,
-          role: role,
-        }),
-      });
-
-      //If no error, user is alerted that account has been created and redirected to login page
-      if (response.status === 204 || response.status === 200) {
-        alert("Votre compte a été créé.");
-        push("/connection");
-        return [];
-      } else {
-        const data = await response.json();
-        alert("Erreur, veuillez réessayer.");
-        console.error(data.errors);
-        return [];
-      }
+      // Attempt to fetch the CSRF token from the server.
+      const csrfToken = await getCSRFToken();
+      
+      // Store the CSRF token in a cookie.
+      setCSRFCookie(csrfToken.csrf_token);
     } catch (error) {
-      alert("Erreur, veuillez réessayer.");
-      console.error(error);
-      return [];
+      // Handle errors during the CSRF token retrieval process.
+      console.error('Erreur lors de la récupération du jeton CSRF :', error);
     }
   }
-
-  //Creating a function to ensure that user does not put special characters in the username field
-  function isNotValidUsername(username) {
-    const specialCharacters = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    const containsSpecialCharacter = specialCharacters.test(username);
-    return containsSpecialCharacter;
-  }
-
-  //Function allowing to create a user on submit, emptying form after submission
+  
+  // Call the SecurityCSRFToken function to initiate the process.
+  SecurityCSRFToken();
+  
+  // Creating a variable loggedInUsername to recover its value from local storage and display it when user is connected.
+  let loggedInUsername = localStorage.getItem("name");
+  
+  // Variables to store data filled in by the user.
+  let name = '';
+  let email = '';
+  let password = '';
+  let textArea;
+  let userEmailArea;
+  let userPasswordArea;
+  
+  // Async function which allows create a user.
   const handleSubmitUser = async (event) => {
     event.preventDefault();
-
-    //Creating a variable to target the username input
-    let userName = textArea.value;
-
-    //Writing a condition to alert the user about acceptable username length and that special characters are not accepted.
-    if (userName.length > 20 || userName.length < 5) {
-      alert("Votre nom d'utilisateur doit comporter entre 5 et 20 caractères");
-      return false;
-    } else if (isNotValidUsername(userName)) {
-      alert(
-        "Votre nom d'utilisateur ne doit pas contenir de caractères spéciaux"
-      );
-      return false;
+    
+    // Get the value of the form, these values ​​will be used to create a new user.
+    const name = textArea.value;
+    const email = userEmailArea.value;
+    const password = userPasswordArea.value;
+    
+    try {
+      
+      // Get the CSRF token
+      const csrfToken = await getCSRFToken();
+      
+      // If the CSRF token is available, add it to the headers.
+      if (csrfToken) {
+        // POST request to the URL "http://127.0.0.1:8000/api/users".
+        
+        const response = await fetch("http://127.0.0.1:8000/api/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // Add CSRF token to headers
+            "X-CSRF-TOKEN": csrfToken.csrf_token,
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+          }),
+        });
+        // This condition checks if the HTTP response has a status code 201, meaning user creation was successful and redirects the user to the login page.
+        if (response.status === 201) {
+          alert("Utilisateur créé avec succès");
+          push("/connection");
+          // If user creation fails,(for exemple invalid data or email duplicates) the HTTP response is parsed as JSON, and an error message is displayed in an alert.
+        } else {
+          const data = await response.json();
+          alert("Erreur lors de la création de l'utilisateur: " + data.message);
+        }
+      } else {
+        // Handle the case where CSRF token is not available.
+        alert("Erreur lors de la récupération du jeton CSRF.");
+      }
+    } catch (error) {
+      alert("Erreur lors de la création de l'utilisateur: " + error.message);
     }
-
-    //Creating a variable to target the password input
-    let userPassword = userPasswordArea.value;
-
-    const user = await createUser();
-    //Emptying the text area
-    first_name = "";
-    email = "";
-    password = "";
-    return user;
   };
+  
+  
 </script>
 
 <body>
@@ -119,37 +111,37 @@
             </div>
             <div class="columnSubscriptionForm">
               <input
-                type="first_name"
-                required
-                id="first_name"
-                name="first_name"
-                placeholder="Nom d'utilisateur"
-                bind:this={textArea}
-                bind:value={first_name}
+              type="first_name"
+              required
+              id="first_name"
+              name="first_name"
+              placeholder="Nom d'utilisateur"
+              bind:this={textArea}
+              bind:value={name}
               />
-
+              
               <input
-                type="email"
-                required
-                id="mail"
-                name="user_mail"
-                placeholder="Email"
-                bind:this={userEmailArea}
-                bind:value={email}
+              type="email"
+              required
+              id="mail"
+              name="user_mail"
+              placeholder="Email"
+              bind:this={userEmailArea}
+              bind:value={email}
               />
-
+              
               <input
-                type="password"
-                required
-                id="password"
-                name="user_password"
-                placeholder="Mot de passe"
-                {pattern}
-                title="Le mot de passe doit contenir au moins un chiffre, un symbole, une lettre majuscule et 8 à 20 caractères"
-                bind:this={userPasswordArea}
-                bind:value={password}
+              type="password"
+              required
+              id="password"
+              name="user_password"
+              placeholder="Mot de passe"
+              
+              title="Le mot de passe doit contenir au moins un chiffre, un symbole, une lettre majuscule et 8 à 20 caractères"
+              bind:this={userPasswordArea}
+              bind:value={password}
               />
-
+              
               <button id="subscriptionFormButton">Valider</button>
             </div>
           </div>
@@ -158,215 +150,215 @@
       <aside aria-label="menu de navigation">
         <div>
           {#if localStorage.getItem("token")}
-            <p>{username}</p>
-            <a
-              href="/subscription"
-              use:link
-              on:click={logout}
-              on:click={refreshPage}
-            >
-              <span id="statusUser">Déconnecter</span></a
-            >
+          <p>{loggedInUsername }</p>
+          <a
+          href="/subscription"
+          use:link
+          
+          on:click={refreshPage}
+          >
+          <span id="statusUser">Déconnecter</span></a
+          >
           {/if}
         </div>
         <a href="/" use:link
-          ><img class="homeButton" src={Accueil} alt="Retour accueil" /></a
+        ><img class="homeButton" src={Accueil} alt="Retour accueil" /></a
         >
         {#if !localStorage.getItem("token")}
-          <button
-            ><a href="/connection" use:link class="aside-buttons">Connexion</a
-            ></button
+        <button
+        ><a href="/connection" use:link class="aside-buttons">Connexion</a
+          ></button
           >
           <button
-            ><a href="/scores" use:link class="aside-buttons">Scores</a></button
+          ><a href="/scores" use:link class="aside-buttons">Scores</a></button
           >
-        {/if}
-        <a class="contact" href="/contact" use:link>Contact</a>
-        <a class="contact" href="/about_us" use:link>À propos</a>
-      </aside>
-      <Footer />
-    </main>
-  </div>
-</body>
-
-<style>
-  /* SUBSCRIPTION */
-
-  #subscriptionFormTitle {
-    text-align: center;
-  }
-
-  .subscriptionForm {
-    width: 100%;
-    padding: 1rem;
-    display: flex;
-  }
-
-  .columnSubscriptionForm {
-    flex: 50%;
-  }
-
-  .subscriptionForm label {
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    margin: 4%;
-    padding: 5%;
-  }
-
-  .subscriptionForm input {
-    border: 4px solid var(--bg-buttons);
-    border-radius: 10px;
-    padding: 2%;
-    width: 100%;
-    margin-top: 6%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  #subscriptionFormButton {
-    width: 100%;
-    padding: 1rem;
-    background-color: var(--orange-buttons);
-    color: var(--blue-text);
-    font-weight: bolder;
-    border: 10px var(--blue-outlines) solid;
-    border-radius: 15px;
-    font-family: "Mentimun";
-    font-size: 125%;
-    margin: 30px auto 0 auto;
-    display: block;
-  }
-
-  #subscriptionFormButton:hover {
-    transform: scale(1.1);
-    border: 0.7rem var(--bg-buttons) solid;
-  }
-
-  aside {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  aside div {
-    display: flex;
-    margin: 1rem;
-  }
-
-  #statusUser {
-    background-color: var(--orange-buttons);
-    color: var(--blue-text);
-    border-radius: 20px;
-    padding: 5px;
-    margin-left: 1rem;
-  }
-
-  aside a {
-    text-decoration: none;
-    color: var(--text-color);
-  }
-
-  .homeButton {
-    display: block;
-    max-width: 80%;
-    margin: 0.5rem auto;
-  }
-
-  aside button {
-    display: block;
-    max-width: 100%;
-    padding: 1rem;
-    background-color: var(--bg-buttons);
-    color: var(--blue-text);
-    font-weight: bolder;
-    border: 0.7rem var(--orange-buttons) solid;
-    border-radius: 0.9rem;
-    margin: 0.5rem;
-    font-family: "Mentimun";
-    font-size: 150%;
-  }
-
-  .aside-buttons {
-    color: var(--blue-text);
-  }
-
-  aside a.contact {
-    display: block;
-    max-width: 50%;
-    text-align: center;
-    margin-top: 0.5rem;
-    font-size: medium;
-  }
-
-  /*  Media queries version tablet  */
-  @media (min-width: 426px) and (max-width: 768px) {
-    .homeButton {
-      width: 300px;
+          {/if}
+          <a class="contact" href="/contact" use:link>Contact</a>
+          <a class="contact" href="/about_us" use:link>À propos</a>
+        </aside>
+        <Footer />
+      </main>
+    </div>
+  </body>
+  
+  <style>
+    /* SUBSCRIPTION */
+    
+    #subscriptionFormTitle {
+      text-align: center;
     }
-
-    input {
-      margin-bottom: 12px;
-      margin-left: -50px;
-      width: 100%;
-    }
-
-    #subscriptionFormButton {
-      margin-left: -50px;
-    }
-  }
-
-  /*  Media queries desktop version */
-
-  @media (min-width: 769px) {
-    main {
-      grid-template-columns: 55% auto;
-    }
-
+    
     .subscriptionForm {
-      width: 80%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .columnSubscriptionForm {
-      margin-left: 1rem;
-    }
-
-    input {
-      margin-bottom: 11px;
-      margin-left: -30px;
       width: 100%;
+      padding: 1rem;
+      display: flex;
     }
-
+    
+    .columnSubscriptionForm {
+      flex: 50%;
+    }
+    
+    .subscriptionForm label {
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      margin: 4%;
+      padding: 5%;
+    }
+    
+    .subscriptionForm input {
+      border: 4px solid var(--bg-buttons);
+      border-radius: 10px;
+      padding: 2%;
+      width: 100%;
+      margin-top: 6%;
+      display: flex;
+      flex-direction: column;
+    }
+    
     #subscriptionFormButton {
-      margin-left: -2.5rem;
+      width: 100%;
+      padding: 1rem;
+      background-color: var(--orange-buttons);
+      color: var(--blue-text);
+      font-weight: bolder;
+      border: 10px var(--blue-outlines) solid;
+      border-radius: 15px;
+      font-family: "Mentimun";
+      font-size: 125%;
+      margin: 30px auto 0 auto;
+      display: block;
     }
-
-    .homeButton {
-      max-width: 45%;
+    
+    #subscriptionFormButton:hover {
+      transform: scale(1.1);
+      border: 0.7rem var(--bg-buttons) solid;
     }
-
+    
+    aside {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    aside div {
+      display: flex;
+      margin: 1rem;
+    }
+    
     #statusUser {
       background-color: var(--orange-buttons);
       color: var(--blue-text);
       border-radius: 20px;
       padding: 5px;
-      margin-left: none;
+      margin-left: 1rem;
     }
-
+    
     aside a {
-      margin-top: 1.1rem;
+      text-decoration: none;
+      color: var(--text-color);
     }
-
+    
+    .homeButton {
+      display: block;
+      max-width: 80%;
+      margin: 0.5rem auto;
+    }
+    
     aside button {
-      max-width: 300px;
+      display: block;
+      max-width: 100%;
+      padding: 1rem;
+      background-color: var(--bg-buttons);
+      color: var(--blue-text);
+      font-weight: bolder;
+      border: 0.7rem var(--orange-buttons) solid;
+      border-radius: 0.9rem;
+      margin: 0.5rem;
+      font-family: "Mentimun";
+      font-size: 150%;
     }
-
+    
+    .aside-buttons {
+      color: var(--blue-text);
+    }
+    
     aside a.contact {
-      margin-top: 1rem;
-      font-size: large;
+      display: block;
+      max-width: 50%;
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: medium;
     }
-  }
-</style>
+    
+    /*  Media queries version tablet  */
+    @media (min-width: 426px) and (max-width: 768px) {
+      .homeButton {
+        width: 300px;
+      }
+      
+      input {
+        margin-bottom: 12px;
+        margin-left: -50px;
+        width: 100%;
+      }
+      
+      #subscriptionFormButton {
+        margin-left: -50px;
+      }
+    }
+    
+    /*  Media queries desktop version */
+    
+    @media (min-width: 769px) {
+      main {
+        grid-template-columns: 55% auto;
+      }
+      
+      .subscriptionForm {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+      }
+      
+      .columnSubscriptionForm {
+        margin-left: 1rem;
+      }
+      
+      input {
+        margin-bottom: 11px;
+        margin-left: -30px;
+        width: 100%;
+      }
+      
+      #subscriptionFormButton {
+        margin-left: -2.5rem;
+      }
+      
+      .homeButton {
+        max-width: 45%;
+      }
+      
+      #statusUser {
+        background-color: var(--orange-buttons);
+        color: var(--blue-text);
+        border-radius: 20px;
+        padding: 5px;
+        margin-left: none;
+      }
+      
+      aside a {
+        margin-top: 1.1rem;
+      }
+      
+      aside button {
+        max-width: 300px;
+      }
+      
+      aside a.contact {
+        margin-top: 1rem;
+        font-size: large;
+      }
+    }
+  </style>

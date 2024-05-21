@@ -9,8 +9,10 @@
   import Twitter from "../../assets/twitter.png";
   import Accueil from "../../assets/Accueil.png"
 
-  //Creating a variable username to recover its value from local storage and display it when user is connected.
-  let username = localStorage.getItem("username");
+   //Creating a variable loggedInUsername to recover its value from local storage and display it when user is connected.
+ let loggedInUsername = localStorage.getItem("name");
+
+let divUserName;
 </script>
 
 <body>
@@ -50,14 +52,16 @@
         </div>
       </section>
       <aside aria-label="menu de navigation">
-        <div>
-    
-          {#if localStorage.getItem('token')} 
-          <p>{username}</p>
-          <a href="/contact" use:link on:click={logout} on:click={refreshPage}> <span id="statusUser">Déconnecter</span></a>
+        <div bind:this={divUserName}>
+          {#if localStorage.getItem("token")}
+            <p>{loggedInUsername}</p>
+            <a
+              href="/connection"
+              use:link on:click={() => { refreshPage(); logout(); }}>
+              <span id="statusUser">Déconnecter</span></a
+            >
           {/if}
-          
-      </div>
+        </div>
         <a href="/" use:link><img
             class="homeButton"
             src= {Accueil}

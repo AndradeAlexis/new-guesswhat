@@ -1,3 +1,2 @@
 GET https://rq0q3cq4.directus.app/items/Clue?fields=name,id&filter[theme_id]=1 HTTP/1.1
 
-https://rq0q3cq4.directus.app/items/Clue?fields=name 
